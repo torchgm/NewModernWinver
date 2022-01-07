@@ -59,17 +59,16 @@ namespace NewModernWinver.Views
             }
 
             byte[] data = new byte[256];
-            uint RegType;
 
             reg.InitNTDLLEntryPoints();
 
-            reg.QueryValue(RegistryHive.HKEY_CURRENT_USER, @"Control Panel\Desktop\Colors", "Window", out RegType, out data);
+            reg.QueryValue(RegistryHive.HKEY_CURRENT_USER, @"Control Panel\Desktop\Colors", "Window", out RegistryType _, out _);
 
 
             int unixInstall = 0;
             try
             {
-                reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "InstallDate", out RegType, out data);
+                reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "InstallDate", out uint RegType, out data);
                 unixInstall = BitConverter.ToInt32(data, 0);
             }
             catch (Exception)
@@ -78,7 +77,7 @@ namespace NewModernWinver.Views
             valueDate.Text = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixInstall).ToString();
 
             valueComputername.Text = System.Net.Dns.GetHostName();
-            valueUsername.Text = WindowsIdentity.GetCurrent().Name.Replace(valueComputername.Text + "\\", "").Replace("dwals", "Torch");
+            valueUsername.Text = WindowsIdentity.GetCurrent().Name.Replace(valueComputername.Text + "\\", "");
 
             valueBuild.Text = build + "." + rev;
             if (ListsAndStuff.BuildDict.ContainsKey(build))
@@ -87,7 +86,7 @@ namespace NewModernWinver.Views
             }
             else
             {
-                valueUpdate.Text = "Dev";
+                valueUpdate.Text = "001";
             }
         }
 

@@ -115,6 +115,9 @@ namespace NewModernWinver
                             contentFrame.Navigate(typeof(Views.ThemePage));
                             break;
 
+                        case "Nav_Links":
+                            contentFrame.Navigate(typeof(Views.LinksPage));
+                            break;
                     }
                 }
             }

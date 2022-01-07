@@ -11,23 +11,23 @@
     <Grid>
         <ScrollViewer>
             <Grid HorizontalAlignment="Center" Width="436">
-                <TextBlock x:Name="labelTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Microsoft Windows" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="labelCopyright" HorizontalAlignment="Left" Margin="10,37,0,0" TextWrapping="Wrap" Text="©️ 2021 Microsoft Corporation. All rights reserved." VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <TextBlock x:Name="labelTitle" HorizontalAlignment="Left" Margin="13,10,0,0" TextWrapping="Wrap" Text="Microsoft Windows" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="labelCopyright" HorizontalAlignment="Left" Margin="13,37,0,0" TextWrapping="Wrap" Text="©️ 2021 Microsoft Corporation. All rights reserved." VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
                 <Rectangle x:Name="bgRect" Margin="4,69,4,0" RadiusX="8" RadiusY="8" Fill="#37404040" Height="333" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="2"/>
 
-                <TextBlock x:Name="labelEdition" HorizontalAlignment="Left" Margin="10,76,0,0"  TextWrapping="Wrap" Text="Edition" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueEdition" HorizontalAlignment="Left" Margin="120,76,0,0"  TextWrapping="Wrap" Text="[windowsEdition]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <TextBlock x:Name="labelEdition" HorizontalAlignment="Left" Margin="13,76,0,0"  TextWrapping="Wrap" Text="Edition" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueEdition" HorizontalAlignment="Left" Margin="130,76,0,0"  TextWrapping="Wrap" Text="[windowsEdition]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
 
-                <TextBlock x:Name="labelUpdate" HorizontalAlignment="Left" Margin="10,106,0,0" TextWrapping="Wrap" Text="Update" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueUpdate" HorizontalAlignment="Left" Margin="120,106,0,0"  TextWrapping="Wrap" Text="[updateVersion]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <TextBlock x:Name="labelUpdate" HorizontalAlignment="Left" Margin="13,106,0,0" TextWrapping="Wrap" Text="Update" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueUpdate" HorizontalAlignment="Left" Margin="130,106,0,0"  TextWrapping="Wrap" Text="[updateVersion]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
 
-                <TextBlock x:Name="labelDate" HorizontalAlignment="Left" Margin="10,136,0,0" TextWrapping="Wrap" Text="Installed on" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueDate" HorizontalAlignment="Left" Margin="120,136,0,0"  TextWrapping="Wrap" Text="[installDate]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <TextBlock x:Name="labelDate" HorizontalAlignment="Left" Margin="13,136,0,0" TextWrapping="Wrap" Text="Installed on" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueDate" HorizontalAlignment="Left" Margin="130,136,0,0"  TextWrapping="Wrap" Text="[installDate]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
 
-                <TextBlock x:Name="labelBuild" HorizontalAlignment="Left" Margin="10,166,0,0" TextWrapping="Wrap" Text="Build" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueBuild" HorizontalAlignment="Left" Margin="120,166,0,0"  TextWrapping="Wrap" Text="[buildString]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <TextBlock x:Name="labelBuild" HorizontalAlignment="Left" Margin="13,166,0,0" TextWrapping="Wrap" Text="Build" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueBuild" HorizontalAlignment="Left" Margin="130,166,0,0"  TextWrapping="Wrap" Text="[buildString]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
 
-                <TextBlock Margin="10,210,10,0" Foreground="{ThemeResource SystemBaseHighColor}" FontSize="14" TextWrapping="Wrap" Height="117" VerticalAlignment="Top">
+                <TextBlock Margin="13,210,10,0" Foreground="{ThemeResource SystemBaseHighColor}" FontSize="14" TextWrapping="Wrap" Height="117" VerticalAlignment="Top">
                     The Windows operating system and its user interface are protected by trademark and other pending or existing intellectual property rights in the United States and other countries/regions.<LineBreak/><LineBreak/>This product is licensed under the 
                     <Hyperlink 
                         UnderlineStyle="None"
@@ -37,11 +37,11 @@
                     to:
                 </TextBlock>
 
-                <TextBlock x:Name="labelUsername" HorizontalAlignment="Left" Margin="10,345,0,0" TextWrapping="Wrap" Text="User" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueUsername" HorizontalAlignment="Left" Margin="120,345,0,0"  TextWrapping="Wrap" Text="[userName]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <TextBlock x:Name="labelUsername" HorizontalAlignment="Left" Margin="13,345,0,0" TextWrapping="Wrap" Text="User" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueUsername" HorizontalAlignment="Left" Margin="130,345,0,0"  TextWrapping="Wrap" Text="[userName]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
 
-                <TextBlock x:Name="labelComputername" HorizontalAlignment="Left" Margin="10,375,0,0" TextWrapping="Wrap" Text="Computer" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueComputername" HorizontalAlignment="Left" Margin="120,375,0,0"  TextWrapping="Wrap" Text="[computerName]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <TextBlock x:Name="labelComputername" HorizontalAlignment="Left" Margin="13,375,0,0" TextWrapping="Wrap" Text="Computer" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueComputername" HorizontalAlignment="Left" Margin="130,375,0,0"  TextWrapping="Wrap" Text="[computerName]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
 
             </Grid>
         </ScrollViewer>

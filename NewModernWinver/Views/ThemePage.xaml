@@ -10,10 +10,10 @@
     <Grid>
         <ScrollViewer>
             <Grid HorizontalAlignment="Center" Width="436">
+                <TextBlock x:Name="labelTitle" Text="Themes and Colours"  HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueCurrentTheme" Text="Current Theme: [unavailable]" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 <Rectangle x:Name="bgRect" Margin="4,69,4,0" RadiusX="8" RadiusY="8" Fill="#37404040" Height="334" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="2"/>
-                <TextBlock x:Name="labelTitle" Text="Themes and Colours"  HorizontalAlignment="Left" Margin="13,5,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueCurrentTheme" Text="Current Theme: [unavailable]" Margin="13,33,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                
+
                 <Rectangle x:Name="wallpaperRectangle" RadiusX="7" RadiusY="7" HorizontalAlignment="Stretch" Margin="13,107,174,0" VerticalAlignment="Top" Height="138" Width="245">
                     <Rectangle.Fill>
                         <ImageBrush x:Name="valueWallpaper" Stretch="UniformToFill"/>

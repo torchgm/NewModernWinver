@@ -19,28 +19,25 @@
                     <VisualState.Setters>
                         <Setter Target="nvTopLevelNav.Visibility" Value="Collapsed"/>
                         <Setter Target="gvTopLevelNav.Visibility" Value="Visible"/>
-                        <Setter Target="contentFrame.Visibility" Value="Collapsed"/>
-                        <Setter Target="gvFrame2.Visibility" Value="Visible"/>
+                        <!--<Setter Target="contentFrame.Visibility" Value="Collapsed"/>-->
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <GridView/>
         <Image x:Name ="LogoWin11Dark" Source="/Assets/win11dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
         <Image x:Name ="LogoWin11Light" Source="/Assets/win11light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
 
+        
         <GridView x:Name="gvTopLevelNav" Margin="0,135,0,0" CanReorderItems="True" CanDragItems="True" AllowDrop="True" HorizontalAlignment="Stretch" Visibility="Collapsed" Background="#37404040">
-            <GridView.ItemContainerStyle>
-                <Style TargetType="Frame">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </GridView.ItemContainerStyle>
+
             <GridView.Items>
                 <Frame x:Name="gvFrame1" Width="436" Height="410" HorizontalAlignment="Center"/>
-                <Frame x:Name="gvFrame2" Width="436" Height="410" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                <Frame x:Name="gvFrame2" Width="436" Height="410" HorizontalAlignment="Center"/>
                 <Frame x:Name="gvFrame3" Width="436" Height="410" HorizontalAlignment="Center"/>
                 <Frame x:Name="gvFrame4" Width="436" Height="410" HorizontalAlignment="Center"/>
-
             </GridView.Items>
+
         </GridView>
 
 
@@ -54,6 +51,9 @@
                 </muxc:NavigationViewItem>
                 <muxc:NavigationViewItem Tag="Nav_Theme" >
                     <TextBlock Tag="Nav_Theme">Theme</TextBlock>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Tag="Nav_Links" >
+                    <TextBlock Tag="Nav_Links">Links</TextBlock>
                 </muxc:NavigationViewItem>
             </muxc:NavigationView.MenuItems>
             <Frame x:Name="contentFrame" Background="Transparent" Margin="0,0,0,51"/>
