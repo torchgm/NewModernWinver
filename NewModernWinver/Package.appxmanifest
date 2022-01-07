@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap mp rescap">
+
+  
+  
+  <Identity
+    Name="14082CryzenTechnologies.ModernWinver"
+    Publisher="CN=Torch"
+    Version="0.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="672a00d5-56a4-47ec-9313-bedab12d3f43" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>Modern Winver</DisplayName>
+    <PublisherDisplayName>TorchGM</PublisherDisplayName>
+    <Logo>Assets\AppResources\PackageLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="NewModernWinver.App">
+      <uap:VisualElements
+        DisplayName="Modern Winver"
+        Description="NewModernWinver"
+        BackgroundColor="transparent" Square150x150Logo="Assets\AppResources\MediumTile.png" Square44x44Logo="Assets\AppResources\AppIcon.png">
+        <uap:DefaultTile ShortName="Windows Version" Square71x71Logo="Assets\AppResources\SmallTile.png" Wide310x150Logo="Assets\AppResources\WideTile.png" />
+        <uap:SplashScreen Image="Assets\AppResources\SplashScreen.png"/>
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="mwv">
+            <uap:Logo>Assets\ModernWinver.png</uap:Logo>
+            <uap:DisplayName>About Windows</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <uap:Capability Name="userAccountInformation"/>
+    <rescap:Capability Name="appDiagnostics" />
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="packageQuery" />
+    <rescap:Capability Name="broadFileSystemAccess" />
+  </Capabilities>
+  
+</Package>

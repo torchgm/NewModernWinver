@@ -1,0 +1,64 @@
+﻿<Page x:Name="ContainerPage"
+    x:Class="NewModernWinver.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewModernWinver"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--VisualState to be triggered when window width is >=720 effective pixels.-->
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="nvTopLevelNav.Visibility" Value="Collapsed"/>
+                        <Setter Target="gvTopLevelNav.Visibility" Value="Visible"/>
+                        <Setter Target="contentFrame.Visibility" Value="Collapsed"/>
+                        <Setter Target="gvFrame2.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Image x:Name ="LogoWin11Dark" Source="/Assets/win11dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
+        <Image x:Name ="LogoWin11Light" Source="/Assets/win11light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
+
+        <GridView x:Name="gvTopLevelNav" Margin="0,135,0,0" CanReorderItems="True" CanDragItems="True" AllowDrop="True" HorizontalAlignment="Stretch" Visibility="Collapsed" Background="#37404040">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="Frame">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.Items>
+                <Frame x:Name="gvFrame1" Width="436" Height="410" HorizontalAlignment="Center"/>
+                <Frame x:Name="gvFrame2" Width="436" Height="410" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                <Frame x:Name="gvFrame3" Width="436" Height="410" HorizontalAlignment="Center"/>
+                <Frame x:Name="gvFrame4" Width="436" Height="410" HorizontalAlignment="Center"/>
+
+            </GridView.Items>
+        </GridView>
+
+
+        <muxc:NavigationView x:Name="nvTopLevelNav" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True" Background="Transparent" PaneDisplayMode="Top" Margin="0,110,0,0" IsBackButtonVisible="Collapsed" Loaded="nvTopLevelNav_Loaded" ItemInvoked="nvTopLevelNav_ItemInvoked" FlowDirection="LeftToRight" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" UseLayoutRounding="True" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Tag="Nav_About">
+                    <TextBlock Tag="Nav_About">About</TextBlock>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Tag="Nav_System">
+                    <TextBlock Tag="Nav_System">System</TextBlock>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Tag="Nav_Theme" >
+                    <TextBlock Tag="Nav_Theme">Theme</TextBlock>
+                </muxc:NavigationViewItem>
+            </muxc:NavigationView.MenuItems>
+            <Frame x:Name="contentFrame" Background="Transparent" Margin="0,0,0,51"/>
+        </muxc:NavigationView>
+        <Button x:Name="okButton" Content="OK" Margin="0,0,10,10" VerticalAlignment="Bottom" Canvas.ZIndex="1" HorizontalAlignment="Right" Height="32" Width="48" Click="okButton_Click"/>
+    </Grid>
+
+</Page>

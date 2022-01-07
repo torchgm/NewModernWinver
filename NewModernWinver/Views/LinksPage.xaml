@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="NewModernWinver.Views.LinksPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewModernWinver.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background ="Transparent" Foreground="{ThemeResource SystemColorDisabledTextColor}">
+    <Grid>
+        <ScrollViewer>
+            <Grid HorizontalAlignment="Center" Width="436">
+                <TextBlock x:Name="labelTitle" Text="Links"  HorizontalAlignment="Left" Margin="13,5,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueCurrentTheme" Text="Additional Help and Information" Margin="13,33,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Rectangle x:Name="bgRect" Margin="4,69,4,0" RadiusX="8" RadiusY="8" Fill="#37404040" Height="334" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="2"/>
+
+                <TextBlock Margin="10,76,7,0" Foreground="{ThemeResource SystemBaseHighColor}" FontSize="14" TextWrapping="Wrap" Height="310" VerticalAlignment="Top">
+                    <Hyperlink UnderlineStyle="None" NavigateUri="ms-settings:">
+                         ​ Settings
+                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                    
+                    <Hyperlink UnderlineStyle="None" NavigateUri="ms-settings:about">
+                        System properties
+                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                    
+                    <Hyperlink UnderlineStyle="None" NavigateUri="https://support.microsoft.com/contactus">
+                         Microsoft Support
+                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                    
+                    <Hyperlink UnderlineStyle="None" NavigateUri="https://support.microsoft.com/">
+                        FAQs
+                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                                        
+                    <Hyperlink UnderlineStyle="None" NavigateUri="https://discord.gg/wYQJd8VGSB">
+                         Discord
+                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                    
+                    <Hyperlink UnderlineStyle="None" NavigateUri="https://www.github.com/torchgm/NewModernWinver">
+                        About Modern Winver
+                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                </TextBlock>
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

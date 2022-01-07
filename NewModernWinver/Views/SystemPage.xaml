@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="NewModernWinver.Views.SystemPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewModernWinver.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background ="Transparent" Foreground="{ThemeResource SystemColorDisabledTextColor}">
+    <Grid>
+        <ScrollViewer>
+            <Grid HorizontalAlignment="Center" Width="436">
+                <TextBlock x:Name="labelTitle" Text="Your PC" HorizontalAlignment="Left" Margin="13,5,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueSystemName" Text="SystemName" Margin="13,33,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Rectangle x:Name="bgRect" Margin="4,69,4,0" RadiusX="8" RadiusY="8" Fill="#37404040" Height="288" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="2"/>
+
+                <TextBlock x:Name="labelCPU" Text="Processor" HorizontalAlignment="Left" Margin="13,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueCPU" Text="UnknownProcessor0000 @ 0.00GHz" HorizontalAlignment="Left" Margin="130,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+
+                <TextBlock x:Name="labelClockSpeed" Text="Base speed" Margin="13,100,208,0" Foreground="{ThemeResource SystemBaseHighColor}" Height="19" VerticalAlignment="Top"/>
+                <TextBlock x:Name="valueClockSpeed" Text="0 MHz" HorizontalAlignment="Left" Margin="130,100,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top"/>
+                <ProgressBar x:Name="progressCPU" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,157,0,0" Value="25" VerticalAlignment="Top"/>
+                <TextBlock x:Name="valueZeroCPU" Text="0%" HorizontalAlignment="Left" Margin="13,166,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191"/>
+                <TextBlock x:Name="labelMaxCPU" Text="100%" HorizontalAlignment="Left" Margin="204,166,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219"/>
+
+                <TextBlock x:Name="labelArch" Text="Architecture" HorizontalAlignment="Left" Margin="13,124,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueArch" Text="Unknown (REAL__MODE)" HorizontalAlignment="Left" Margin="130,124,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+
+                <TextBlock x:Name="labelRAM" Text="Installed RAM" HorizontalAlignment="Left" Margin="13,286,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueRAM" Text="0 GB Unknown @ 0000 MT/s" HorizontalAlignment="Left" Margin="130,286,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <ProgressBar x:Name="progressRAM" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,319,0,0" Value="0" VerticalAlignment="Top"/>
+                <TextBlock x:Name="valueZeroRAM" Text="0 GB" HorizontalAlignment="Left" Margin="13,328,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191"/>
+                <TextBlock x:Name="valueMaxRAM" Text="0 GB" HorizontalAlignment="Left" Margin="204,328,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219"/>
+
+                <TextBlock x:Name="labelStorage" Text="Primary storage" HorizontalAlignment="Left" Margin="13,205,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <ProgressBar x:Name="progressStorage" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,238,0,0" Value="0" VerticalAlignment="Top"/>
+                <TextBlock x:Name="valueTotalStorage" Text="0 GB" HorizontalAlignment="Left" Margin="130,205,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="293"/>
+                <TextBlock x:Name="valueStorage" Text="0 GB used" HorizontalAlignment="Left" Margin="13,247,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191"/>
+                <TextBlock x:Name="valueFreeStorage" Text="0 GB free" HorizontalAlignment="Left" Margin="204,247,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219"/>
+                
+                
+                
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
