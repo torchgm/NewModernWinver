@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewModernWinver", "NewModernWinver\NewModernWinver.csproj", "{C2EA0DAA-3F56-4B03-B248-82E0A6D3A967}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RegistryRT", "..\Regedit-UWP\RegistryRT\RegistryRT.vcxproj", "{84A7225C-2DAF-410D-AB85-282AB220A89F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RegistryRT", "RegistryRT\RegistryRT.vcxproj", "{84A7225C-2DAF-410D-AB85-282AB220A89F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

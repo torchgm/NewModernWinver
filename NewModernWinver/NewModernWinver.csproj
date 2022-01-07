@@ -257,7 +257,7 @@
     <None Include="NewModernWinver_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Regedit-UWP\RegistryRT\RegistryRT.vcxproj">
+    <ProjectReference Include="..\RegistryRT\RegistryRT.vcxproj">
       <Project>{84a7225c-2daf-410d-ab85-282ab220a89f}</Project>
       <Name>RegistryRT</Name>
     </ProjectReference>
