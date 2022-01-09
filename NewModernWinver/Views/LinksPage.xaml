@@ -12,32 +12,58 @@
             <Grid HorizontalAlignment="Center" Width="436">
                 <TextBlock x:Name="labelTitle" Text="Links"  HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
                 <TextBlock x:Name="valueCurrentTheme" Text="Additional Help and Information" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <Rectangle x:Name="bgRect" Margin="4,69,4,0" RadiusX="8" RadiusY="8" Fill="#37404040" Height="334" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="2"/>
+                <Rectangle x:Name="bgRect" Margin="4,68,4,0" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="290" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="1"/>
 
-                <TextBlock Margin="10,76,7,0" Foreground="{ThemeResource SystemBaseHighColor}" FontSize="14" TextWrapping="Wrap" Height="310" VerticalAlignment="Top">
+                <TextBlock Margin="10,76,7,0" Foreground="{ThemeResource SystemBaseHighColor}" TextWrapping="Wrap" Height="310" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal">
+                    <Run FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Semibold">​ Other resources</Run>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
+                    
                     <Hyperlink UnderlineStyle="None" NavigateUri="ms-settings:">
-                         ​ Settings
-                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                     Settings
+                    </Hyperlink>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
                     
                     <Hyperlink UnderlineStyle="None" NavigateUri="ms-settings:about">
-                        System properties
-                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                        System Properties
+                    </Hyperlink>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
+                    
+                    <Hyperlink UnderlineStyle="None" NavigateUri="ms-get-started:">
+                        Tips
+                    </Hyperlink>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
                     
                     <Hyperlink UnderlineStyle="None" NavigateUri="https://support.microsoft.com/contactus">
-                         Microsoft Support
-                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                         Contact Microsoft Support
+                    </Hyperlink>
                     
-                    <Hyperlink UnderlineStyle="None" NavigateUri="https://support.microsoft.com/">
-                        FAQs
-                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
-                                        
+                    <LineBreak/>
+                    <LineBreak/>
+                    <LineBreak/>
+                    
+                    <Run FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Semibold">​About Modern Winver</Run>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
+                    
                     <Hyperlink UnderlineStyle="None" NavigateUri="https://discord.gg/wYQJd8VGSB">
                          Discord
-                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                    </Hyperlink>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
                     
                     <Hyperlink UnderlineStyle="None" NavigateUri="https://www.github.com/torchgm/NewModernWinver">
-                        About Modern Winver
-                    </Hyperlink><LineBreak/><LineBreak/><LineBreak/>
+                        GitHub
+                    </Hyperlink>
                 </TextBlock>
             </Grid>
         </ScrollViewer>

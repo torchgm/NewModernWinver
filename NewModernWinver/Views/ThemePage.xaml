@@ -10,34 +10,32 @@
     <Grid>
         <ScrollViewer>
             <Grid HorizontalAlignment="Center" Width="436">
-                <TextBlock x:Name="labelTitle" Text="Themes and Colours"  HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueCurrentTheme" Text="Current Theme: [unavailable]" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <Rectangle x:Name="bgRect" Margin="4,69,4,0" RadiusX="8" RadiusY="8" Fill="#37404040" Height="334" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="2"/>
+                <TextBlock x:Name="labelTitle" Text="Theme"  HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
+                <TextBlock x:Name="valueCurrentTheme" Text="Preview and copy your wallpaper and accent" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Rectangle x:Name="bgRect" Margin="4,68,4,0" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="334" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="1"/>
 
-                <Rectangle x:Name="wallpaperRectangle" RadiusX="7" RadiusY="7" HorizontalAlignment="Stretch" Margin="13,107,174,0" VerticalAlignment="Top" Height="138" Width="245">
+                <TextBlock x:Name="labelWallpaper" Text="Wallpaper" HorizontalAlignment="Left" Margin="13,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
+                <Rectangle x:Name="wallpaperRectangle" RadiusX="7" RadiusY="7" HorizontalAlignment="Stretch" Margin="13,98,240,0" VerticalAlignment="Top" Height="104" Width="184">
                     <Rectangle.Fill>
                         <ImageBrush x:Name="valueWallpaper" Stretch="UniformToFill"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <TextBlock x:Name="labelWallpaper" Text="Wallpaper" HorizontalAlignment="Left" Margin="13,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <Button x:Name="buttonOpen" Content="Open original" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="284,133,0,0" VerticalAlignment="Top" Width="140"/>
-                <Button x:Name="buttonPersonalisation" Content="Change in Settings" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="284,185,0,0" VerticalAlignment="Top" Width="140"/>
+                <Button x:Name="buttonCopyWallpaper" Content="Copy to clipboard" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,108,13,0" VerticalAlignment="Top" Width="140" Click="buttonCopyWallpaper_Click"/>
+                <Button x:Name="buttonPersonalisationBackground" Content="Change in Settings" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,160,13,0" VerticalAlignment="Top" Width="140" Click="buttonPersonalisationBackground_Click"/>
 
-                <TextBlock x:Name="labelPrimaryAccent" Text="Primary accent colour" HorizontalAlignment="Left" Margin="13,267,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <Rectangle x:Name="rectPrimaryAccent" Fill="{ThemeResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" RadiusX="4" RadiusY="4" Height="32" Width="32" Margin="227,261,0,0" Stroke="{ThemeResource SystemBaseMediumColor}" VerticalAlignment="Top" />
-                <!--<TextBox x:Name="textBoxPrimaryAccent" HorizontalAlignment="Left" Height="23" Margin="264,281,0,0" TextWrapping="Wrap" Text="#0078D7" VerticalAlignment="Top" Width="80"/>-->
-                <Button x:Name="buttonUpdatePrimaryAccent" Content="Update in Settings" HorizontalAlignment="Left" Margin="264,261,0,0" VerticalAlignment="Top" Width="160" Height="32"/>
-                <Rectangle x:Name="rectSecondaryAccent" HorizontalAlignment="Left" RadiusX="4" RadiusY="4" Height="32" Width="32" Margin="227,313,0,0" Stroke="{ThemeResource SystemBaseMediumColor}" VerticalAlignment="Top" >
+
+                <TextBlock x:Name="labelLockScreen" Text="Lock Screen" HorizontalAlignment="Left" Margin="13,212,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
+                <Rectangle x:Name="lockScreenRectangle" RadiusX="7" RadiusY="7" HorizontalAlignment="Stretch" Margin="13,234,240,0" VerticalAlignment="Top" Height="104" Width="184" >
                     <Rectangle.Fill>
-                        <SolidColorBrush x:Name="secondaryRectColour"/>
+                        <ImageBrush x:Name="valueLockScreen" Stretch="UniformToFill"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <TextBlock x:Name="labelSecondaryAccent" Text="Secondary accent colour" HorizontalAlignment="Left" Margin="13,319,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBox x:Name="textBoxSecondaryAccent" HorizontalAlignment="Left" Height="23" Margin="264,313,0,0" TextWrapping="Wrap" Text="#??????
-                 " VerticalAlignment="Top" Width="80"/>
-                <Button x:Name="buttonUpdateSecondaryAccent" Content="Update" HorizontalAlignment="Left" Margin="349,313,0,0" VerticalAlignment="Top" Width="75" Height="32"/>
-                <TextBlock x:Name="labelResetNote" Text="Changes will take effect after you sign out and back in." Margin="13,355,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <TextBlock x:Name="labelResetNote2" Text="Windows may hang briefly when updating. Shift+click to reset." Margin="13,374,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button x:Name="buttonCopyLockScreen" Content="Copy to clipboard" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,244,13,0" VerticalAlignment="Top" Width="140" Click="buttonCopyLockScreen_Click"/>
+                <Button x:Name="buttonPersonalisationLockScreen" Content="Change in Settings" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,296,13,0" VerticalAlignment="Top" Width="140" Click="buttonPersonalisationLockScreen_Click"/>
+
+                <TextBlock x:Name="labelAccent" Text="Primary accent" HorizontalAlignment="Left" Margin="13,365,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
+                <Button x:Name="buttonCopyColour" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Content="Copy hex code" HorizontalAlignment="Right" Width="120" Margin="0,356,160,0" VerticalAlignment="Top" Click="buttonCopyColour_Click"/>
+                <Button x:Name="buttonUpdateColour" Content="Change in Settings" HorizontalAlignment="Right" Margin="0,356,13,0" VerticalAlignment="Top" Width="140" Click="buttonUpdatePrimaryAccent_Click"/>
             </Grid>
         </ScrollViewer>
 

@@ -12,8 +12,8 @@
         <ScrollViewer>
             <Grid HorizontalAlignment="Center" Width="436">
                 <TextBlock x:Name="labelTitle" HorizontalAlignment="Left" Margin="13,10,0,0" TextWrapping="Wrap" Text="Microsoft Windows" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="labelCopyright" HorizontalAlignment="Left" Margin="13,37,0,0" TextWrapping="Wrap" Text="©️ 2021 Microsoft Corporation. All rights reserved." VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
-                <Rectangle x:Name="bgRect" Margin="4,69,4,0" RadiusX="8" RadiusY="8" Fill="#37404040" Height="333" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="2"/>
+                <TextBlock x:Name="labelCopyright" HorizontalAlignment="Left" Margin="13,37,0,0" TextWrapping="Wrap" Text="©️ 2021 Microsoft Corporation. All rights reserved" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>
+                <Rectangle x:Name="bgRect" Margin="4,68,4,0" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="333" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="1"/>
 
                 <TextBlock x:Name="labelEdition" HorizontalAlignment="Left" Margin="13,76,0,0"  TextWrapping="Wrap" Text="Edition" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
                 <TextBlock x:Name="valueEdition" HorizontalAlignment="Left" Margin="130,76,0,0"  TextWrapping="Wrap" Text="[windowsEdition]" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal" Foreground="{ThemeResource SystemBaseMediumColor}"/>

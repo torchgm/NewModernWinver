@@ -22,6 +22,7 @@ namespace NewModernWinver
             { 19041, "2004" },
             { 19042, "20H2" },
             { 19043, "21H1" },
+            { 19044, "21H2" },
             { 21996, "Naughty leaked build" },
             { 22000, "21H2" }
 

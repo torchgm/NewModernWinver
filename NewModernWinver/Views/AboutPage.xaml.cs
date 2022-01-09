@@ -34,16 +34,24 @@ namespace NewModernWinver.Views
 
         public AboutPage()
         {
-            Registry reg = new Registry();
+            Registry reg;
+            try
+            {
+                reg = new Registry();
 
-            int osEdition = 0;
+            }
+            catch (Exception eep)
+            {
+                throw;
+            }
+
             InitializeComponent();
-            GetProductInfo(6, 3, 0, 0, out osEdition);
+            GetProductInfo(6, 3, 0, 0, out int osEdition);
 
             if (ListsAndStuff.EditionDict.ContainsKey(osEdition))
             {
                 string Edition = ListsAndStuff.EditionDict[osEdition];
-            if (build < 21996)
+            if (build <= 21996)
                 {
 
                     valueEdition.Text = Edition;
@@ -86,7 +94,7 @@ namespace NewModernWinver.Views
             }
             else
             {
-                valueUpdate.Text = "001";
+                valueUpdate.Text = "Dev";
             }
         }
 

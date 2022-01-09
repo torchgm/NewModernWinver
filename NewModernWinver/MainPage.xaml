@@ -25,11 +25,13 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <GridView/>
-        <Image x:Name ="LogoWin11Dark" Source="/Assets/win11dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
-        <Image x:Name ="LogoWin11Light" Source="/Assets/win11light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
+        <Image x:Name="LogoWin11Dark" Source="/Assets/win11dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
+        <Image x:Name="LogoWin11Light" Source="/Assets/win11light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
+        <Image x:Name="LogoWin10Dark" Source="/Assets/win10Dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
+        <Image x:Name="LogoWin10Light" Source="/Assets/win10light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
 
-        
-        <GridView x:Name="gvTopLevelNav" Margin="0,135,0,0" CanReorderItems="True" CanDragItems="True" AllowDrop="True" HorizontalAlignment="Stretch" Visibility="Collapsed" Background="#37404040">
+
+        <GridView x:Name="gvTopLevelNav" Margin="0,135,0,51" CanReorderItems="True" CanDragItems="True" AllowDrop="True" HorizontalAlignment="Stretch" Visibility="Collapsed">
 
             <GridView.Items>
                 <Frame x:Name="gvFrame1" Width="436" Height="410" HorizontalAlignment="Center"/>
@@ -41,7 +43,7 @@
         </GridView>
 
 
-        <muxc:NavigationView x:Name="nvTopLevelNav" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True" Background="Transparent" PaneDisplayMode="Top" Margin="0,110,0,0" IsBackButtonVisible="Collapsed" Loaded="nvTopLevelNav_Loaded" ItemInvoked="nvTopLevelNav_ItemInvoked" FlowDirection="LeftToRight" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" UseLayoutRounding="True" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <muxc:NavigationView x:Name="nvTopLevelNav" Margin="0,110,0,0" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True" Background="Transparent" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" Loaded="nvTopLevelNav_Loaded" ItemInvoked="nvTopLevelNav_ItemInvoked" FlowDirection="LeftToRight" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" UseLayoutRounding="True" ScrollViewer.HorizontalScrollBarVisibility="Visible">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Tag="Nav_About">
                     <TextBlock Tag="Nav_About">About</TextBlock>

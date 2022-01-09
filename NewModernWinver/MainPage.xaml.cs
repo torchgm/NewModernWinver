@@ -5,6 +5,8 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Runtime.InteropServices;
+using Microsoft.Toolkit.Uwp.Helpers;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -19,12 +21,13 @@ namespace NewModernWinver
     public sealed partial class MainPage : Page
     {
         ApplicationView appView;
+        int build;
 
         public MainPage()
         {
             appView = ApplicationView.GetForCurrentView();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
+            build = SystemInformation.Instance.OperatingSystemVersion.Build;
             appView.SetPreferredMinSize(new Size(436, 635)); // STARTS HERE
             ApplicationView.PreferredLaunchViewSize = new Size(436, 635); // JUMPS HERE WHY DOES THIS RESIZE
             var Listener = new ThemeListener();
@@ -36,16 +39,33 @@ namespace NewModernWinver
             gvFrame2.Navigate(typeof(Views.SystemPage));
             gvFrame3.Navigate(typeof(Views.ThemePage));
             gvFrame4.Navigate(typeof(Views.LinksPage));
-
             if (ActualTheme == ElementTheme.Light)
             {
-                LogoWin11Dark.Visibility = Visibility.Collapsed;
-                LogoWin11Light.Visibility = Visibility.Visible;
+                if (build > 21950)
+                {
+                    LogoWin11Dark.Visibility = Visibility.Collapsed;
+                    LogoWin11Light.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    LogoWin10Dark.Visibility = Visibility.Collapsed;
+                    LogoWin10Light.Visibility = Visibility.Visible;
+                }
+
             }
             else
             {
-                LogoWin11Light.Visibility = Visibility.Collapsed;
-                LogoWin11Dark.Visibility = Visibility.Visible;
+                if (build > 21950)
+                {
+                    LogoWin11Light.Visibility = Visibility.Collapsed;
+                    LogoWin11Dark.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    LogoWin10Light.Visibility = Visibility.Collapsed;
+                    LogoWin10Dark.Visibility = Visibility.Visible;
+                }
+
             }
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
@@ -75,13 +95,38 @@ namespace NewModernWinver
             var theme = sender.CurrentTheme;
             if (theme == ApplicationTheme.Light)
             {
-                LogoWin11Dark.Visibility = Visibility.Collapsed;
-                LogoWin11Light.Visibility = Visibility.Visible;
+                if (build > 21950)
+                {
+                    LogoWin11Dark.Visibility = Visibility.Collapsed;
+                    LogoWin11Light.Visibility = Visibility.Visible;
+                    LogoWin10Dark.Visibility = Visibility.Collapsed;
+                    LogoWin10Light.Visibility = Visibility.Collapsed;
+
+                }
+                else
+                {
+                    LogoWin10Dark.Visibility = Visibility.Collapsed;
+                    LogoWin10Light.Visibility = Visibility.Visible;
+                    LogoWin11Dark.Visibility = Visibility.Collapsed;
+                    LogoWin11Light.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
-                LogoWin11Light.Visibility = Visibility.Collapsed;
-                LogoWin11Dark.Visibility = Visibility.Visible;
+                if (build > 21950)
+                {
+                    LogoWin11Light.Visibility = Visibility.Collapsed;
+                    LogoWin11Dark.Visibility = Visibility.Visible;
+                    LogoWin10Light.Visibility = Visibility.Collapsed;
+                    LogoWin10Dark.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    LogoWin10Light.Visibility = Visibility.Collapsed;
+                    LogoWin10Dark.Visibility = Visibility.Visible;
+                    LogoWin11Light.Visibility = Visibility.Collapsed;
+                    LogoWin11Dark.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -128,5 +173,8 @@ namespace NewModernWinver
         {
             Application.Current.Exit();
         }
+
+        [DllImport("kernel32.dll", SetLastError = false)]
+        static extern bool GetProductInfo(int dwOSMajorVersion, int dwOSMinorVersion, int dwSpMajorVersion, int dwSpMinorVersion, out int pdwReturnedProductType);
     }
 }
