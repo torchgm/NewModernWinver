@@ -94,22 +94,8 @@ namespace NewModernWinver.Views
             while (true)
             {
                 bool visible = true;
-//#pragma warning disable CS4014
-//                Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,() =>
-//                {
-//                    string pName = Frame.Name;
-//                    if (Frame.Visibility == Visibility.Visible)
-//                    {
-//                        visible = true;
-//                    }
-//                    Debug.WriteLine(pName + " is " + visible);
 
-//                });
-//#pragma warning restore CS4014
-
-
-
-            if (visible)
+                if (visible)
                 {
                     int val = 0;
                     try
