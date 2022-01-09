@@ -15,17 +15,23 @@
                 <Rectangle x:Name="bgRect" Margin="4,68,4,0" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="334" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="1"/>
 
                 <TextBlock x:Name="labelWallpaper" Text="Wallpaper" HorizontalAlignment="Left" Margin="13,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <Rectangle x:Name="wallpaperRectangle" RadiusX="7" RadiusY="7" HorizontalAlignment="Stretch" Margin="13,98,240,0" VerticalAlignment="Top" Height="104" Width="184">
+                <Rectangle x:Name="rectWallpaper" RadiusX="7" RadiusY="7" HorizontalAlignment="Left" Margin="13,98,0,0" VerticalAlignment="Top" Height="104" Width="184">
                     <Rectangle.Fill>
                         <ImageBrush x:Name="valueWallpaper" Stretch="UniformToFill"/>
                     </Rectangle.Fill>
                 </Rectangle>
+
+                <TextBlock x:Name="labelError" Visibility="Collapsed" HorizontalAlignment="Left" Margin="21,104,0,0" VerticalAlignment="Top" Height="104" Width="168" Text="RoundedTB needs your permission to display the desktop wallpaper." TextAlignment="Center" TextWrapping="WrapWholeWords" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
+                <Rectangle x:Name="rectError" Visibility="Collapsed" RadiusX="7" RadiusY="7" HorizontalAlignment="Left" Margin="13,98,0,0" VerticalAlignment="Top" Height="104" Width="184" Fill="#0E7F7F7F"/>
+                <Button x:Name="buttonGetPermission" Visibility="Collapsed" Content="Grant" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="42,160,0,0" VerticalAlignment="Top" Width="60" Click="buttonGetPermission_Click"/>
+                <Button x:Name="buttonPermissionInfo" Visibility="Collapsed" Content="Why?" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="108,160,0,0" VerticalAlignment="Top" Width="60" Click="buttonPermissionInfo_Click"/>
+
                 <Button x:Name="buttonCopyWallpaper" Content="Copy to clipboard" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,108,13,0" VerticalAlignment="Top" Width="140" Click="buttonCopyWallpaper_Click"/>
                 <Button x:Name="buttonPersonalisationBackground" Content="Change in Settings" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,160,13,0" VerticalAlignment="Top" Width="140" Click="buttonPersonalisationBackground_Click"/>
 
 
                 <TextBlock x:Name="labelLockScreen" Text="Lock Screen" HorizontalAlignment="Left" Margin="13,212,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <Rectangle x:Name="lockScreenRectangle" RadiusX="7" RadiusY="7" HorizontalAlignment="Stretch" Margin="13,234,240,0" VerticalAlignment="Top" Height="104" Width="184" >
+                <Rectangle x:Name="rectLockScreen" RadiusX="7" RadiusY="7" HorizontalAlignment="Left" Margin="13,234,0,0" VerticalAlignment="Top" Height="104" Width="184" >
                     <Rectangle.Fill>
                         <ImageBrush x:Name="valueLockScreen" Stretch="UniformToFill"/>
                     </Rectangle.Fill>

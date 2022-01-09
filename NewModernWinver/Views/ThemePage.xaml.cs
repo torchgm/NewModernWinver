@@ -48,18 +48,29 @@ namespace NewModernWinver.Views
 
         public async void LoadWallpaper()
         {
-            StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).ToString() + @"\Microsoft\Windows\Themes\");
-            file = await folder.GetFileAsync("TranscodedWallpaper");
-            using (var stream = await file.OpenAsync(FileAccessMode.Read))
+            try
             {
-                BitmapImage desktop = new BitmapImage();
-                BitmapImage lockscreen = new BitmapImage();
-
-                desktop.SetSource(stream);
-                valueWallpaper.ImageSource = desktop;
-                lockscreen.SetSource(LockScreen.GetImageStream());
-                valueLockScreen.ImageSource = lockscreen;
+                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).ToString() + @"\Microsoft\Windows\Themes\");
+                file = await folder.GetFileAsync("TranscodedWallpaper");
+                using (var stream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    BitmapImage desktop = new BitmapImage();
+                    desktop.SetSource(stream);
+                    valueWallpaper.ImageSource = desktop;
+                }
             }
+            catch (Exception)
+            {
+                buttonCopyWallpaper.IsEnabled = false;
+                rectWallpaper.Visibility = Visibility.Collapsed;
+                rectError.Visibility = Visibility.Visible;
+                labelError.Visibility = Visibility.Visible;
+                buttonGetPermission.Visibility = Visibility.Visible;
+                buttonPermissionInfo.Visibility = Visibility.Visible;
+            }
+            BitmapImage lockscreen = new BitmapImage();
+            lockscreen.SetSource(LockScreen.GetImageStream());
+            valueLockScreen.ImageSource = lockscreen;
         }
 
         private void buttonCopyWallpaper_Click(object sender, RoutedEventArgs e)
@@ -98,6 +109,16 @@ namespace NewModernWinver.Views
         private async void buttonUpdatePrimaryAccent_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings:colors"));
+        }
+
+        private async void buttonGetPermission_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-broadfilesystemaccess"));
+        }
+
+        private async void buttonPermissionInfo_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("https://torch.is/typing/mwv/whyfiles.html"));
         }
     }
     
