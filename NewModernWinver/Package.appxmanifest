@@ -11,8 +11,8 @@
   
   <Identity
     Name="14082CryzenTechnologies.ModernWinver"
-    Publisher="CN=Administrator"
-    Version="9999.0.2.0" />
+    Publisher="CN=Torch"
+    Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="672a00d5-56a4-47ec-9313-bedab12d3f43" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -38,7 +38,7 @@
         DisplayName="Modern Winver"
         Description="NewModernWinver"
         BackgroundColor="transparent" Square150x150Logo="Assets\AppResources\MediumTile.png" Square44x44Logo="Assets\AppResources\AppIcon.png">
-        <uap:DefaultTile ShortName="Windows Version" Square71x71Logo="Assets\AppResources\SmallTile.png" Wide310x150Logo="Assets\AppResources\WideTile.png" />
+        <uap:DefaultTile ShortName="About Windows" Square71x71Logo="Assets\AppResources\SmallTile.png" Wide310x150Logo="Assets\AppResources\WideTile.png" />
         <uap:SplashScreen Image="Assets\AppResources\SplashScreen.png"/>
       </uap:VisualElements>
       <Extensions>
@@ -55,8 +55,6 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <uap:Capability Name="userAccountInformation"/>
-    <rescap:Capability Name="appDiagnostics" />
-    <rescap:Capability Name="packageQuery" />
     <rescap:Capability Name="broadFileSystemAccess" />
   </Capabilities>
   

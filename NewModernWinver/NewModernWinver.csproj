@@ -26,7 +26,7 @@
     <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
-    <PackageCertificateThumbprint>BBEF105A4A8A30B31AD1CD8B1396E04D5F5F3B5B</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>12F7323BCE9A1804071D85D502B7C8B57D89616E</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <PackageCertificateKeyFile />
   </PropertyGroup>
