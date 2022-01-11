@@ -29,4 +29,4 @@ Alternatively, you can download the latest release from GitHub and install it ma
 ## Notes
  - Modern Winver is still in development! There may be bugs, incompatibilities or incorrect information. Please file an issue if you run into problems.
  - Huge thanks to [@gus33000](https://github.com/gus33000) for developing RegistyRT.
- - Modern Winver is based on an old project by the same name, which you can find [here](https://github.com/WpfModernWinver). It was built in WPF, and is only designed for Windows 10. It's unsupported now but you're welcome to check it out if you're interested.
+ - Modern Winver is based on an old project by the same name, which you can find [here](https://github.com/torchgm/WpfModernWinver). It was built in WPF, and is only designed for Windows 10. It's unsupported now but you're welcome to check it out if you're interested.
