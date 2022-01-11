@@ -40,12 +40,13 @@ namespace NewModernWinver.Views
                 reg = new Registry();
 
             }
-            catch (Exception eep)
+            catch (Exception)
             {
                 throw;
             }
 
             InitializeComponent();
+            labelCopyright.Text = "©️ " + DateTime.Now.Year + " Microsoft Corporation. All rights reserved";
             GetProductInfo(6, 3, 0, 0, out int osEdition);
 
             if (ListsAndStuff.EditionDict.ContainsKey(osEdition))
