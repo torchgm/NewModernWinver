@@ -11,7 +11,7 @@
         <ScrollViewer>
             <Grid HorizontalAlignment="Center" Width="436">
                 <TextBlock x:Name="labelTitle" Text="Links"  HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueCurrentTheme" Text="Additional Help and Information" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="valueCurrentTheme" Text="Additional help and information" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 <Rectangle x:Name="bgRect" Margin="4,68,4,0" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="290" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="1"/>
 
                 <TextBlock Margin="10,76,7,0" Foreground="{ThemeResource SystemBaseHighColor}" TextWrapping="Wrap" Height="310" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal">
