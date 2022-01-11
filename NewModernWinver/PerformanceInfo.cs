@@ -14,19 +14,18 @@ namespace NewModernWinver
     public static class PerformanceInfo
     {
         private static readonly Stopwatch stopwatch = new Stopwatch();
-        private static SYSTEM_INFO sysInfo = new SYSTEM_INFO();
+        public static SYSTEM_INFO sysInfo = new SYSTEM_INFO();
         private static MEMORYSTATUSEX mem = new MEMORYSTATUSEX();
 
         [DllImport("kernel32.dll", SetLastError = false)]
-        public static extern void GetSystemInfo([In, Out] SYSTEM_INFO Info);
+        public static extern void GetNativeSystemInfo(out SYSTEM_INFO Info);
 
         [return: MarshalAs(UnmanagedType.Bool)]
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern bool GlobalMemoryStatusEx([In, Out] MEMORYSTATUSEX lpBuffer);
-
         static PerformanceInfo()
         {
-            GetSystemInfo(sysInfo);
+            //mem.dwLength = (uint)Marshal.SizeOf<MEMORYSTATUSEX>();
             GlobalMemoryStatusEx(mem);
             stopwatch.Start();
         }
@@ -84,13 +83,21 @@ namespace NewModernWinver
             public ulong memoryInUse;
         }
 
+        public enum Arch : ushort
+        {
+            X86 = 0,
+            Arm = 5,
+            X64 = 9,
+            Neutral = 11,
+            Arm64 = 12,
+            X86OnArm64 = 14,
+            Unknown = 65535
+        }
+
         public static GeneralStatistics getGeneralStatistics()
         {
             GlobalMemoryStatusEx(mem);
             GeneralStatistics generalStatistics = new GeneralStatistics();
-            generalStatistics.processorArch = SystemDiagnosticInfo.PreferredArchitecture;
-            //generalStatistics.cpuUsage = SystemDiagnosticInfo.GetForCurrentSystem().CpuUsage.GetReport();
-
             generalStatistics.memoryTotal = mem.ullTotalPhys / 1048576;
             generalStatistics.memoryInUse = (mem.ullTotalPhys - mem.ullAvailPhys) / 1048576;
             return generalStatistics;
