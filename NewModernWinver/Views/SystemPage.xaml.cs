@@ -59,8 +59,12 @@ namespace NewModernWinver.Views
             // UI
             this.InitializeComponent();
             PerformanceInfo.GeneralStatistics currentStats = PerformanceInfo.getGeneralStatistics();
+            
+            PerformanceInfo.GetNativeSystemInfo(out PerformanceInfo.SYSTEM_INFO sysInfo);
+            valueArch.Text = ((PerformanceInfo.Arch)sysInfo.CpuInfo.ProcessorArchitecture).ToString();
+            
+            
             valueRAM.Text = Math.Round(currentStats.memoryTotal / 1024.0).ToString() + " GB";
-            valueArch.Text = currentStats.processorArch.ToString();
             valueCPU.Text = cpuName;
             valueSystemName.Text = System.Net.Dns.GetHostName();
             valueClockSpeed.Text = cpuClock + " MHz";
@@ -130,8 +134,14 @@ namespace NewModernWinver.Views
                 PerformanceInfo.GeneralStatistics currentStats = PerformanceInfo.getGeneralStatistics();
                 ulong usedMem = currentStats.memoryInUse;
                 ulong totalMem = currentStats.memoryTotal;
-
-                bw.ReportProgress((int)Math.Round((decimal)usedMem / totalMem * 100));
+                try
+                {
+                    bw.ReportProgress((int)Math.Round((decimal)usedMem / totalMem * 100));
+                }
+                catch (DivideByZeroException)
+                {
+                    bw.ReportProgress(0);
+                }
                 System.Threading.Thread.Sleep(2000);
             }
         }
