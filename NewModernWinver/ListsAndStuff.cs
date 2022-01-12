@@ -23,7 +23,8 @@ namespace NewModernWinver
             { 19042, "20H2" },
             { 19043, "21H1" },
             { 19044, "21H2" },
-            { 21996, "Naughty leaked build" },
+            { 20348, "21H2" },
+            { 21996, "Stop using leaked builds" },
             { 22000, "21H2" }
 
         };
@@ -52,10 +53,10 @@ namespace NewModernWinver
             { 0x00000048, "Windows 10 Enterprise Evaluation" },
             { 0x0000001B, "Windows 10 Enterprise N" },
             { 0x00000054, "Windows 10 Enterprise N Evaluation" },
-            { 0x0000007D, "Windows 10 Enterprise 2015 LTSB" },
-            { 0x00000081, "Windows 10 Enterprise 2015 LTSB Evaluation" },
-            { 0x0000007E, "Windows 10 Enterprise 2015 LTSB N" },
-            { 0x00000082, "Windows 10 Enterprise 2015 LTSB N Evaluation" },
+            { 0x0000007D, "Windows 10 Enterprise LTSC" },
+            { 0x00000081, "Windows 10 Enterprise LTSC Evaluation" },
+            { 0x0000007E, "Windows 10 Enterprise N LTSC" },
+            { 0x00000082, "Windows 10 Enterprise N LTSC Evaluation" },
             { 0x0000000A, "Server Enterprise" },
             { 0x0000000E, "Server Enterprise Core" },
             { 0x00000029, "Server Enterprise without Hyper-V Core" },
