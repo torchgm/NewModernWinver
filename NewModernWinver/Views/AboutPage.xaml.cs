@@ -54,7 +54,6 @@ namespace NewModernWinver.Views
                 string Edition = ListsAndStuff.EditionDict[osEdition];
             if (build <= 21996)
                 {
-
                     valueEdition.Text = Edition;
                 }
                 else
