@@ -18,7 +18,7 @@ A modern and more functional replacement for the About Windows screen powered by
  - The ability to launch more pages with the `mwv:` URI
 
 ## Installation
-You can download the latest release of Modern Winver on the Microsoft Store [here](https://microsoft.com).
+You can download the latest release of Modern Winver on the Microsoft Store [here](https://www.microsoft.com/p/ModernWinver/9ND14WHFRGSX).
 
 Alternatively, you can download the latest release from GitHub and install it manually.
 1) Download the ZIP file from the Releases tab.
