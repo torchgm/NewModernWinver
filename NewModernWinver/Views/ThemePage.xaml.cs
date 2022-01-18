@@ -94,7 +94,7 @@ namespace NewModernWinver.Views
 
         private async void buttonPersonalisationLockScreen_Click(object sender, RoutedEventArgs e)
         {
-            await Launcher.LaunchUriAsync(new Uri("ms-settings:personalization-lockscreen"));
+            await Launcher.LaunchUriAsync(new Uri("ms-settings:lockscreen"));
         }
 
         private void buttonCopyColour_Click(object sender, RoutedEventArgs e)

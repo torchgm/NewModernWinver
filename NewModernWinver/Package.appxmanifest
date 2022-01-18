@@ -12,7 +12,7 @@
   <Identity
     Name="14082CryzenTechnologies.ModernWinver"
     Publisher="CN=Torch"
-    Version="69.69.69.0" />
+    Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="672a00d5-56a4-47ec-9313-bedab12d3f43" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
