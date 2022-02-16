@@ -1,12 +1,13 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.UI.Helpers;
+using System;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using System.Runtime.InteropServices;
-using Microsoft.Toolkit.Uwp.Helpers;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -20,25 +21,24 @@ namespace NewModernWinver
 
     public sealed partial class MainPage : Page
     {
-        ApplicationView appView;
-        int build;
+        private readonly int build;
 
         public MainPage()
         {
-            appView = ApplicationView.GetForCurrentView();
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             build = SystemInformation.Instance.OperatingSystemVersion.Build;
-            appView.SetPreferredMinSize(new Size(436, 635)); // STARTS HERE
-            ApplicationView.PreferredLaunchViewSize = new Size(436, 635); // JUMPS HERE WHY DOES THIS RESIZE
+
             var Listener = new ThemeListener();
             Listener.ThemeChanged += Listener_ThemeChanged;
 
             InitializeComponent();
 
+            ApplicationView appView = ApplicationView.GetForCurrentView();
+
             gvFrame1.Navigate(typeof(Views.AboutPage));
             gvFrame2.Navigate(typeof(Views.SystemPage));
             gvFrame3.Navigate(typeof(Views.ThemePage));
             gvFrame4.Navigate(typeof(Views.LinksPage));
+
             if (ActualTheme == ElementTheme.Light)
             {
                 if (build > 21950)
@@ -69,11 +69,11 @@ namespace NewModernWinver
             }
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
             appView.TitleBar.BackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            appView.TryResizeView(new Size(436, 635));
         }
 
         #region NavigationView event handlers
@@ -140,7 +140,7 @@ namespace NewModernWinver
             {
                 // Unused atm because NavigationView hates me
                 // Process.Start("ms-settings:");
-                // Close();
+                // await ExitAppAsync();
             }
             else
             {
@@ -169,9 +169,19 @@ namespace NewModernWinver
         }
         #endregion
 
-        private void okButton_Click(object sender, RoutedEventArgs e)
+        private async void okButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            await ExitAppAsync();
+        }
+
+        private async Task ExitAppAsync()
+        {
+            // Exit the app gracefully if possible
+            bool result = await ApplicationView.GetForCurrentView().TryConsolidateAsync();
+            if (!result)
+            {
+                Application.Current.Exit();
+            }
         }
 
         [DllImport("kernel32.dll", SetLastError = false)]
