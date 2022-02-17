@@ -1,12 +1,12 @@
 ﻿<Page x:Name="ContainerPage"
     x:Class="NewModernWinver.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:NewModernWinver"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      mc:Ignorable="d"
+      muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -17,33 +17,47 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="nvTopLevelNav.Visibility" Value="Collapsed"/>
-                        <Setter Target="gvTopLevelNav.Visibility" Value="Visible"/>
-                        <!--<Setter Target="contentFrame.Visibility" Value="Collapsed"/>-->
+                        <Setter Target="nvTopLevelNav.Visibility" Value="Collapsed" />
+                        <Setter Target="gvTopLevelNav.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <GridView/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
         <Image x:Name="LogoWin11Dark" Source="/Assets/win11dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
         <Image x:Name="LogoWin11Light" Source="/Assets/win11light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
         <Image x:Name="LogoWin10Dark" Source="/Assets/win10Dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
         <Image x:Name="LogoWin10Light" Source="/Assets/win10light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
 
-
-        <GridView x:Name="gvTopLevelNav" Margin="0,135,0,51" CanReorderItems="True" CanDragItems="True" AllowDrop="True" HorizontalAlignment="Stretch" Visibility="Collapsed">
-
+        <GridView
+            x:Name="gvTopLevelNav"
+            Grid.Row="1"
+            AllowDrop="True"
+            CanDragItems="True"
+            CanReorderItems="True"
+            Visibility="Collapsed">
             <GridView.Items>
                 <Frame x:Name="gvFrame1" Width="436" Height="410" HorizontalAlignment="Center"/>
                 <Frame x:Name="gvFrame2" Width="436" Height="410" HorizontalAlignment="Center"/>
                 <Frame x:Name="gvFrame3" Width="436" Height="410" HorizontalAlignment="Center"/>
                 <Frame x:Name="gvFrame4" Width="436" Height="410" HorizontalAlignment="Center"/>
             </GridView.Items>
-
         </GridView>
 
-
-        <muxc:NavigationView x:Name="nvTopLevelNav" Margin="0,110,0,0" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True" Background="Transparent" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" Loaded="nvTopLevelNav_Loaded" ItemInvoked="nvTopLevelNav_ItemInvoked" FlowDirection="LeftToRight" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" UseLayoutRounding="True" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <muxc:NavigationView
+            x:Name="nvTopLevelNav"
+            Grid.Row="1"
+            IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
+            ItemInvoked="nvTopLevelNav_ItemInvoked"
+            Loaded="nvTopLevelNav_Loaded"
+            PaneDisplayMode="Top">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Tag="Nav_About">
                     <TextBlock Tag="Nav_About">About</TextBlock>
@@ -58,9 +72,15 @@
                     <TextBlock Tag="Nav_Links">Links</TextBlock>
                 </muxc:NavigationViewItem>
             </muxc:NavigationView.MenuItems>
-            <Frame x:Name="contentFrame" Background="Transparent" Margin="0,0,0,51"/>
-        </muxc:NavigationView>
-        <Button x:Name="okButton" Content="OK" Margin="0,0,10,10" VerticalAlignment="Bottom" Canvas.ZIndex="1" HorizontalAlignment="Right" Height="32" Width="48" Click="okButton_Click"/>
-    </Grid>
 
+            <Frame x:Name="contentFrame" Padding="12,0" />
+        </muxc:NavigationView>
+
+        <Button
+            Grid.Row="2"
+            Click="okButton_Click"
+            Content="OK"
+            HorizontalAlignment="Right"
+            Margin="12" />
+    </Grid>
 </Page>

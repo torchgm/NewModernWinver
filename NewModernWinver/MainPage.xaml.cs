@@ -79,14 +79,7 @@ namespace NewModernWinver
         #region NavigationView event handlers
         private void nvTopLevelNav_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (Microsoft.UI.Xaml.Controls.NavigationViewItem item in nvTopLevelNav.MenuItems)
-            {
-                if (item is Microsoft.UI.Xaml.Controls.NavigationViewItem && item.Tag.ToString() == "Nav_About")
-                {
-                    nvTopLevelNav.SelectedItem = item;
-                    break;
-                }
-            }
+            nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[0];
             contentFrame.Navigate(typeof(Views.AboutPage));
         }
 

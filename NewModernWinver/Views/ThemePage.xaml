@@ -1,49 +1,140 @@
 ﻿<Page
     x:Class="NewModernWinver.Views.ThemePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:NewModernWinver.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background ="Transparent" Foreground="{ThemeResource SystemColorDisabledTextColor}">
-    <Grid>
-        <ScrollViewer>
-            <Grid HorizontalAlignment="Center" Width="436">
-                <TextBlock x:Name="labelTitle" Text="Theme"  HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock x:Name="valueCurrentTheme" Text="Preview and copy your wallpaper and accent" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <Rectangle x:Name="bgRect" Margin="4,68,4,0" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="334" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="1"/>
+    d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    <ScrollViewer Margin="-12,0">
+        <StackPanel Padding="20,12" Spacing="4">
+            <TextBlock
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                Style="{StaticResource SubtitleTextBlockStyle}"
+                Text="Theme" />
+            <TextBlock Text="Preview and copy your wallpaper and accent" />
 
-                <TextBlock x:Name="labelWallpaper" Text="Wallpaper" HorizontalAlignment="Left" Margin="13,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <Rectangle x:Name="rectWallpaper" RadiusX="7" RadiusY="7" HorizontalAlignment="Left" Margin="13,98,0,0" VerticalAlignment="Top" Height="104" Width="184">
-                    <Rectangle.Fill>
-                        <ImageBrush x:Name="valueWallpaper" Stretch="UniformToFill"/>
-                    </Rectangle.Fill>
-                </Rectangle>
+            <TextBlock
+                FontWeight="SemiBold"
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                Margin="0,8,0,0"
+                Text="Wallpaper" />
+            <Grid AutomationProperties.Name="Desktop Wallpaper Data">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="184" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="labelError" Visibility="Collapsed" HorizontalAlignment="Left" Margin="21,104,0,0" VerticalAlignment="Top" Height="104" Width="168" Text="Modern Winver needs your permission to display the desktop wallpaper." TextAlignment="Center" TextWrapping="WrapWholeWords" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <Rectangle x:Name="rectError" Visibility="Collapsed" RadiusX="7" RadiusY="7" HorizontalAlignment="Left" Margin="13,98,0,0" VerticalAlignment="Top" Height="104" Width="184" Fill="#0E7F7F7F"/>
-                <Button x:Name="buttonGetPermission" Visibility="Collapsed" Content="Grant" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="42,160,0,0" VerticalAlignment="Top" Width="60" Click="buttonGetPermission_Click"/>
-                <Button x:Name="buttonPermissionInfo" Visibility="Collapsed" Content="Why?" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="108,160,0,0" VerticalAlignment="Top" Width="60" Click="buttonPermissionInfo_Click"/>
+                <Border CornerRadius="6">
+                    <Grid RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <Button x:Name="buttonCopyWallpaper" Content="Copy to clipboard" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,108,13,0" VerticalAlignment="Top" Width="140" Click="buttonCopyWallpaper_Click"/>
-                <Button x:Name="buttonPersonalisationBackground" Content="Change in Settings" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,160,13,0" VerticalAlignment="Top" Width="140" Click="buttonPersonalisationBackground_Click"/>
+                        <Image
+                            Height="104"
+                            Source="{x:Bind DeskWall}"
+                            Visibility="{x:Bind DeskWallVisible}"
+                            Width="184" />
 
+                        <TextBlock
+                            Text="Modern Winver needs your permission to display the desktop wallpaper."
+                            TextWrapping="WrapWholeWords" />
+                        <StackPanel
+                            Grid.Row="1"
+                            Orientation="Horizontal"
+                            Spacing="6">
+                            <Button
+                                Click="PermissionInfo_Click"
+                                Content="Why?" />
+                            <Button
+                                Click="GetPermission_Click"
+                                Content="Grant"
+                                Style="{StaticResource AccentButtonStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
-                <TextBlock x:Name="labelLockScreen" Text="Lock Screen" HorizontalAlignment="Left" Margin="13,212,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <Rectangle x:Name="rectLockScreen" RadiusX="7" RadiusY="7" HorizontalAlignment="Left" Margin="13,234,0,0" VerticalAlignment="Top" Height="104" Width="184" >
-                    <Rectangle.Fill>
-                        <ImageBrush x:Name="valueLockScreen" Stretch="UniformToFill"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-                <Button x:Name="buttonCopyLockScreen" Content="Copy to clipboard" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,244,13,0" VerticalAlignment="Top" Width="140" Click="buttonCopyLockScreen_Click"/>
-                <Button x:Name="buttonPersonalisationLockScreen" Content="Change in Settings" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,296,13,0" VerticalAlignment="Top" Width="140" Click="buttonPersonalisationLockScreen_Click"/>
-
-                <TextBlock x:Name="labelAccent" Text="Primary accent" HorizontalAlignment="Left" Margin="13,365,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <Button x:Name="buttonCopyColour" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Content="Copy hex code" HorizontalAlignment="Right" Width="120" Margin="0,356,160,0" VerticalAlignment="Top" Click="buttonCopyColour_Click"/>
-                <Button x:Name="buttonUpdateColour" Content="Change in Settings" HorizontalAlignment="Right" Margin="0,356,13,0" VerticalAlignment="Top" Width="140" Click="buttonUpdatePrimaryAccent_Click"/>
+                <StackPanel
+                    Grid.Column="2"
+                    Orientation="Vertical"
+                    Spacing="4"
+                    VerticalAlignment="Bottom">
+                    <Button
+                        Click="PersonaliseDeskWall_Click"
+                        Content="Change in Settings"
+                        HorizontalAlignment="Stretch" />
+                    <Button
+                        Click="CopyDeskWall_Click"
+                        Content="Copy to clipboard"
+                        HorizontalAlignment="Stretch"
+                        IsEnabled="{x:Bind DeskWallVisible, Mode=OneWay}"
+                        Style="{StaticResource AccentButtonStyle}" />
+                </StackPanel>
             </Grid>
-        </ScrollViewer>
 
-    </Grid>
+            <TextBlock
+                FontWeight="SemiBold"
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                Margin="0,8,0,0"
+                Text="Lock Screen" />
+            <Grid AutomationProperties.Name="Lock screen Wallpaper Data">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="184" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border CornerRadius="6">
+                    <Image
+                        Height="104"
+                        Source="{x:Bind LockWall}"
+                        Width="184" />
+                </Border>
+
+                <StackPanel
+                    Grid.Column="2"
+                    Orientation="Vertical"
+                    Spacing="4"
+                    VerticalAlignment="Bottom">
+                    <Button
+                        Click="PersonaliseLockWall_Click"
+                        Content="Change in Settings"
+                        HorizontalAlignment="Stretch" />
+                    <Button
+                        Click="CopyLockWall_Click"
+                        Content="Copy to clipboard"
+                        HorizontalAlignment="Stretch"
+                        Style="{StaticResource AccentButtonStyle}" />
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnSpacing="6" Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Primary accent"
+                    VerticalAlignment="Center" />
+                <Button
+                    Grid.Column="2"
+                    Click="CopyColor_Click"
+                    Content="Copy hex code"
+                    Style="{StaticResource AccentButtonStyle}" />
+                <Button
+                    Grid.Column="3"
+                    Click="UpdatePrimaryAccent_Click"
+                    Content="Change in Settings" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

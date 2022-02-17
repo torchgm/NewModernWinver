@@ -1,25 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.System;
+using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using System.Diagnostics;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.System;
-using Windows.System.UserProfile;
-using Windows.ApplicationModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,74 +18,116 @@ namespace NewModernWinver.Views
     /// </summary>
     public sealed partial class ThemePage : Page
     {
-        public string wallpaperPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).ToString() + @"\Microsoft\Windows\Themes\TranscodedWallpaper.jpg";
-        public StorageFile file;
+        private readonly static DependencyProperty DeskWallVisibleProperty =
+            DependencyProperty.Register(nameof(DeskWallVisible), typeof(bool),
+                typeof(ThemePage), new PropertyMetadata(true));
+
+        private readonly static DependencyProperty DeskWallProperty =
+            DependencyProperty.Register(nameof(DeskWall), typeof(BitmapImage),
+                typeof(ThemePage), new PropertyMetadata(new BitmapImage()));
+
+        private readonly static DependencyProperty LockWallProperty =
+            DependencyProperty.Register(nameof(LockWall), typeof(BitmapImage),
+                typeof(ThemePage), new PropertyMetadata(new BitmapImage()));
+
+        private bool DeskWallVisible
+        {
+            get => (bool)GetValue(DeskWallVisibleProperty);
+            set => SetValue(DeskWallVisibleProperty, value);
+        }
+
+        private BitmapImage DeskWall
+        {
+            get => (BitmapImage)GetValue(DeskWallProperty);
+            set => SetValue(DeskWallProperty, value);
+        }
+
+        private BitmapImage LockWall
+        {
+            get => (BitmapImage)GetValue(LockWallProperty);
+            set => SetValue(LockWallProperty, value);
+        }
+
+        private readonly static string WallFolder =
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).
+            ToString() + @"\Microsoft\Windows\Themes\";
+
+        private static StorageFile DeskWallFile;
+        private static bool WallsSet = false;
 
         public ThemePage()
         {
             InitializeComponent();
-            try
-            {
-                LoadWallpaper();
-            }
-            catch (Exception)
-            {
 
-            }
+            LockWall.DecodePixelHeight = 104;
+            LockWall.DecodePixelWidth = 184;
+
+            DeskWall.DecodePixelHeight = 104;
+            DeskWall.DecodePixelWidth = 184;
+
+            Loaded += async (s, e) =>
+            {
+                if (!WallsSet)
+                {
+                    WallsSet = true;
+                    await LoadWallpaperAsync();
+                }
+            };
         }
 
-        public async void LoadWallpaper()
+        private async Task LoadWallpaperAsync()
         {
-            try
+            bool canAccessWallFolder = System.IO.Directory.Exists(WallFolder);
+            if (canAccessWallFolder)
             {
-                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).ToString() + @"\Microsoft\Windows\Themes\");
-                file = await folder.GetFileAsync("TranscodedWallpaper");
-                using (var stream = await file.OpenAsync(FileAccessMode.Read))
+                try
                 {
-                    BitmapImage desktop = new BitmapImage();
-                    desktop.SetSource(stream);
-                    valueWallpaper.ImageSource = desktop;
+                    StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(WallFolder);
+                    DeskWallFile = await folder.GetFileAsync("TranscodedWallpaper");
+
+                    using (var stream = await DeskWallFile.OpenAsync(FileAccessMode.Read))
+                    {
+                        await DeskWall.SetSourceAsync(stream);
+                    }
+                }
+                catch (Exception)
+                {
+                    DeskWallVisible = false;
                 }
             }
-            catch (Exception)
+            else
             {
-                buttonCopyWallpaper.IsEnabled = false;
-                rectWallpaper.Visibility = Visibility.Collapsed;
-                rectError.Visibility = Visibility.Visible;
-                labelError.Visibility = Visibility.Visible;
-                buttonGetPermission.Visibility = Visibility.Visible;
-                buttonPermissionInfo.Visibility = Visibility.Visible;
+                DeskWallVisible = false;
             }
-            BitmapImage lockscreen = new BitmapImage();
-            lockscreen.SetSource(LockScreen.GetImageStream());
-            valueLockScreen.ImageSource = lockscreen;
+
+            await LockWall.SetSourceAsync(LockScreen.GetImageStream());
         }
 
-        private void buttonCopyWallpaper_Click(object sender, RoutedEventArgs e)
+        private void CopyDeskWall_Click(object sender, RoutedEventArgs e)
         {
             var dataPackage = new DataPackage();
-            dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(file));
+            dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(DeskWallFile));
             Clipboard.SetContent(dataPackage);
         }
 
-        private async void buttonPersonalisationBackground_Click(object sender, RoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri("ms-settings:personalization-background"));
-        }
-
-        private void buttonCopyLockScreen_Click(object sender, RoutedEventArgs e)
+        private void CopyLockWall_Click(object sender, RoutedEventArgs e)
         {
             var dataPackage = new DataPackage();
             dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromStream(LockScreen.GetImageStream()));
             Clipboard.SetContent(dataPackage);
         }
 
-        private async void buttonPersonalisationLockScreen_Click(object sender, RoutedEventArgs e)
+        private async void PersonaliseDeskWall_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("ms-settings:personalization-background"));
+        }
+
+        private async void PersonaliseLockWall_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings:lockscreen"));
         }
 
-        private void buttonCopyColour_Click(object sender, RoutedEventArgs e)
+        private void CopyColor_Click(object sender, RoutedEventArgs e)
         {
             var dataPackage = new DataPackage();
             var uiSettings = new Windows.UI.ViewManagement.UISettings();
@@ -106,20 +136,20 @@ namespace NewModernWinver.Views
             Clipboard.SetContent(dataPackage);
         }
 
-        private async void buttonUpdatePrimaryAccent_Click(object sender, RoutedEventArgs e)
+        private async void UpdatePrimaryAccent_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings:colors"));
         }
 
-        private async void buttonGetPermission_Click(object sender, RoutedEventArgs e)
+        private async void GetPermission_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-broadfilesystemaccess"));
         }
 
-        private async void buttonPermissionInfo_Click(object sender, RoutedEventArgs e)
+        private async void PermissionInfo_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("https://torch.is/typing/mwv/whyfiles.html"));
         }
     }
-    
+
 }
