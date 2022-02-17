@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NewModernWinver.ViewModels;
+using System;
+using System.ComponentModel;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -14,6 +16,12 @@ namespace NewModernWinver
     /// </summary>
     sealed partial class App : Application
     {
+        public readonly static PerformanceInfoViewModel PerformanceViewModel =
+            new PerformanceInfoViewModel();
+
+        private readonly static BackgroundWorker PerfWorker =
+            new BackgroundWorker();
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -21,7 +29,12 @@ namespace NewModernWinver
         public App()
         {
             this.InitializeComponent();
+
             this.Suspending += OnSuspending;
+
+            // Start worker
+            PerfWorker.DoWork += (s, e) => UpdatePerformanceData();
+            PerfWorker.RunWorkerAsync();
         }
 
         protected override void OnActivated(IActivatedEventArgs args)
@@ -135,6 +148,18 @@ namespace NewModernWinver
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        /// <summary>
+        /// Keeps performance data up to date.
+        /// </summary>
+        private void UpdatePerformanceData()
+        {
+            while (true)
+            {
+                PerformanceViewModel.Update();
+                System.Threading.Thread.Sleep(2000);
+            }
         }
     }
 }

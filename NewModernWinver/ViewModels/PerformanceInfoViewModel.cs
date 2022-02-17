@@ -14,61 +14,29 @@ namespace NewModernWinver.ViewModels
         #endregion
 
         #region Private
-        private string _processorName;
-        private Arch _arch;
-        private int _clock;
-        private ulong _total;
-        private double _used;
-        private double _free;
+        private int _cpuUsage;
 
-        private Arch Arch
+        private double _usedRam;
+        private double _freeRam;
+
+        private double UsedRam
         {
-            get => _arch;
+            get => _usedRam;
             set
             {
-                _arch = value;
-                OnPropertyChanged(nameof(ProcessorArch));
+                _usedRam = Math.Round(value, 3, MidpointRounding.AwayFromZero);
+                OnPropertyChanged(nameof(UsedRamGB));
+                OnPropertyChanged(nameof(UsedRamPercent));
             }
         }
 
-        private int Clock
+        private double FreeRam
         {
-            get => _clock;
+            get => _freeRam;
             set
             {
-                _clock = value;
-                OnPropertyChanged(nameof(ClockSpeed));
-            }
-        }
-
-        private ulong Total
-        {
-            get => _total;
-            set
-            {
-                _total = value;
-                OnPropertyChanged(nameof(TotalMemory));
-            }
-        }
-
-        private double Used
-        {
-            get => _used;
-            set
-            {
-                _used = Math.Round(value, 3, MidpointRounding.AwayFromZero);
-                OnPropertyChanged(nameof(UsedMemory));
-                OnPropertyChanged(nameof(UsedMemoryPercent));
-            }
-        }
-
-        private double Free
-        {
-            get => _free;
-            set
-            {
-                _free = Math.Round(value, 3, MidpointRounding.AwayFromZero);
-                OnPropertyChanged(nameof(FreeMemory));
+                _freeRam = Math.Round(value, 3, MidpointRounding.AwayFromZero);
+                OnPropertyChanged(nameof(FreeRamGB));
             }
         }
         #endregion
@@ -76,57 +44,48 @@ namespace NewModernWinver.ViewModels
         public PerformanceInfoViewModel()
         {
             // No need to get this more than once
-            Imports.GlobalMemoryStatusEx(mem);
-            Total = mem.ullTotalPhys / 1048576;
-
-            SetCpuInfo();
+            SetPersistentInfo();
             Update();
         }
 
-        public string SystemName => Dns.GetHostName();
+        #region Persistent properties
+        public string SystemName { get; set; }
+
+        public string CpuName { get; set; }
+        public string CpuArch { get; set; }
+        public string CpuClockSpeed { get; set; }
+        public string CpuThreads { get; set; }
+
+        public ulong TotalRam { get; set; }
+        #endregion
 
         #region Processor
-        public string ProcessorName
-        {
-            get => _processorName;
-            set => Set(ref _processorName, value);
-        }
-
-        public string ProcessorArch => Arch.ToString();
-        public string ClockSpeed => Clock.ToString() + "MHz";
-        public string Threads => CpuUtil.ProcessorCount + " threads";
+        public string CpuUsagePercent => CpuUsage.ToString() + "%";
 
         public int CpuUsage
         {
-            get
+            get => _cpuUsage;
+            set
             {
-                int val = 0;
-                try
-                {
-                    val = Convert.ToInt32(CpuUtil.GetPercentage());
-                }
-                catch (NullReferenceException) { }
-
-                return val;
+                Set(ref _cpuUsage, value);
+                OnPropertyChanged(nameof(CpuUsagePercent));
             }
         }
-
-        public string CpuUsagePercent => CpuUsage.ToString() + "%";
         #endregion
 
         #region Memory
-        public string TotalMemory => Math.Round(_total / 1024.0).ToString() + "GB";
-        public string UsedMemory => Used.ToString() + "GB used";
-        public string FreeMemory => Free.ToString() + "GB free";
+        public string TotalRamGB => TotalRam.ToString() + "GB";
+        public string UsedRamGB => UsedRam.ToString() + "GB used";
+        public string FreeRamGB => FreeRam.ToString() + "GB free";
 
-        public int UsedMemoryPercent
+        public int UsedRamPercent
         {
             get
             {
                 int val = 0;
                 try
                 {
-                    val = (int)Math.Round((decimal)Used / Total * 100);
+                    val = (int)(UsedRam / TotalRam * 100.0);
                 }
                 catch (DivideByZeroException) { }
 
@@ -139,25 +98,32 @@ namespace NewModernWinver.ViewModels
         {
             Imports.GlobalMemoryStatusEx(mem);
 
-            Used = (mem.ullTotalPhys - mem.ullAvailPhys) / 1048576 / 1024.0;
-            Free = (Total - Used) / 1024.0;
+            UsedRam = (mem.ullTotalPhys - mem.ullAvailPhys) / 1048576.0 / 1024.0;
+            FreeRam = TotalRam - UsedRam;
 
-            OnPropertyChanged(nameof(CpuUsage));
+            CpuUsage = Convert.ToInt32(CpuUtil.GetPercentage());
         }
 
-        private void SetCpuInfo()
+        private void SetPersistentInfo()
         {
+            SystemName = Dns.GetHostName();
+            CpuThreads = CpuUtil.ProcessorCount + " threads";
+
             Imports.GetNativeSystemInfo(out SYSTEM_INFO sysInfo);
-            Arch = (Arch)sysInfo.CpuInfo.ProcessorArchitecture;
+            CpuArch = ((Arch)sysInfo.CpuInfo.ProcessorArchitecture).ToString();
 
             Registry reg = new Registry();
             reg.InitNTDLLEntryPoints();
 
             reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"HARDWARE\DESCRIPTION\System\CentralProcessor\0", "ProcessorNameString", out uint RegType, out byte[] data);
-            ProcessorName = Encoding.Unicode.GetString(data).Replace("\0", "").TrimEnd();
+            CpuName = Encoding.Unicode.GetString(data).Replace("\0", "").TrimEnd();
 
             reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"HARDWARE\DESCRIPTION\System\CentralProcessor\0", "~MHz", out RegType, out data);
-            Clock = BitConverter.ToInt32(data, 0);
+            CpuClockSpeed = BitConverter.ToInt32(data, 0) + "MHz";
+
+            Imports.GlobalMemoryStatusEx(mem);
+            var total = mem.ullTotalPhys / 1048576.0;
+            TotalRam = (ulong)Math.Round(total / 1024.0);
         }
     }
 }

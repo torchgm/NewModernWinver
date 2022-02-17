@@ -4,6 +4,7 @@ using RegistryRT;
 using System;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 
@@ -16,22 +17,13 @@ namespace NewModernWinver.Views
     /// </summary>
     public sealed partial class SystemPage : Page
     {
-        private readonly static PerformanceInfoViewModel vm =
-            new PerformanceInfoViewModel();
-
-        private PerformanceInfoViewModel ViewModel => vm;
-
-        private readonly static BackgroundWorker DataWorker = new BackgroundWorker();
+        private PerformanceInfoViewModel ViewModel => App.PerformanceViewModel;
 
         public SystemPage()
         {
-            // Setup worker
-            DataWorker.DoWork += (s, dw) => UpdateData();
-            DataWorker.RunWorkerAsync();
-
-            // UI
             this.InitializeComponent();
 
+            // Setup fields that don't get updated
             ulong freeBytesAvailable;
             ulong totalNumberOfBytes;
             ulong totalNumberOfFreeBytes;
@@ -44,16 +36,6 @@ namespace NewModernWinver.Views
             valueStorage.Text = $"{(totalNumberOfBytes - freeBytesAvailable) / 1073741824} GB used";
             valueFreeStorage.Text = $"{freeBytesAvailable / 1073741824} GB free";
             progressStorage.Value = Convert.ToDouble((decimal)freeBytesAvailable / (decimal)totalNumberOfBytes) * 100;
-        }
-
-        // Background Worker
-        private void UpdateData()
-        {
-            while (true)
-            {
-                ViewModel.Update();
-                System.Threading.Thread.Sleep(2000);
-            }
         }
     }
 }

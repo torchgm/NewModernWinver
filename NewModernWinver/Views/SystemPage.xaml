@@ -8,27 +8,30 @@
     mc:Ignorable="d">
     <Grid>
         <ScrollViewer>
-            <StackPanel x:DefaultBindMode="OneWay" HorizontalAlignment="Center" Width="436">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Spacing="8"
+                Width="400">
                 <TextBlock Text="Your PC" />
-                <TextBlock Text="{x:Bind ViewModel.SystemName, Mode=OneTime}" />
+                <TextBlock Text="{x:Bind ViewModel.SystemName}" />
 
                 <TextBlock Text="Processor" />
-                <TextBlock Text="{x:Bind ViewModel.ProcessorName, Mode=OneTime}" />
+                <TextBlock Text="{x:Bind ViewModel.CpuName}" />
 
                 <TextBlock Text="Base speed" />
-                <TextBlock Text="{x:Bind ViewModel.ClockSpeed, Mode=OneTime}" />
-                <muxc:ProgressBar Value="{x:Bind ViewModel.CpuUsage}" />
-                <TextBlock Text="{x:Bind ViewModel.CpuUsagePercent}" />
-                <TextBlock Text="{x:Bind ViewModel.Threads, Mode=OneTime}" />
+                <TextBlock Text="{x:Bind ViewModel.CpuClockSpeed}" />
+                <muxc:ProgressBar Value="{x:Bind ViewModel.CpuUsage, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind ViewModel.CpuUsagePercent, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind ViewModel.CpuThreads}" />
 
                 <TextBlock Text="Architecture" />
-                <TextBlock Text="{x:Bind ViewModel.ProcessorArch, Mode=OneTime}" />
+                <TextBlock Text="{x:Bind ViewModel.CpuArch}" />
 
                 <TextBlock Text="Installed RAM" />
-                <TextBlock Text="{x:Bind ViewModel.TotalMemory}" />
-                <muxc:ProgressBar Value="{x:Bind ViewModel.UsedMemoryPercent}" />
-                <TextBlock Text="{x:Bind ViewModel.UsedMemory}" />
-                <TextBlock Text="{x:Bind ViewModel.FreeMemory}" />
+                <TextBlock Text="{x:Bind ViewModel.TotalRamGB}" />
+                <muxc:ProgressBar Value="{x:Bind ViewModel.UsedRamPercent, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind ViewModel.UsedRamGB, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind ViewModel.FreeRamGB, Mode=OneWay}" />
 
                 <TextBlock Text="Primary storage" />
                 <muxc:ProgressBar x:Name="progressStorage" Height="4" Value="0" />
