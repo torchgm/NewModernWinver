@@ -9,40 +9,35 @@
     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
     <Grid>
         <ScrollViewer>
-            <Grid x:DefaultBindMode="OneWay" HorizontalAlignment="Center" Width="436">
-                <TextBlock x:Name="labelTitle" Text="Your PC" HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}"/>
-                <TextBlock Text="{x:Bind ViewModel.SystemName, Mode=OneTime}" Margin="13,37,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <Rectangle x:Name="bgRect" Margin="4,68,4,0" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="288" VerticalAlignment="Top" Stroke="#17606060" StrokeThickness="1"/>
+            <StackPanel x:DefaultBindMode="OneWay" HorizontalAlignment="Center" Width="436">
+                <TextBlock Text="Your PC" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}" />
+                <TextBlock Text="{x:Bind ViewModel.SystemName}" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" />
+                <Rectangle x:Name="bgRect" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="288" Stroke="#17606060" StrokeThickness="1" />
 
+                <TextBlock Text="Processor" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontWeight="SemiBold" />
+                <TextBlock Text="{x:Bind ViewModel.ProcessorName, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
 
-                <TextBlock x:Name="labelCPU" Text="Processor" HorizontalAlignment="Left" Margin="13,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <TextBlock Text="{x:Bind ViewModel.ProcessorName, Mode=OneTime}" HorizontalAlignment="Left" Margin="130,76,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
+                <TextBlock Text="Base speed" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontWeight="SemiBold"/>
+                <TextBlock Text="{x:Bind ViewModel.ClockSpeed, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
+                <ProgressBar Value="{x:Bind ViewModel.CpuUsage}" Height="4" HorizontalAlignment="Center" Width="410" />
+                <TextBlock Text="{x:Bind ViewModel.CpuUsagePercent}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="{x:Bind ViewModel.Threads, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="219" FontFamily="Segoe UI Variable Small Semibold" />
 
+                <TextBlock Text="Architecture" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="{x:Bind ViewModel.ProcessorArch, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
 
-                <TextBlock x:Name="labelClockSpeed" Text="Base speed" Margin="13,100,0,0" Foreground="{ThemeResource SystemBaseHighColor}" Height="19" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <TextBlock Text="{x:Bind ViewModel.ClockSpeed, Mode=OneTime}" HorizontalAlignment="Left" Margin="130,100,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <ProgressBar Value="{x:Bind ViewModel.CpuUsage}" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,157,0,0" VerticalAlignment="Top"/>
-                <TextBlock Text="{x:Bind ViewModel.CpuUsagePercent}" HorizontalAlignment="Left" Margin="13,166,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <TextBlock Text="{x:Bind ViewModel.Threads, Mode=OneTime}" HorizontalAlignment="Left" Margin="204,166,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
+                <TextBlock Text="Installed RAM" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="{x:Bind ViewModel.TotalMemory}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
+                <ProgressBar Value="{x:Bind ViewModel.UsedMemoryPercent}" Height="4" Width="410" />
+                <TextBlock Text="{x:Bind ViewModel.UsedMemory}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="{x:Bind ViewModel.FreeMemory}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="219" FontFamily="Segoe UI Variable Small Semibold" />
 
-
-                <TextBlock x:Name="labelArch" Text="Architecture" HorizontalAlignment="Left" Margin="13,124,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <TextBlock Text="{x:Bind ViewModel.ProcessorArch, Mode=OneTime}" HorizontalAlignment="Left" Margin="130,124,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-
-
-                <TextBlock x:Name="labelRAM" Text="Installed RAM" HorizontalAlignment="Left" Margin="13,286,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <TextBlock Text="{x:Bind ViewModel.TotalMemory}" HorizontalAlignment="Left" Margin="130,286,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <ProgressBar Value="{x:Bind ViewModel.UsedMemoryPercent}" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,319,0,0" VerticalAlignment="Top"/>
-                <TextBlock Text="{x:Bind ViewModel.UsedMemory}" HorizontalAlignment="Left" Margin="13,328,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <TextBlock Text="{x:Bind ViewModel.FreeMemory}" HorizontalAlignment="Left" Margin="204,328,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-
-
-                <TextBlock x:Name="labelStorage" Text="Primary storage" HorizontalAlignment="Left" Margin="13,205,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <ProgressBar x:Name="progressStorage" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,238,0,0" Value="0" VerticalAlignment="Top"/>
-                <TextBlock x:Name="valueTotalStorage" Text="0 GB" HorizontalAlignment="Left" Margin="130,205,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="293" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <TextBlock x:Name="valueStorage" Text="0 GB used" HorizontalAlignment="Left" Margin="13,247,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <TextBlock x:Name="valueFreeStorage" Text="0 GB free" HorizontalAlignment="Left" Margin="204,247,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-            </Grid>
+                <TextBlock Text="Primary storage" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" />
+                <ProgressBar x:Name="progressStorage" Height="4" Width="410" Value="0" />
+                <TextBlock x:Name="valueTotalStorage" Text="0 GB" Foreground="{ThemeResource SystemBaseMediumColor}" Width="293" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock x:Name="valueStorage" Text="0 GB used" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock x:Name="valueFreeStorage" Text="0 GB free" Foreground="{ThemeResource SystemBaseMediumColor}" Width="219" FontFamily="Segoe UI Variable Small Semibold" />
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>
