@@ -4,39 +4,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background ="Transparent"
-    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
     <Grid>
         <ScrollViewer>
             <StackPanel x:DefaultBindMode="OneWay" HorizontalAlignment="Center" Width="436">
-                <TextBlock Text="Your PC" FontFamily="Segoe UI Variable Display Semibold" FontSize="18" FontWeight="SemiBold" Foreground="{ThemeResource SystemBaseHighColor}" />
-                <TextBlock Text="{x:Bind ViewModel.SystemName}" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" />
-                <Rectangle x:Name="bgRect" RadiusX="8" RadiusY="8" Fill="#0E7F7F7F" Height="288" Stroke="#17606060" StrokeThickness="1" />
+                <TextBlock Text="Your PC" />
+                <TextBlock Text="{x:Bind ViewModel.SystemName, Mode=OneTime}" />
 
-                <TextBlock Text="Processor" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontWeight="SemiBold" />
-                <TextBlock Text="{x:Bind ViewModel.ProcessorName, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="Processor" />
+                <TextBlock Text="{x:Bind ViewModel.ProcessorName, Mode=OneTime}" />
 
-                <TextBlock Text="Base speed" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontWeight="SemiBold"/>
-                <TextBlock Text="{x:Bind ViewModel.ClockSpeed, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
-                <ProgressBar Value="{x:Bind ViewModel.CpuUsage}" Height="4" HorizontalAlignment="Center" Width="410" />
-                <TextBlock Text="{x:Bind ViewModel.CpuUsagePercent}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" />
-                <TextBlock Text="{x:Bind ViewModel.Threads, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="219" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="Base speed" />
+                <TextBlock Text="{x:Bind ViewModel.ClockSpeed, Mode=OneTime}" />
+                <muxc:ProgressBar Value="{x:Bind ViewModel.CpuUsage}" />
+                <TextBlock Text="{x:Bind ViewModel.CpuUsagePercent}" />
+                <TextBlock Text="{x:Bind ViewModel.Threads, Mode=OneTime}" />
 
-                <TextBlock Text="Architecture" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" />
-                <TextBlock Text="{x:Bind ViewModel.ProcessorArch, Mode=OneTime}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="Architecture" />
+                <TextBlock Text="{x:Bind ViewModel.ProcessorArch, Mode=OneTime}" />
 
-                <TextBlock Text="Installed RAM" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" />
-                <TextBlock Text="{x:Bind ViewModel.TotalMemory}" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" />
-                <ProgressBar Value="{x:Bind ViewModel.UsedMemoryPercent}" Height="4" Width="410" />
-                <TextBlock Text="{x:Bind ViewModel.UsedMemory}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" />
-                <TextBlock Text="{x:Bind ViewModel.FreeMemory}" Foreground="{ThemeResource SystemBaseMediumColor}" Width="219" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="Installed RAM" />
+                <TextBlock Text="{x:Bind ViewModel.TotalMemory}" />
+                <muxc:ProgressBar Value="{x:Bind ViewModel.UsedMemoryPercent}" />
+                <TextBlock Text="{x:Bind ViewModel.UsedMemory}" />
+                <TextBlock Text="{x:Bind ViewModel.FreeMemory}" />
 
-                <TextBlock Text="Primary storage" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" />
-                <ProgressBar x:Name="progressStorage" Height="4" Width="410" Value="0" />
-                <TextBlock x:Name="valueTotalStorage" Text="0 GB" Foreground="{ThemeResource SystemBaseMediumColor}" Width="293" FontFamily="Segoe UI Variable Small Semibold" />
-                <TextBlock x:Name="valueStorage" Text="0 GB used" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" />
-                <TextBlock x:Name="valueFreeStorage" Text="0 GB free" Foreground="{ThemeResource SystemBaseMediumColor}" Width="219" FontFamily="Segoe UI Variable Small Semibold" />
+                <TextBlock Text="Primary storage" />
+                <muxc:ProgressBar x:Name="progressStorage" Height="4" Value="0" />
+                <TextBlock x:Name="valueTotalStorage" Text="0 GB" />
+                <TextBlock x:Name="valueStorage" Text="0 GB used" />
+                <TextBlock x:Name="valueFreeStorage" Text="0 GB free" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
