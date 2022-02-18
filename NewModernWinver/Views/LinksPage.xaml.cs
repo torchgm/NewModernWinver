@@ -28,6 +28,7 @@ namespace NewModernWinver.Views
         public LinksPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
     }
     

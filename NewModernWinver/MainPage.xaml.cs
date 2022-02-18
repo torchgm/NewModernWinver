@@ -1,14 +1,14 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
 using System;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
+using Windows.System;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -31,6 +31,7 @@ namespace NewModernWinver
             Listener.ThemeChanged += Listener_ThemeChanged;
 
             InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Required;
 
             ApplicationView appView = ApplicationView.GetForCurrentView();
 
@@ -94,7 +95,6 @@ namespace NewModernWinver
                     LogoWin11Light.Visibility = Visibility.Visible;
                     LogoWin10Dark.Visibility = Visibility.Collapsed;
                     LogoWin10Light.Visibility = Visibility.Collapsed;
-
                 }
                 else
                 {
@@ -123,17 +123,12 @@ namespace NewModernWinver
             }
         }
 
-        private void nvTopLevelNav_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-        }
-
-        private void nvTopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        private async void nvTopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
-                // Unused atm because NavigationView hates me
-                // Process.Start("ms-settings:");
-                // await ExitAppAsync();
+                await Launcher.LaunchUriAsync(new Uri("ms-settings:"));
+                await ExitAppAsync();
             }
             else
             {
@@ -142,19 +137,23 @@ namespace NewModernWinver
                     switch (ItemContent.Tag)
                     {
                         case "Nav_About":
-                            contentFrame.Navigate(typeof(Views.AboutPage));
+                            contentFrame.Navigate(typeof(Views.AboutPage), null,
+                                args.RecommendedNavigationTransitionInfo);
                             break;
 
                         case "Nav_System":
-                            contentFrame.Navigate(typeof(Views.SystemPage));
+                            contentFrame.Navigate(typeof(Views.SystemPage), null,
+                                args.RecommendedNavigationTransitionInfo);
                             break;
 
                         case "Nav_Theme":
-                            contentFrame.Navigate(typeof(Views.ThemePage));
+                            contentFrame.Navigate(typeof(Views.ThemePage), null,
+                                args.RecommendedNavigationTransitionInfo);
                             break;
 
                         case "Nav_Links":
-                            contentFrame.Navigate(typeof(Views.LinksPage));
+                            contentFrame.Navigate(typeof(Views.LinksPage), null,
+                                args.RecommendedNavigationTransitionInfo);
                             break;
                     }
                 }
@@ -176,8 +175,5 @@ namespace NewModernWinver
                 Application.Current.Exit();
             }
         }
-
-        [DllImport("kernel32.dll", SetLastError = false)]
-        static extern bool GetProductInfo(int dwOSMajorVersion, int dwOSMinorVersion, int dwSpMajorVersion, int dwSpMinorVersion, out int pdwReturnedProductType);
     }
 }

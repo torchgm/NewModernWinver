@@ -8,6 +8,7 @@ using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -58,6 +59,7 @@ namespace NewModernWinver.Views
         public ThemePage()
         {
             InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
 
             LockWall.DecodePixelHeight = 104;
             LockWall.DecodePixelWidth = 184;

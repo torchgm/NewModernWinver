@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using System.Security.Principal;
-using Windows.System.Profile;
-using Windows.ApplicationModel;
-using Windows.Security.ExchangeActiveSyncProvisioning;
-using Microsoft.Toolkit.Uwp.Helpers;
-using System.Runtime.InteropServices;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
 using RegistryRT;
+using System;
+using System.Runtime.InteropServices;
+using System.Security.Principal;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -46,13 +32,15 @@ namespace NewModernWinver.Views
             }
 
             InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Enabled;
+
             labelCopyright.Text = "©️ " + DateTime.Now.Year + " Microsoft Corporation. All rights reserved";
             GetProductInfo(6, 3, 0, 0, out int osEdition);
 
             if (ListsAndStuff.EditionDict.ContainsKey(osEdition))
             {
                 string Edition = ListsAndStuff.EditionDict[osEdition];
-            if (build <= 21996)
+                if (build <= 21996)
                 {
                     valueEdition.Text = Edition;
                 }

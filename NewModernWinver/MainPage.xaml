@@ -41,12 +41,13 @@
             AllowDrop="True"
             CanDragItems="True"
             CanReorderItems="True"
+            Padding="12"
             Visibility="Collapsed">
             <GridView.Items>
-                <Frame x:Name="gvFrame1" Width="436" Height="410" HorizontalAlignment="Center"/>
-                <Frame x:Name="gvFrame2" Width="436" Height="410" HorizontalAlignment="Center"/>
-                <Frame x:Name="gvFrame3" Width="436" Height="410" HorizontalAlignment="Center"/>
-                <Frame x:Name="gvFrame4" Width="436" Height="410" HorizontalAlignment="Center"/>
+                <Frame x:Name="gvFrame1" />
+                <Frame x:Name="gvFrame2" />
+                <Frame x:Name="gvFrame3" />
+                <Frame x:Name="gvFrame4" />
             </GridView.Items>
         </GridView>
 
@@ -54,7 +55,6 @@
             x:Name="nvTopLevelNav"
             Grid.Row="1"
             IsBackButtonVisible="Collapsed"
-            IsSettingsVisible="False"
             ItemInvoked="nvTopLevelNav_ItemInvoked"
             Loaded="nvTopLevelNav_Loaded"
             PaneDisplayMode="Top">
