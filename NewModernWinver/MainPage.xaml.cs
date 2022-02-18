@@ -30,13 +30,6 @@ namespace NewModernWinver
             InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            ApplicationView appView = ApplicationView.GetForCurrentView();
-
-            gvFrame1.Navigate(typeof(Views.AboutPage));
-            gvFrame2.Navigate(typeof(Views.SystemPage));
-            gvFrame3.Navigate(typeof(Views.ThemePage));
-            gvFrame4.Navigate(typeof(Views.LinksPage));
-
             if (build > 21950)
             {
                 LogoWin10.Visibility = Visibility.Collapsed;
@@ -50,6 +43,7 @@ namespace NewModernWinver
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
+            ApplicationView appView = ApplicationView.GetForCurrentView();
             appView.TitleBar.BackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
@@ -61,6 +55,11 @@ namespace NewModernWinver
         {
             nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[0];
             contentFrame.Navigate(typeof(Views.AboutPage));
+
+            gvFrame1.Navigate(typeof(Views.AboutPage));
+            gvFrame2.Navigate(typeof(Views.SystemPage));
+            gvFrame3.Navigate(typeof(Views.ThemePage));
+            gvFrame4.Navigate(typeof(Views.LinksPage));
         }
 
         private async void nvTopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)

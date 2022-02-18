@@ -7,6 +7,7 @@
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d"
       muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -90,9 +91,14 @@
             CanDragItems="True"
             CanReorderItems="True"
             Padding="12"
+            SelectionMode="None"
             Visibility="Collapsed">
             <GridView.Items>
-                <Frame x:Name="gvFrame1" />
+                <Frame
+                    x:Name="gvFrame1"
+                    VerticalContentAlignment="Top"
+                    Width="392"
+                    Height="400" />
                 <Frame x:Name="gvFrame2" />
                 <Frame x:Name="gvFrame3" />
                 <Frame x:Name="gvFrame4" />

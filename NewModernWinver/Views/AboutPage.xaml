@@ -8,7 +8,9 @@
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:Height="440"
     d:Width="500"
-    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top">
 
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12" Spacing="4">

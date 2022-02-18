@@ -9,7 +9,10 @@
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:Height="460"
     d:Width="500"
-    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top">
+
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12" Spacing="4">
             <TextBlock
@@ -36,6 +39,7 @@
                     ActionButtonContent="Grant"
                     CloseButtonClick="PermissionInfo_Click"
                     CloseButtonContent="Read more"
+                    IsLightDismissEnabled="True"
                     Subtitle="UWP apps (like this one) normally are only allowed to store and open files in a small restricted folder, or files you choose with a file picker. If an app wants to access other files on your drive (such as the desktop wallpaper), it needs this permission to access it."
                     Target="{x:Bind WarningIcon}"
                     Title="Modern Winver needs your permission to display the desktop wallpaper" />
