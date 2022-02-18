@@ -1,7 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
+using NewModernWinver.Interop;
 using RegistryRT;
 using System;
-using System.Runtime.InteropServices;
 using System.Security.Principal;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -35,18 +35,18 @@ namespace NewModernWinver.Views
             NavigationCacheMode = NavigationCacheMode.Enabled;
 
             labelCopyright.Text = "©️ " + DateTime.Now.Year + " Microsoft Corporation. All rights reserved";
-            GetProductInfo(6, 3, 0, 0, out int osEdition);
+            Imports.GetProductInfo(6, 3, 0, 0, out int osEdition);
 
             if (ListsAndStuff.EditionDict.ContainsKey(osEdition))
             {
-                string Edition = ListsAndStuff.EditionDict[osEdition];
+                string edition = ListsAndStuff.EditionDict[osEdition];
                 if (build <= 21996)
                 {
-                    valueEdition.Text = Edition;
+                    valueEdition.Text = edition;
                 }
                 else
                 {
-                    valueEdition.Text = Edition.Replace("Windows 10", "Windows 11");
+                    valueEdition.Text = edition.Replace("Windows 10", "Windows 11");
                 }
             }
             else
@@ -85,8 +85,5 @@ namespace NewModernWinver.Views
                 valueUpdate.Text = "Dev";
             }
         }
-
-        [DllImport("kernel32.dll", SetLastError = false)]
-        static extern bool GetProductInfo(int dwOSMajorVersion, int dwOSMinorVersion, int dwSpMajorVersion, int dwSpMinorVersion, out int pdwReturnedProductType);
     }
 }
