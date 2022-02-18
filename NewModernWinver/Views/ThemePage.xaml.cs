@@ -79,17 +79,25 @@ namespace NewModernWinver.Views
 
         private async Task LoadWallpaperAsync()
         {
-            try
+            var canAccess = System.IO.Directory.Exists(WallFolder);
+            if (canAccess)
             {
-                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(WallFolder);
-                DeskWallFile = await folder.GetFileAsync("TranscodedWallpaper");
-
-                using (var stream = await DeskWallFile.OpenAsync(FileAccessMode.Read))
+                try
                 {
-                    await DeskWall.SetSourceAsync(stream);
+                    StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(WallFolder);
+                    DeskWallFile = await folder.GetFileAsync("TranscodedWallpaper");
+
+                    using (var stream = await DeskWallFile.OpenAsync(FileAccessMode.Read))
+                    {
+                        await DeskWall.SetSourceAsync(stream);
+                    }
+                }
+                catch (Exception)
+                {
+                    DeskWallVisible = false;
                 }
             }
-            catch (Exception)
+            else
             {
                 DeskWallVisible = false;
             }
