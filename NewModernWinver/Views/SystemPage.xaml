@@ -117,25 +117,23 @@
                     Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                     Text="Primary storage" />
                 <TextBlock
-                    x:Name="valueTotalStorage"
                     Grid.Column="1"
                     HorizontalAlignment="Right"
-                    Text="0 GB" />
+                    Text="{x:Bind ViewModel.TotalStorageGB}" />
             </Grid>
 
-            <muxc:ProgressBar x:Name="progressStorage" Height="4" Value="0" />
+            <muxc:ProgressBar Value="{x:Bind ViewModel.UsedStoragePercent}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="valueStorage" Text="0 GB used" />
+                <TextBlock Text="{x:Bind ViewModel.UsedStorageGB}" />
                 <TextBlock
-                    x:Name="valueFreeStorage"
                     Grid.Column="1"
                     HorizontalAlignment="Right"
-                    Text="0 GB free" />
+                    Text="{x:Bind ViewModel.FreeStorageGB}" />
             </Grid>
         </StackPanel>
     </ScrollViewer>

@@ -1,11 +1,4 @@
-﻿using NewModernWinver.Interop;
-using NewModernWinver.ViewModels;
-using RegistryRT;
-using System;
-using System.ComponentModel;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage;
+﻿using NewModernWinver.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -24,20 +17,6 @@ namespace NewModernWinver.Views
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
-
-            // Setup fields that don't get updated
-            ulong freeBytesAvailable;
-            ulong totalNumberOfBytes;
-            ulong totalNumberOfFreeBytes;
-
-            // You can only specify a folder path that this app can access, but you can
-            // get full disk information from any folder path.
-            IStorageFolder appFolder = ApplicationData.Current.LocalFolder;
-            Imports.GetDiskFreeSpaceEx(appFolder.Path, out freeBytesAvailable, out totalNumberOfBytes, out totalNumberOfFreeBytes);
-            valueTotalStorage.Text = $"{totalNumberOfBytes / 1073741824} GB";
-            valueStorage.Text = $"{(totalNumberOfBytes - freeBytesAvailable) / 1073741824} GB used";
-            valueFreeStorage.Text = $"{freeBytesAvailable / 1073741824} GB free";
-            progressStorage.Value = Convert.ToDouble((decimal)freeBytesAvailable / (decimal)totalNumberOfBytes) * 100;
         }
     }
 }

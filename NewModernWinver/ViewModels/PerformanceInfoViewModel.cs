@@ -3,6 +3,7 @@ using RegistryRT;
 using System;
 using System.Net;
 using System.Text;
+using Windows.Storage;
 
 namespace NewModernWinver.ViewModels
 {
@@ -24,7 +25,7 @@ namespace NewModernWinver.ViewModels
             get => _usedRam;
             set
             {
-                _usedRam = Math.Round(value, 3, MidpointRounding.AwayFromZero);
+                _usedRam = Math.Round(value, 2, MidpointRounding.AwayFromZero);
                 OnPropertyChanged(nameof(UsedRamGB));
                 OnPropertyChanged(nameof(UsedRamPercent));
             }
@@ -35,10 +36,14 @@ namespace NewModernWinver.ViewModels
             get => _freeRam;
             set
             {
-                _freeRam = Math.Round(value, 3, MidpointRounding.AwayFromZero);
+                _freeRam = Math.Round(value, 2, MidpointRounding.AwayFromZero);
                 OnPropertyChanged(nameof(FreeRamGB));
             }
         }
+
+        private ulong TotalStorage { get; set; }
+        private double UsedStorage { get; set; }
+        private double FreeStorage { get; set; }
         #endregion
 
         public PerformanceInfoViewModel()
@@ -78,20 +83,28 @@ namespace NewModernWinver.ViewModels
         public string UsedRamGB => UsedRam.ToString() + "GB used";
         public string FreeRamGB => FreeRam.ToString() + "GB free";
 
-        public int UsedRamPercent
+        public double UsedRamPercent
         {
             get
             {
-                int val = 0;
+                double val = 0;
                 try
                 {
-                    val = (int)(UsedRam / TotalRam * 100.0);
+                    val = UsedRam / TotalRam * 100.0;
                 }
                 catch (DivideByZeroException) { }
 
                 return val;
             }
         }
+        #endregion
+
+        #region Storage
+        public string TotalStorageGB => TotalStorage.ToString() + "GB";
+        public string UsedStorageGB => UsedStorage.ToString("N2") + "GB used";
+        public string FreeStorageGB => FreeStorage.ToString("N2") + "GB free";
+
+        public double UsedStoragePercent { get; set; }
         #endregion
 
         public void Update()
@@ -107,10 +120,11 @@ namespace NewModernWinver.ViewModels
         private void SetPersistentInfo()
         {
             SystemName = Dns.GetHostName();
-            CpuThreads = CpuUtil.ProcessorCount + " threads";
 
+            // CPU data
             Imports.GetNativeSystemInfo(out SYSTEM_INFO sysInfo);
             CpuArch = ((Arch)sysInfo.CpuInfo.ProcessorArchitecture).ToString();
+            CpuThreads = CpuUtil.ProcessorCount + " threads";
 
             Registry reg = new Registry();
             reg.InitNTDLLEntryPoints();
@@ -121,9 +135,23 @@ namespace NewModernWinver.ViewModels
             reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"HARDWARE\DESCRIPTION\System\CentralProcessor\0", "~MHz", out RegType, out data);
             CpuClockSpeed = BitConverter.ToInt32(data, 0) + "MHz";
 
+            // RAM data
             Imports.GlobalMemoryStatusEx(mem);
             var total = mem.ullTotalPhys / 1048576.0;
             TotalRam = (ulong)Math.Round(total / 1024.0);
+
+            // Storage data
+            IStorageFolder appFolder = ApplicationData.Current.LocalFolder;
+            Imports.GetDiskFreeSpaceEx(appFolder.Path,
+                out ulong freeBytesAvailable,
+                out ulong totalNumberOfBytes,
+                out ulong totalNumberOfFreeBytes);
+
+            TotalStorage = totalNumberOfBytes / 1073741824;
+            UsedStorage = (totalNumberOfBytes - freeBytesAvailable) / 1073741824.0;
+            FreeStorage = totalNumberOfFreeBytes / 1073741824.0;
+            
+            UsedStoragePercent = (UsedStorage / TotalStorage) * 100.0;
         }
     }
 }
