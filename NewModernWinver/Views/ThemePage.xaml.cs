@@ -79,25 +79,17 @@ namespace NewModernWinver.Views
 
         private async Task LoadWallpaperAsync()
         {
-            bool canAccessWallFolder = System.IO.Directory.Exists(WallFolder);
-            if (canAccessWallFolder)
+            try
             {
-                try
-                {
-                    StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(WallFolder);
-                    DeskWallFile = await folder.GetFileAsync("TranscodedWallpaper");
+                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(WallFolder);
+                DeskWallFile = await folder.GetFileAsync("TranscodedWallpaper");
 
-                    using (var stream = await DeskWallFile.OpenAsync(FileAccessMode.Read))
-                    {
-                        await DeskWall.SetSourceAsync(stream);
-                    }
-                }
-                catch (Exception)
+                using (var stream = await DeskWallFile.OpenAsync(FileAccessMode.Read))
                 {
-                    DeskWallVisible = false;
+                    await DeskWall.SetSourceAsync(stream);
                 }
             }
-            else
+            catch (Exception)
             {
                 DeskWallVisible = false;
             }
@@ -143,15 +135,19 @@ namespace NewModernWinver.Views
             await Launcher.LaunchUriAsync(new Uri("ms-settings:colors"));
         }
 
-        private async void GetPermission_Click(object sender, RoutedEventArgs e)
+        private void WarningButton_Click(object sender, RoutedEventArgs e)
+        {
+            WallTip.IsOpen = true;
+        }
+
+        private async void GetPermission_Click(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-broadfilesystemaccess"));
         }
 
-        private async void PermissionInfo_Click(object sender, RoutedEventArgs e)
+        private async void PermissionInfo_Click(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
         {
             await Launcher.LaunchUriAsync(new Uri("https://torch.is/typing/mwv/whyfiles.html"));
         }
     }
-
 }

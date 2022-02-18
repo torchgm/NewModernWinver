@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:Height="460"
@@ -29,35 +30,35 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
+                <muxc:TeachingTip
+                    x:Name="WallTip"
+                    ActionButtonClick="GetPermission_Click"
+                    ActionButtonContent="Grant"
+                    CloseButtonClick="PermissionInfo_Click"
+                    CloseButtonContent="Read more"
+                    Subtitle="UWP apps (like this one) normally are only allowed to store and open files in a small restricted folder, or files you choose with a file picker. If an app wants to access other files on your drive (such as the desktop wallpaper), it needs this permission to access it."
+                    Target="{x:Bind WarningIcon}"
+                    Title="Modern Winver needs your permission to display the desktop wallpaper" />
+                <Button
+                    Click="WarningButton_Click"
+                    CornerRadius="6"
+                    Height="104"
+                    HorizontalAlignment="Stretch"
+                    IsHitTestVisible="{x:Bind DeskWallVisible.Equals(x:False), Mode=OneWay}">
+                    <FontIcon
+                        x:Name="WarningIcon"
+                        FontSize="28"
+                        Foreground="Yellow"
+                        Glyph="&#xE7BA;" />
+                </Button>
+
                 <Border CornerRadius="6">
-                    <Grid RowSpacing="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Image
-                            Height="104"
-                            Source="{x:Bind DeskWall}"
-                            Visibility="{x:Bind DeskWallVisible}"
-                            Width="184" />
-
-                        <TextBlock
-                            Text="Modern Winver needs your permission to display the desktop wallpaper."
-                            TextWrapping="WrapWholeWords" />
-                        <StackPanel
-                            Grid.Row="1"
-                            Orientation="Horizontal"
-                            Spacing="6">
-                            <Button
-                                Click="PermissionInfo_Click"
-                                Content="Why?" />
-                            <Button
-                                Click="GetPermission_Click"
-                                Content="Grant"
-                                Style="{StaticResource AccentButtonStyle}" />
-                        </StackPanel>
-                    </Grid>
+                    <Image
+                        Height="104"
+                        d:Source="ms-appx:///Assets/ModernWinVer.png"
+                        Source="{x:Bind DeskWall}"
+                        Visibility="{x:Bind DeskWallVisible}"
+                        Width="184" />
                 </Border>
 
                 <StackPanel
