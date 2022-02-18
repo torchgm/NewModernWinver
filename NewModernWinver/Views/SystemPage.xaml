@@ -18,11 +18,17 @@
                 Text="Your PC" />
             <TextBlock Text="{x:Bind ViewModel.SystemName}" />
 
-            <Grid Margin="0,12,0,0">
+            <Grid Margin="0,12" RowSpacing="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
                 <TextBlock
                         FontWeight="SemiBold"
@@ -32,43 +38,31 @@
                         Grid.Column="1"
                         Text="{x:Bind ViewModel.CpuName}"
                         TextWrapping="WrapWholeWords" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Base speed" />
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="{x:Bind ViewModel.CpuClockSpeed}"
+                    TextWrapping="WrapWholeWords" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Architecture" />
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="{x:Bind ViewModel.CpuArch}"
+                    TextWrapping="WrapWholeWords" />
             </Grid>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock
-                        FontWeight="SemiBold"
-                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        Text="Base speed" />
-                <TextBlock
-                        Grid.Column="1"
-                        Text="{x:Bind ViewModel.CpuClockSpeed}"
-                        TextWrapping="WrapWholeWords" />
-            </Grid>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock
-                        FontWeight="SemiBold"
-                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        Text="Architecture" />
-                <TextBlock
-                        Grid.Column="1"
-                        Text="{x:Bind ViewModel.CpuArch}"
-                        TextWrapping="WrapWholeWords" />
-            </Grid>
-
-            <muxc:ProgressBar
-                    Margin="0,12,0,0"
-                    Value="{x:Bind ViewModel.CpuUsage, Mode=OneWay}" />
+            <muxc:ProgressBar Value="{x:Bind ViewModel.CpuUsage, Mode=OneWay}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -89,13 +83,13 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                        FontWeight="SemiBold"
-                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        Text="Installed RAM" />
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Installed RAM" />
                 <TextBlock
-                        Grid.Column="1"
-                        HorizontalAlignment="Right"
-                        Text="{x:Bind ViewModel.TotalRamGB}" />
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Text="{x:Bind ViewModel.TotalRamGB}" />
             </Grid>
 
             <muxc:ProgressBar Value="{x:Bind ViewModel.UsedRamPercent, Mode=OneWay}" />
@@ -107,9 +101,9 @@
 
                 <TextBlock Text="{x:Bind ViewModel.UsedRamGB, Mode=OneWay}" />
                 <TextBlock
-                        Grid.Column="1"
-                        HorizontalAlignment="Right"
-                        Text="{x:Bind ViewModel.FreeRamGB, Mode=OneWay}" />
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Text="{x:Bind ViewModel.FreeRamGB, Mode=OneWay}" />
             </Grid>
 
             <Grid Margin="0,12,0,0">
@@ -119,14 +113,14 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                        FontWeight="SemiBold"
-                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        Text="Primary storage" />
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Primary storage" />
                 <TextBlock
-                        x:Name="valueTotalStorage"
-                        Grid.Column="1"
-                        HorizontalAlignment="Right"
-                        Text="0 GB" />
+                    x:Name="valueTotalStorage"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Text="0 GB" />
             </Grid>
 
             <muxc:ProgressBar x:Name="progressStorage" Height="4" Value="0" />
@@ -138,10 +132,10 @@
 
                 <TextBlock x:Name="valueStorage" Text="0 GB used" />
                 <TextBlock
-                        x:Name="valueFreeStorage"
-                        Grid.Column="1"
-                        HorizontalAlignment="Right"
-                        Text="0 GB free" />
+                    x:Name="valueFreeStorage"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Text="0 GB free" />
             </Grid>
         </StackPanel>
     </ScrollViewer>
