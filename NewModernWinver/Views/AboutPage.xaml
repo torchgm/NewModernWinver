@@ -1,15 +1,14 @@
 ﻿<Page
     x:Class="NewModernWinver.Views.AboutPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:NewModernWinver.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    d:Height="400"
+    d:Height="440"
     d:Width="500"
-    Foreground="{ThemeResource SystemColorDisabledTextColor}">
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
 
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12" Spacing="4">
@@ -17,21 +16,78 @@
                 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Microsoft Windows" />
-            <TextBlock x:Name="labelCopyright" TextWrapping="Wrap" Text="©️ 2022 Microsoft Corporation. All rights reserved" />
+            <TextBlock
+                x:Name="labelCopyright"
+                Text="©️ 2022 Microsoft Corporation. All rights reserved"
+                TextWrapping="Wrap" />
 
-            <TextBlock x:Name="labelEdition" TextWrapping="Wrap" Text="Edition" />
-            <TextBlock x:Name="valueEdition" TextWrapping="Wrap" Text="[windowsEdition]" />
+            <Grid Margin="0,12" RowSpacing="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="labelUpdate" TextWrapping="Wrap" Text="Update" />
-            <TextBlock x:Name="valueUpdate" TextWrapping="Wrap" Text="[updateVersion]" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <TextBlock x:Name="labelDate" TextWrapping="Wrap" Text="Installed on" />
-            <TextBlock x:Name="valueDate" TextWrapping="Wrap" Text="[installDate]" />
+                <TextBlock
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Edition"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="valueEdition"
+                    Grid.Column="1"
+                    Text="[windowsEdition]"
+                    TextWrapping="Wrap" />
 
-            <TextBlock x:Name="labelBuild" TextWrapping="Wrap" Text="Build" />
-            <TextBlock x:Name="valueBuild" TextWrapping="Wrap" Text="[buildString]" />
+                <TextBlock
+                    Grid.Row="1"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Update"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="valueUpdate"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="[updateVersion]"
+                    TextWrapping="Wrap" />
 
-            <TextBlock TextWrapping="Wrap">
+                <TextBlock
+                    Grid.Row="2"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Installed on"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="valueDate"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="[installDate]"
+                    TextWrapping="Wrap" />
+
+                <TextBlock
+                    Grid.Row="3"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Build"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="valueBuild"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Text="[buildString]"
+                    TextWrapping="Wrap" />
+            </Grid>
+
+            <TextBlock
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                TextWrapping="Wrap">
                     The Windows operating system and its user interface are protected by trademark and other pending or existing intellectual property rights in the United States and other countries/regions.<LineBreak/><LineBreak/>This product is licensed under the 
                     <Hyperlink
                         UnderlineStyle="None"
@@ -41,11 +97,41 @@
                     to:
             </TextBlock>
 
-            <TextBlock x:Name="labelUsername" TextWrapping="Wrap" Text="User" />
-            <TextBlock x:Name="valueUsername" TextWrapping="Wrap" Text="[userName]" />
+            <Grid Margin="0,12,0,0" RowSpacing="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="labelComputername" TextWrapping="Wrap" Text="Computer" />
-            <TextBlock x:Name="valueComputername" TextWrapping="Wrap" Text="[computerName]" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="User"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="valueUsername"
+                    Grid.Column="1"
+                    Text="[userName]"
+                    TextWrapping="Wrap" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                    Text="Computer"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="valueComputername"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="[computerName]"
+                    TextWrapping="Wrap" />
+            </Grid>
         </StackPanel>
     </ScrollViewer>
 </Page>
