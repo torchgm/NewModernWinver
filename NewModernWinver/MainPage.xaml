@@ -7,6 +7,42 @@
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d"
       muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <Style x:Key="Win10Logo" TargetType="Image">
+                        <Setter Property="Source" Value="ms-appx:///Assets/win10light.svg" />
+                    </Style>
+
+                    <Style x:Key="Win11Logo" TargetType="Image">
+                        <Setter Property="Source" Value="ms-appx:///Assets/win11light.svg" />
+                    </Style>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Dark">
+                    <Style x:Key="Win10Logo" TargetType="Image">
+                        <Setter Property="Source" Value="ms-appx:///Assets/win10dark.svg" />
+                    </Style>
+
+                    <Style x:Key="Win11Logo" TargetType="Image">
+                        <Setter Property="Source" Value="ms-appx:///Assets/win11dark.svg" />
+                    </Style>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="HighContrast">
+                    <Style x:Key="Win10Logo" TargetType="Image">
+                        <Setter Property="Source" Value="{x:Null}" />
+                    </Style>
+
+                    <Style x:Key="Win11Logo" TargetType="Image">
+                        <Setter Property="Source" Value="{x:Null}" />
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -30,10 +66,22 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Image x:Name="LogoWin11Dark" Source="/Assets/win11dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
-        <Image x:Name="LogoWin11Light" Source="/Assets/win11light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
-        <Image x:Name="LogoWin10Dark" Source="/Assets/win10Dark.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
-        <Image x:Name="LogoWin10Light" Source="/Assets/win10light.svg" VerticalAlignment="Top" HorizontalAlignment="Center" Height="60" Width="328" Margin="0,45,0,0" Visibility="Collapsed"/>
+        <Image
+            x:Name="LogoWin10"
+            Height="60"
+            HorizontalAlignment="Center"
+            Margin="0,45,0,0"
+            Style="{ThemeResource Win10Logo}"
+            VerticalAlignment="Top"
+            Width="328" />
+        <Image
+            x:Name="LogoWin11"
+            Height="60"
+            HorizontalAlignment="Center"
+            Margin="0,45,0,0"
+            Style="{ThemeResource Win11Logo}"
+            VerticalAlignment="Top"
+            Width="328" />
 
         <GridView
             x:Name="gvTopLevelNav"

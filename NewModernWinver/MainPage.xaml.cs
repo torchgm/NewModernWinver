@@ -27,9 +27,6 @@ namespace NewModernWinver
         {
             build = SystemInformation.Instance.OperatingSystemVersion.Build;
 
-            var Listener = new ThemeListener();
-            Listener.ThemeChanged += Listener_ThemeChanged;
-
             InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
@@ -40,33 +37,15 @@ namespace NewModernWinver
             gvFrame3.Navigate(typeof(Views.ThemePage));
             gvFrame4.Navigate(typeof(Views.LinksPage));
 
-            if (ActualTheme == ElementTheme.Light)
+            if (build > 21950)
             {
-                if (build > 21950)
-                {
-                    LogoWin11Dark.Visibility = Visibility.Collapsed;
-                    LogoWin11Light.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    LogoWin10Dark.Visibility = Visibility.Collapsed;
-                    LogoWin10Light.Visibility = Visibility.Visible;
-                }
-
+                LogoWin10.Visibility = Visibility.Collapsed;
+                LogoWin11.Visibility = Visibility.Visible;
             }
             else
             {
-                if (build > 21950)
-                {
-                    LogoWin11Light.Visibility = Visibility.Collapsed;
-                    LogoWin11Dark.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    LogoWin10Light.Visibility = Visibility.Collapsed;
-                    LogoWin10Dark.Visibility = Visibility.Visible;
-                }
-
+                LogoWin10.Visibility = Visibility.Visible;
+                LogoWin11.Visibility = Visibility.Collapsed;
             }
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
@@ -82,45 +61,6 @@ namespace NewModernWinver
         {
             nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[0];
             contentFrame.Navigate(typeof(Views.AboutPage));
-        }
-
-        private void Listener_ThemeChanged(ThemeListener sender)
-        {
-            var theme = sender.CurrentTheme;
-            if (theme == ApplicationTheme.Light)
-            {
-                if (build > 21950)
-                {
-                    LogoWin11Dark.Visibility = Visibility.Collapsed;
-                    LogoWin11Light.Visibility = Visibility.Visible;
-                    LogoWin10Dark.Visibility = Visibility.Collapsed;
-                    LogoWin10Light.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    LogoWin10Dark.Visibility = Visibility.Collapsed;
-                    LogoWin10Light.Visibility = Visibility.Visible;
-                    LogoWin11Dark.Visibility = Visibility.Collapsed;
-                    LogoWin11Light.Visibility = Visibility.Collapsed;
-                }
-            }
-            else
-            {
-                if (build > 21950)
-                {
-                    LogoWin11Light.Visibility = Visibility.Collapsed;
-                    LogoWin11Dark.Visibility = Visibility.Visible;
-                    LogoWin10Light.Visibility = Visibility.Collapsed;
-                    LogoWin10Dark.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    LogoWin10Light.Visibility = Visibility.Collapsed;
-                    LogoWin10Dark.Visibility = Visibility.Visible;
-                    LogoWin11Light.Visibility = Visibility.Collapsed;
-                    LogoWin11Dark.Visibility = Visibility.Collapsed;
-                }
-            }
         }
 
         private async void nvTopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
