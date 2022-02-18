@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    d:Height="460"
+    d:Width="500"
     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12" Spacing="4">
