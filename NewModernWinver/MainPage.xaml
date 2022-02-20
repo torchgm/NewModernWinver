@@ -60,7 +60,6 @@
             </muxc:NavigationView.MenuItems>
             <Frame x:Name="contentFrame" Background="Transparent" Margin="0,0,0,51"/>
         </muxc:NavigationView>
-        <Button x:Name="okButton" Content="OK" Margin="0,0,10,10" VerticalAlignment="Bottom" Canvas.ZIndex="1" HorizontalAlignment="Right" Height="32" Width="48" Click="okButton_Click"/>
     </Grid>
 
 </Page>
