@@ -169,11 +169,6 @@ namespace NewModernWinver
         }
         #endregion
 
-        private void okButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
-
         [DllImport("kernel32.dll", SetLastError = false)]
         static extern bool GetProductInfo(int dwOSMajorVersion, int dwOSMinorVersion, int dwSpMajorVersion, int dwSpMinorVersion, out int pdwReturnedProductType);
     }
