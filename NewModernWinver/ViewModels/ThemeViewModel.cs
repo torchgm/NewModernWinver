@@ -41,6 +41,12 @@ namespace NewModernWinver.ViewModels
 
         public async Task LoadWallpapersAsync()
         {
+            using (var stream = LockScreen.GetImageStream())
+            {
+                var bmp = await stream.GetBitmapAsync(184, 104);
+                LockWall = await bmp.GetSourceAsync();
+            }
+
             var canAccess = System.IO.Directory.Exists(WallFolder);
             if (canAccess)
             {
@@ -60,12 +66,6 @@ namespace NewModernWinver.ViewModels
             else
             {
                 DeskWallVisible = false;
-            }
-
-            using (var stream = LockScreen.GetImageStream())
-            {
-                var bmp = await stream.GetBitmapAsync(184, 104);
-                LockWall = await bmp.GetSourceAsync();
             }
         }
     }
