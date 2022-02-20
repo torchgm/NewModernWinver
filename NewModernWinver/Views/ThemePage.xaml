@@ -46,7 +46,7 @@
                     CornerRadius="6"
                     Height="104"
                     HorizontalAlignment="Stretch"
-                    IsHitTestVisible="{x:Bind DeskWallVisible.Equals(x:False), Mode=OneWay}">
+                    IsHitTestVisible="{x:Bind ViewModel.DeskWallVisible.Equals(x:False), Mode=OneWay}">
                     <FontIcon
                         x:Name="WarningIcon"
                         FontSize="28"
@@ -56,10 +56,11 @@
 
                 <Border CornerRadius="6">
                     <Image
+                        x:Name="DeskWall"
                         Height="104"
                         d:Source="ms-appx:///Assets/ModernWinVer.png"
-                        Source="{x:Bind DeskWall}"
-                        Visibility="{x:Bind DeskWallVisible}"
+                        Source="{x:Bind ViewModel.DeskWall}"
+                        Visibility="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
                         Width="184" />
                 </Border>
 
@@ -76,7 +77,7 @@
                         Click="CopyDeskWall_Click"
                         Content="Copy to clipboard"
                         HorizontalAlignment="Stretch"
-                        IsEnabled="{x:Bind DeskWallVisible, Mode=OneWay}"
+                        IsEnabled="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
                         Style="{StaticResource AccentButtonStyle}" />
                 </StackPanel>
             </Grid>
@@ -95,8 +96,10 @@
 
                 <Border CornerRadius="6">
                     <Image
+                        x:Name="LockWall"
                         Height="104"
-                        Source="{x:Bind LockWall}"
+                        d:Source="ms-appx:///Assets/ModernWinVer.png"
+                        Source="{x:Bind ViewModel.LockWall, Mode=OneWay}"
                         Width="184" />
                 </Border>
 

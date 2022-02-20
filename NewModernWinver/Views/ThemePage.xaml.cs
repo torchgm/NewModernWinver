@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewModernWinver.ViewModels;
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
@@ -19,96 +20,19 @@ namespace NewModernWinver.Views
     /// </summary>
     public sealed partial class ThemePage : Page
     {
-        private readonly static DependencyProperty DeskWallVisibleProperty =
-            DependencyProperty.Register(nameof(DeskWallVisible), typeof(bool),
-                typeof(ThemePage), new PropertyMetadata(true));
-
-        private readonly static DependencyProperty DeskWallProperty =
-            DependencyProperty.Register(nameof(DeskWall), typeof(BitmapImage),
-                typeof(ThemePage), new PropertyMetadata(new BitmapImage()));
-
-        private readonly static DependencyProperty LockWallProperty =
-            DependencyProperty.Register(nameof(LockWall), typeof(BitmapImage),
-                typeof(ThemePage), new PropertyMetadata(new BitmapImage()));
-
-        private bool DeskWallVisible
-        {
-            get => (bool)GetValue(DeskWallVisibleProperty);
-            set => SetValue(DeskWallVisibleProperty, value);
-        }
-
-        private BitmapImage DeskWall
-        {
-            get => (BitmapImage)GetValue(DeskWallProperty);
-            set => SetValue(DeskWallProperty, value);
-        }
-
-        private BitmapImage LockWall
-        {
-            get => (BitmapImage)GetValue(LockWallProperty);
-            set => SetValue(LockWallProperty, value);
-        }
-
-        private readonly static string WallFolder =
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).
-            ToString() + @"\Microsoft\Windows\Themes\";
-
-        private static StorageFile DeskWallFile;
-        private static bool WallsSet = false;
+        private ThemeViewModel ViewModel => App.ThemeViewModel;
 
         public ThemePage()
         {
             InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
-
-            LockWall.DecodePixelHeight = 104;
-            LockWall.DecodePixelWidth = 184;
-
-            DeskWall.DecodePixelHeight = 104;
-            DeskWall.DecodePixelWidth = 184;
-
-            Loaded += async (s, e) =>
-            {
-                if (!WallsSet)
-                {
-                    WallsSet = true;
-                    await LoadWallpaperAsync();
-                }
-            };
-        }
-
-        private async Task LoadWallpaperAsync()
-        {
-            var canAccess = System.IO.Directory.Exists(WallFolder);
-            if (canAccess)
-            {
-                try
-                {
-                    StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(WallFolder);
-                    DeskWallFile = await folder.GetFileAsync("TranscodedWallpaper");
-
-                    using (var stream = await DeskWallFile.OpenAsync(FileAccessMode.Read))
-                    {
-                        await DeskWall.SetSourceAsync(stream);
-                    }
-                }
-                catch (Exception)
-                {
-                    DeskWallVisible = false;
-                }
-            }
-            else
-            {
-                DeskWallVisible = false;
-            }
-
-            await LockWall.SetSourceAsync(LockScreen.GetImageStream());
         }
 
         private void CopyDeskWall_Click(object sender, RoutedEventArgs e)
         {
             var dataPackage = new DataPackage();
-            dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(DeskWallFile));
+            dataPackage.SetBitmap(RandomAccessStreamReference.
+                CreateFromFile(ViewModel.DeskWallFile));
             Clipboard.SetContent(dataPackage);
         }
 

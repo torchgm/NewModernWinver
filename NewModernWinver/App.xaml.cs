@@ -19,6 +19,9 @@ namespace NewModernWinver
         public readonly static PerformanceInfoViewModel PerformanceViewModel =
             new PerformanceInfoViewModel();
 
+        public readonly static ThemeViewModel ThemeViewModel =
+            new ThemeViewModel();
+
         private readonly static BackgroundWorker PerfWorker =
             new BackgroundWorker();
 
@@ -29,7 +32,6 @@ namespace NewModernWinver
         public App()
         {
             this.InitializeComponent();
-
             this.Suspending += OnSuspending;
 
             // Start worker
@@ -37,7 +39,7 @@ namespace NewModernWinver
             PerfWorker.RunWorkerAsync();
         }
 
-        protected override void OnActivated(IActivatedEventArgs args)
+        protected override async void OnActivated(IActivatedEventArgs args)
         {
             if (args.Kind == ActivationKind.Protocol)
             {
@@ -52,6 +54,7 @@ namespace NewModernWinver
 
                 ApplicationView.PreferredLaunchViewSize = size;
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
 
                 Frame rootFrame = Window.Current.Content as Frame;
 
@@ -72,9 +75,9 @@ namespace NewModernWinver
                 // Always navigate for a protocol launch
                 rootFrame.Navigate(typeof(MainPage));
 
-
                 // Ensure the current window is active
                 Window.Current.Activate();
+                await ThemeViewModel.LoadWallpapersAsync();
             }
         }
 
@@ -83,7 +86,7 @@ namespace NewModernWinver
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             // Before doing anything, set the preferred launch view size
             var size = new Size(436, 635);
@@ -123,6 +126,7 @@ namespace NewModernWinver
 
                 // Ensure the current window is active
                 Window.Current.Activate();
+                await ThemeViewModel.LoadWallpapersAsync();
             }
         }
 

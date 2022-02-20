@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using NewModernWinver.Interop;
+using NewModernWinver.Misc;
 using RegistryRT;
 using System;
 using System.Security.Principal;
@@ -57,9 +58,7 @@ namespace NewModernWinver.Views
             byte[] data = new byte[256];
 
             reg.InitNTDLLEntryPoints();
-
             reg.QueryValue(RegistryHive.HKEY_CURRENT_USER, @"Control Panel\Desktop\Colors", "Window", out RegistryType _, out _);
-
 
             int unixInstall = 0;
             try
@@ -70,8 +69,8 @@ namespace NewModernWinver.Views
             catch (Exception)
             {
             }
-            valueDate.Text = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixInstall).ToString();
 
+            valueDate.Text = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixInstall).ToString();
             valueComputername.Text = System.Net.Dns.GetHostName();
             valueUsername.Text = WindowsIdentity.GetCurrent().Name.Replace(valueComputername.Text + "\\", "");
 

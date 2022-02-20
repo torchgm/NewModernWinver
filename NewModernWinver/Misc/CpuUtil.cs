@@ -1,14 +1,8 @@
 ﻿using System;
-using Windows.System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.System.Diagnostics;
 using System.Diagnostics;
+using Windows.System.Diagnostics;
 
-namespace NewModernWinver
+namespace NewModernWinver.Misc
 {
     internal class CpuUtil
     {
@@ -49,7 +43,7 @@ namespace NewModernWinver
             var elapsedKernelTime = totalKernelTime - _oldKernelTime;
             var elapsedUserTime = totalUserTime - _oldUserTime;
             var elapsedIdleTime = totalIdleTime - _oldIdleTime;
-            Debug.WriteLine($"\n---Since Last Measurement---\nKrnl Time: {elapsedKernelTime / ProcessorCount}\nUser Time: {elapsedUserTime / ProcessorCount}\nIdle Time: {elapsedIdleTime / ProcessorCount}\nFull Time: {(elapsedKernelTime + elapsedUserTime + elapsedIdleTime) / ProcessorCount}\nSyll Time: {(elapsedKernelTime - elapsedIdleTime + elapsedUserTime) / ProcessorCount}\n(All divided by {ProcessorCount})\n");
+            // Debug.WriteLine($"\n---Since Last Measurement---\nKrnl Time: {elapsedKernelTime / ProcessorCount}\nUser Time: {elapsedUserTime / ProcessorCount}\nIdle Time: {elapsedIdleTime / ProcessorCount}\nFull Time: {(elapsedKernelTime + elapsedUserTime + elapsedIdleTime) / ProcessorCount}\nSyll Time: {(elapsedKernelTime - elapsedIdleTime + elapsedUserTime) / ProcessorCount}\n(All divided by {ProcessorCount})\n");
 
             // Track the "old" variables.
             _oldKernelTime = totalKernelTime;
@@ -97,7 +91,7 @@ namespace NewModernWinver
                 _carryOver = 0;
             }
 
-            Debug.WriteLine($"{(int)ret}% | {elapsedTime} | {elapsedCpuTime}");
+            // Debug.WriteLine($"{(int)ret}% | {elapsedTime} | {elapsedCpuTime}");
 
             return ret;
         }

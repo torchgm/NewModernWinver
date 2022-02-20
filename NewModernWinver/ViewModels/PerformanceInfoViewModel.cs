@@ -1,4 +1,5 @@
 ﻿using NewModernWinver.Interop;
+using NewModernWinver.Misc;
 using RegistryRT;
 using System;
 using System.Net;
@@ -150,7 +151,7 @@ namespace NewModernWinver.ViewModels
             TotalStorage = totalNumberOfBytes / 1073741824;
             UsedStorage = (totalNumberOfBytes - freeBytesAvailable) / 1073741824.0;
             FreeStorage = totalNumberOfFreeBytes / 1073741824.0;
-            
+
             UsedStoragePercent = (UsedStorage / TotalStorage) * 100.0;
         }
     }
