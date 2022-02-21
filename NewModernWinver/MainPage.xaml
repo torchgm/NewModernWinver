@@ -96,12 +96,24 @@
             <GridView.Items>
                 <Frame
                     x:Name="gvFrame1"
+                    Height="400"
                     VerticalContentAlignment="Top"
-                    Width="392"
-                    Height="400" />
-                <Frame x:Name="gvFrame2" />
-                <Frame x:Name="gvFrame3" />
-                <Frame x:Name="gvFrame4" />
+                    Width="392" />
+                <Frame
+                    x:Name="gvFrame2"
+                    Height="400"
+                    VerticalContentAlignment="Top"
+                    Width="392" />
+                <Frame
+                    x:Name="gvFrame3"
+                    Height="400"
+                    VerticalContentAlignment="Top"
+                    Width="392" />
+                <Frame
+                    x:Name="gvFrame4"
+                    Height="400"
+                    VerticalContentAlignment="Top"
+                    Width="392" />
             </GridView.Items>
         </GridView>
 
