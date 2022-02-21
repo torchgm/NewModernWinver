@@ -11,7 +11,7 @@ namespace NewModernWinver.Views
     /// </summary>
     public sealed partial class SystemPage : Page
     {
-        private PerformanceInfoViewModel ViewModel => App.PerformanceViewModel;
+        private DeviceInfoViewModel ViewModel => App.DeviceViewModel;
 
         public SystemPage()
         {

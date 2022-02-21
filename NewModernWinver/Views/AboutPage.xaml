@@ -17,8 +17,8 @@
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Microsoft Windows" />
             <TextBlock
-                x:Name="labelCopyright"
-                Text="©️ 2022 Microsoft Corporation. All rights reserved"
+                d:Text="©️ 2013 Microsoft Corporation. All rights reserved"
+                Text="{x:Bind ViewModel.Copyright}"
                 TextWrapping="Wrap" />
 
             <Grid Margin="0,12" RowSpacing="4">
@@ -40,9 +40,9 @@
                     Text="Edition"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    x:Name="valueEdition"
                     Grid.Column="1"
-                    Text="[windowsEdition]"
+                    d:Text="Windows Pro"
+                    Text="{x:Bind ViewModel.CurrentEdition}"
                     TextWrapping="Wrap" />
 
                 <TextBlock
@@ -52,10 +52,10 @@
                     Text="Update"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    x:Name="valueUpdate"
                     Grid.Column="1"
                     Grid.Row="1"
-                    Text="[updateVersion]"
+                    d:Text="Update"
+                    Text="{x:Bind ViewModel.CurrentUpdate}"
                     TextWrapping="Wrap" />
 
                 <TextBlock
@@ -65,10 +65,10 @@
                     Text="Installed on"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    x:Name="valueDate"
                     Grid.Column="1"
                     Grid.Row="2"
-                    Text="[installDate]"
+                    d:Text="2013-10-17 "
+                    Text="{x:Bind ViewModel.InstalledOn}"
                     TextWrapping="Wrap" />
 
                 <TextBlock
@@ -78,10 +78,10 @@
                     Text="Build"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    x:Name="valueBuild"
                     Grid.Column="1"
                     Grid.Row="3"
-                    Text="[buildString]"
+                    d:Text="CurrentBuild"
+                    Text="{x:Bind ViewModel.CurrentBuild}"
                     TextWrapping="Wrap" />
             </Grid>
 
@@ -114,9 +114,9 @@
                     Text="User"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    x:Name="valueUsername"
                     Grid.Column="1"
-                    Text="[userName]"
+                    d:Text="UserName"
+                    Text="{x:Bind ViewModel.UserName}"
                     TextWrapping="Wrap" />
 
                 <TextBlock
@@ -126,10 +126,10 @@
                     Text="Computer"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    x:Name="valueComputername"
                     Grid.Column="1"
                     Grid.Row="1"
-                    Text="[computerName]"
+                    d:Text="SystemName"
+                    Text="{x:Bind ViewModel.SystemName}"
                     TextWrapping="Wrap" />
             </Grid>
         </StackPanel>

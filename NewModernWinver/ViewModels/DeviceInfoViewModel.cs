@@ -1,17 +1,18 @@
-﻿using NewModernWinver.Interop;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using NewModernWinver.Interop;
 using NewModernWinver.Misc;
 using RegistryRT;
 using System;
 using System.Net;
+using System.Security.Principal;
 using System.Text;
 using Windows.Storage;
 
 namespace NewModernWinver.ViewModels
 {
-    public class PerformanceInfoViewModel : ViewModel
+    public class DeviceInfoViewModel : ViewModel
     {
         #region Interop
-        public static SYSTEM_INFO SysInfo = new SYSTEM_INFO();
         private readonly MEMORYSTATUSEX mem = new MEMORYSTATUSEX();
         #endregion
 
@@ -47,7 +48,7 @@ namespace NewModernWinver.ViewModels
         private double FreeStorage { get; set; }
         #endregion
 
-        public PerformanceInfoViewModel()
+        public DeviceInfoViewModel()
         {
             // No need to get this more than once
             SetPersistentInfo();
@@ -56,6 +57,13 @@ namespace NewModernWinver.ViewModels
 
         #region Persistent properties
         public string SystemName { get; set; }
+        public string UserName { get; set; }
+        public string Copyright { get; set; }
+
+        public string CurrentEdition { get; set; }
+        public string CurrentUpdate { get; set; }
+        public string CurrentBuild { get; set; }
+        public string InstalledOn { get; set; }
 
         public string CpuName { get; set; }
         public string CpuArch { get; set; }
@@ -120,21 +128,11 @@ namespace NewModernWinver.ViewModels
 
         private void SetPersistentInfo()
         {
-            SystemName = Dns.GetHostName();
-
-            // CPU data
-            Imports.GetNativeSystemInfo(out SYSTEM_INFO sysInfo);
-            CpuArch = ((Arch)sysInfo.CpuInfo.ProcessorArchitecture).ToString();
-            CpuThreads = CpuUtil.ProcessorCount + " threads";
-
             Registry reg = new Registry();
             reg.InitNTDLLEntryPoints();
 
-            reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"HARDWARE\DESCRIPTION\System\CentralProcessor\0", "ProcessorNameString", out uint RegType, out byte[] data);
-            CpuName = Encoding.Unicode.GetString(data).Replace("\0", "").TrimEnd();
-
-            reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"HARDWARE\DESCRIPTION\System\CentralProcessor\0", "~MHz", out RegType, out data);
-            CpuClockSpeed = BitConverter.ToInt32(data, 0) + "MHz";
+            SetOSData(reg);
+            SetCPUData(reg);
 
             // RAM data
             Imports.GlobalMemoryStatusEx(mem);
@@ -153,6 +151,79 @@ namespace NewModernWinver.ViewModels
             FreeStorage = totalNumberOfFreeBytes / 1073741824.0;
 
             UsedStoragePercent = (UsedStorage / TotalStorage) * 100.0;
+        }
+
+        private void SetOSData(Registry reg)
+        {
+            SystemName = Dns.GetHostName();
+            UserName = WindowsIdentity.GetCurrent().Name.
+                Replace(SystemName + "\\", "");
+
+            Copyright = "©️ " + DateTime.Now.Year + " Microsoft Corporation. All rights reserved";
+
+            int build = SystemInformation.Instance.OperatingSystemVersion.Build;
+            int revision = SystemInformation.Instance.OperatingSystemVersion.Revision;
+
+            Imports.GetProductInfo(6, 3, 0, 0, out int osEdition);
+            if (ListsAndStuff.EditionDict.ContainsKey(osEdition))
+            {
+                CurrentEdition = ListsAndStuff.EditionDict[osEdition];
+                if (build > 21996)
+                {
+                    CurrentEdition = CurrentEdition.Replace("Windows 10", "Windows 11");
+                }
+            }
+            else
+            {
+                CurrentEdition = "Unknown";
+            }
+
+            CurrentBuild = build + "." + revision;
+            if (ListsAndStuff.BuildDict.ContainsKey(build))
+            {
+                CurrentUpdate = ListsAndStuff.BuildDict[build];
+            }
+            else
+            {
+                CurrentUpdate = "Dev";
+            }
+
+            int unixInstall = 0;
+            try
+            {
+                reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE,
+                    @"SOFTWARE\Microsoft\Windows NT\CurrentVersion",
+                    "InstallDate",
+                    out uint _,
+                    out byte[] install);
+                unixInstall = BitConverter.ToInt32(install, 0);
+            }
+            catch (Exception) { }
+
+            InstalledOn = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).
+                AddSeconds(unixInstall).ToString();
+        }
+
+        private void SetCPUData(Registry reg)
+        {
+            Imports.GetNativeSystemInfo(out SYSTEM_INFO sysInfo);
+            CpuArch = ((Arch)sysInfo.CpuInfo.ProcessorArchitecture).ToString();
+            CpuThreads = CpuUtil.ProcessorCount + " threads";
+
+            reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE,
+                @"HARDWARE\DESCRIPTION\System\CentralProcessor\0",
+                "ProcessorNameString",
+                out uint _,
+                out byte[] name);
+
+            CpuName = Encoding.Unicode.GetString(name).Replace("\0", "").TrimEnd();
+
+            reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE,
+                @"HARDWARE\DESCRIPTION\System\CentralProcessor\0",
+                "~MHz",
+                out uint _,
+                out byte[] speed);
+            CpuClockSpeed = BitConverter.ToInt32(speed, 0) + "MHz";
         }
     }
 }

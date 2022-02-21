@@ -16,8 +16,8 @@ namespace NewModernWinver
     /// </summary>
     sealed partial class App : Application
     {
-        public readonly static PerformanceInfoViewModel PerformanceViewModel =
-            new PerformanceInfoViewModel();
+        public readonly static DeviceInfoViewModel DeviceViewModel =
+            new DeviceInfoViewModel();
 
         public readonly static ThemeViewModel ThemeViewModel =
             new ThemeViewModel();
@@ -161,7 +161,7 @@ namespace NewModernWinver
         {
             while (true)
             {
-                PerformanceViewModel.Update();
+                DeviceViewModel.Update();
                 System.Threading.Thread.Sleep(2000);
             }
         }
