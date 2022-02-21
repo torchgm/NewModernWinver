@@ -14,7 +14,9 @@ namespace NewModernWinver.ViewModels
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).
             ToString() + @"\Microsoft\Windows\Themes\";
 
+        private bool _wallsLoaded = false;
         private bool _deskWallVisible = true;
+
         private SoftwareBitmapSource _deskWall;
         private SoftwareBitmapSource _lockWall;
         #endregion
@@ -41,6 +43,12 @@ namespace NewModernWinver.ViewModels
 
         public async Task LoadWallpapersAsync()
         {
+            if (_wallsLoaded)
+            {
+                return;
+            }
+
+            _wallsLoaded = true;
             using (var stream = LockScreen.GetImageStream())
             {
                 var bmp = await stream.GetBitmapAsync(184, 104);
