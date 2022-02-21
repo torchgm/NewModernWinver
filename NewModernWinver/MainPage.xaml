@@ -6,7 +6,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d"
-      muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+      muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
+      d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      d:Height="635"
+      d:Width="436">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -69,6 +72,7 @@
 
         <Image
             x:Name="LogoWin10"
+            d:Visibility="Collapsed"
             Height="60"
             HorizontalAlignment="Center"
             Margin="0,45,0,0"
@@ -85,7 +89,6 @@
             Width="328" />
 
         <GridView
-            x:Name="gvTopLevelNav"
             Grid.Row="1"
             AllowDrop="True"
             CanDragItems="True"
@@ -118,11 +121,11 @@
         </GridView>
 
         <muxc:NavigationView
-            x:Name="nvTopLevelNav"
+            x:Name="topLevelNav"
             Grid.Row="1"
             IsBackButtonVisible="Collapsed"
-            ItemInvoked="nvTopLevelNav_ItemInvoked"
-            Loaded="nvTopLevelNav_Loaded"
+            ItemInvoked="TopLevelNav_ItemInvoked"
+            Loaded="TopLevelNav_Loaded"
             PaneDisplayMode="Top">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Tag="Nav_About">
@@ -131,10 +134,10 @@
                 <muxc:NavigationViewItem Tag="Nav_System">
                     <TextBlock Tag="Nav_System">System</TextBlock>
                 </muxc:NavigationViewItem>
-                <muxc:NavigationViewItem Tag="Nav_Theme" >
+                <muxc:NavigationViewItem Tag="Nav_Theme">
                     <TextBlock Tag="Nav_Theme">Theme</TextBlock>
                 </muxc:NavigationViewItem>
-                <muxc:NavigationViewItem Tag="Nav_Links" >
+                <muxc:NavigationViewItem Tag="Nav_Links">
                     <TextBlock Tag="Nav_Links">Links</TextBlock>
                 </muxc:NavigationViewItem>
             </muxc:NavigationView.MenuItems>
@@ -144,7 +147,7 @@
 
         <Button
             Grid.Row="2"
-            Click="okButton_Click"
+            Click="OkButton_Click"
             Content="OK"
             HorizontalAlignment="Right"
             Margin="12" />

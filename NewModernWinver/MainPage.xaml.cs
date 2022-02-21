@@ -1,5 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
-using Microsoft.Toolkit.Uwp.UI.Helpers;
+using NewModernWinver.Views;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
@@ -21,16 +21,12 @@ namespace NewModernWinver
 
     public sealed partial class MainPage : Page
     {
-        private readonly int build;
-
         public MainPage()
         {
-            build = SystemInformation.Instance.OperatingSystemVersion.Build;
-
             InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            if (build > 21950)
+            if (SystemInformation.Instance.OperatingSystemVersion.Build > 21950)
             {
                 LogoWin10.Visibility = Visibility.Collapsed;
                 LogoWin11.Visibility = Visibility.Visible;
@@ -44,25 +40,27 @@ namespace NewModernWinver
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
             ApplicationView appView = ApplicationView.GetForCurrentView();
+
             appView.TitleBar.BackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+
             appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         #region NavigationView event handlers
-        private void nvTopLevelNav_Loaded(object sender, RoutedEventArgs e)
+        private void TopLevelNav_Loaded(object sender, RoutedEventArgs e)
         {
-            nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[0];
-            contentFrame.Navigate(typeof(Views.AboutPage));
+            topLevelNav.SelectedItem = topLevelNav.MenuItems[0];
+            contentFrame.Navigate(typeof(AboutPage));
 
-            gvFrame1.Navigate(typeof(Views.AboutPage));
-            gvFrame2.Navigate(typeof(Views.SystemPage));
-            gvFrame3.Navigate(typeof(Views.ThemePage));
-            gvFrame4.Navigate(typeof(Views.LinksPage));
+            gvFrame1.Navigate(typeof(AboutPage));
+            gvFrame2.Navigate(typeof(SystemPage));
+            gvFrame3.Navigate(typeof(ThemePage));
+            gvFrame4.Navigate(typeof(LinksPage));
         }
 
-        private async void nvTopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        private async void TopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
@@ -76,22 +74,22 @@ namespace NewModernWinver
                     switch (ItemContent.Tag)
                     {
                         case "Nav_About":
-                            contentFrame.Navigate(typeof(Views.AboutPage), null,
+                            contentFrame.Navigate(typeof(AboutPage), null,
                                 args.RecommendedNavigationTransitionInfo);
                             break;
 
                         case "Nav_System":
-                            contentFrame.Navigate(typeof(Views.SystemPage), null,
+                            contentFrame.Navigate(typeof(SystemPage), null,
                                 args.RecommendedNavigationTransitionInfo);
                             break;
 
                         case "Nav_Theme":
-                            contentFrame.Navigate(typeof(Views.ThemePage), null,
+                            contentFrame.Navigate(typeof(ThemePage), null,
                                 args.RecommendedNavigationTransitionInfo);
                             break;
 
                         case "Nav_Links":
-                            contentFrame.Navigate(typeof(Views.LinksPage), null,
+                            contentFrame.Navigate(typeof(LinksPage), null,
                                 args.RecommendedNavigationTransitionInfo);
                             break;
                     }
@@ -100,7 +98,7 @@ namespace NewModernWinver
         }
         #endregion
 
-        private async void okButton_Click(object sender, RoutedEventArgs e)
+        private async void OkButton_Click(object sender, RoutedEventArgs e)
         {
             await ExitAppAsync();
         }
