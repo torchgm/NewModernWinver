@@ -17,8 +17,6 @@ namespace NewModernWinver
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    /// 
-
     public sealed partial class MainPage : Page
     {
         public MainPage()
@@ -46,13 +44,6 @@ namespace NewModernWinver
 
             appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-        }
-
-        #region NavigationView event handlers
-        private void TopLevelNav_Loaded(object sender, RoutedEventArgs e)
-        {
-            topLevelNav.SelectedItem = topLevelNav.MenuItems[0];
-            contentFrame.Navigate(typeof(AboutPage));
 
             gvFrame1.Navigate(typeof(AboutPage));
             gvFrame2.Navigate(typeof(SystemPage));
@@ -60,6 +51,38 @@ namespace NewModernWinver
             gvFrame4.Navigate(typeof(LinksPage));
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is string param)
+            {
+                switch (param)
+                {
+                    case "mwv:system":
+                        contentFrame.Navigate(typeof(SystemPage));
+                        topLevelNav.SelectedItem = topLevelNav.MenuItems[1];
+                        break;
+
+                    case "mwv:theme":
+                        contentFrame.Navigate(typeof(ThemePage));
+                        topLevelNav.SelectedItem = topLevelNav.MenuItems[2];
+                        break;
+
+                    case "mwv:links":
+                        contentFrame.Navigate(typeof(LinksPage));
+                        topLevelNav.SelectedItem = topLevelNav.MenuItems[3];
+                        break;
+
+                    default:
+                        contentFrame.Navigate(typeof(AboutPage));
+                        topLevelNav.SelectedItem = topLevelNav.MenuItems[0];
+                        break;
+                }
+            }
+
+            base.OnNavigatedTo(e);
+        }
+
+        #region NavigationView event handlers
         private async void TopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)

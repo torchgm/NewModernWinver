@@ -1,7 +1,6 @@
 ﻿using NewModernWinver.ViewModels;
 using System;
 using System.ComponentModel;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
@@ -32,7 +31,6 @@ namespace NewModernWinver
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
 
             // Start worker
             PerfWorker.DoWork += (s, e) => UpdatePerformanceData();
@@ -45,9 +43,6 @@ namespace NewModernWinver
             {
                 ProtocolActivatedEventArgs eventArgs = args as ProtocolActivatedEventArgs;
 
-                // TODO: Handle URI activation
-                // The received URI is eventArgs.Uri.AbsoluteUri
-
                 // Before doing anything, set the preferred launch view size
                 var size = new Size(436, 635);
                 ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
@@ -55,25 +50,20 @@ namespace NewModernWinver
                 ApplicationView.PreferredLaunchViewSize = size;
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-
-                Frame rootFrame = Window.Current.Content as Frame;
-
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
-                if (rootFrame == null)
+                if (!(Window.Current.Content is Frame rootFrame))
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
                     rootFrame = new Frame();
-
                     rootFrame.NavigationFailed += OnNavigationFailed;
-
 
                     // Place the frame in the current Window
                     Window.Current.Content = rootFrame;
                 }
 
                 // Always navigate for a protocol launch
-                rootFrame.Navigate(typeof(MainPage));
+                rootFrame.Navigate(typeof(MainPage), eventArgs.Uri.AbsoluteUri);
 
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -95,20 +85,13 @@ namespace NewModernWinver
             ApplicationView.PreferredLaunchViewSize = size;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-            Frame rootFrame = Window.Current.Content as Frame;
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null)
+            if (!(Window.Current.Content is Frame rootFrame))
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -138,20 +121,6 @@ namespace NewModernWinver
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
-        }
-
-        /// <summary>
-        /// Invoked when application execution is being suspended.  Application state is saved
-        /// without knowing whether the application will be terminated or resumed with the contents
-        /// of memory still intact.
-        /// </summary>
-        /// <param name="sender">The source of the suspend request.</param>
-        /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
-        {
-            var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
-            deferral.Complete();
         }
 
         /// <summary>

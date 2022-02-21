@@ -57,7 +57,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="nvTopLevelNav.Visibility" Value="Collapsed" />
+                        <Setter Target="topLevelNav.Visibility" Value="Collapsed" />
                         <Setter Target="gvTopLevelNav.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
@@ -89,6 +89,7 @@
             Width="328" />
 
         <GridView
+            x:Name="gvTopLevelNav"
             Grid.Row="1"
             AllowDrop="True"
             CanDragItems="True"
@@ -125,7 +126,6 @@
             Grid.Row="1"
             IsBackButtonVisible="Collapsed"
             ItemInvoked="TopLevelNav_ItemInvoked"
-            Loaded="TopLevelNav_Loaded"
             PaneDisplayMode="Top">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Tag="Nav_About">
