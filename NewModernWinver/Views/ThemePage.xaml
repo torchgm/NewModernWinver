@@ -59,7 +59,7 @@
                         x:Name="DeskWall"
                         Height="104"
                         d:Source="ms-appx:///Assets/ModernWinVer.png"
-                        Source="{x:Bind ViewModel.DeskWall}"
+                        Source="{x:Bind ViewModel.DeskWall, Mode=OneWay}"
                         Visibility="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
                         Width="184" />
                 </Border>
