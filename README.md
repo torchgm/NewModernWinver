@@ -15,7 +15,7 @@ A modern and more functional replacement for the About Windows screen powered by
  - Rearrange page layout
  - Write, add and share custom pages
  - More appearance options
- - The ability to launch more pages with the `mwv:` URI
+ - ~~The ability to launch more pages with the `mwv:` URI~~ Done!
 
 ## Installation
 You can download the latest release of Modern Winver on the Microsoft Store [here](https://www.microsoft.com/p/ModernWinver/9ND14WHFRGSX).
