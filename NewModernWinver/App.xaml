@@ -7,6 +7,51 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!--#region Theme resources-->
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <StaticResource x:Key="CardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+                    <StaticResource x:Key="CardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+                    <StaticResource x:Key="CardBackgroundHoverBrush" ResourceKey="ControlStrokeColorDefault" />
+                    <StaticResource x:Key="CardBorderHoverBrush" ResourceKey="ControlStrokeColorDefault" />
+                    <StaticResource x:Key="CardBackgroundPressedBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+                    <StaticResource x:Key="CardBorderPressedBrush" ResourceKey="ControlStrokeColorDefault" />
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Light">
+                    <StaticResource x:Key="CardBackgroundBrush" ResourceKey="CardBackgroundFillColorDefaultBrush" />
+                    <StaticResource x:Key="CardBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+                    <StaticResource x:Key="CardBackgroundHoverBrush" ResourceKey="CardBackgroundFillColorSecondaryBrush" />
+                    <StaticResource x:Key="CardBorderHoverBrush" ResourceKey="ControlStrokeColorDefault" />
+                    <StaticResource x:Key="CardBackgroundPressedBrush" ResourceKey="ControlStrokeColorDefault" />
+                    <StaticResource x:Key="CardBorderPressedBrush" ResourceKey="ControlStrokeColorDefault" />
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="HighContrast">
+                    <StaticResource x:Key="CardBackgroundBrush" ResourceKey="SystemColorButtonFaceColorBrush" />
+                    <StaticResource x:Key="CardBorderBrush" ResourceKey="SystemColorButtonTextColorBrush" />
+                    <StaticResource x:Key="CardBackgroundHoverBrush" ResourceKey="SystemColorHighlightColorBrush" />
+                    <StaticResource x:Key="CardBorderHoverBrush" ResourceKey="SystemColorHighlightTextColorBrush" />
+                    <StaticResource x:Key="CardBackgroundPressedBrush" ResourceKey="SystemColorHighlightColorBrush" />
+                    <StaticResource x:Key="CardBorderPressedBrush" ResourceKey="SystemColorHighlightTextColorBrush" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <!--#endregion-->
+
+            <!--#region Cards-->
+            <Thickness x:Key="ExpanderHeaderPadding">16,12,16,12</Thickness>
+            <Style x:Key="DefaultCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+                <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
+                <Setter Property="Padding" Value="{StaticResource ExpanderHeaderPadding}" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+            </Style>
+            <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

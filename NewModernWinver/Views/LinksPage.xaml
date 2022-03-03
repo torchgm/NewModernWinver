@@ -14,31 +14,37 @@
         <StackPanel Padding="20,12">
             <TextBlock
                 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                Padding="4,0"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Links" />
-            <TextBlock Margin="0,4,0,0" Text="Additional help and information" />
-
             <TextBlock
-                FontWeight="Semibold"
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                Margin="0,16,0,0"
-                Text="Windows resources" />
-            <HyperlinkButton Content="Settings" NavigateUri="ms-settings:" />
-            <HyperlinkButton Content="System Properties" NavigateUri="ms-settings:about" />
-            <HyperlinkButton Content="Tips" NavigateUri="ms-get-started:" />
-            <HyperlinkButton
-                Content="Contact Microsoft Support"
-                NavigateUri="https://support.microsoft.com/contactus" />
+                Padding="4,0"
+                Text="Additional help and information" />
 
-            <TextBlock
-                FontWeight="Semibold"
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                Margin="0,16,0,0"
-                Text="About Modern Winver" />
-            <HyperlinkButton Content="Discord" NavigateUri="https://discord.gg/wYQJd8VGSB" />
-            <HyperlinkButton
-                Content="GitHub"
-                NavigateUri="https://www.github.com/torchgm/NewModernWinver" />
+            <Border Margin="0,4,0,0" Style="{StaticResource DefaultCardStyle}">
+                <StackPanel>
+                    <TextBlock
+                        FontWeight="Semibold"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        Text="Windows resources" />
+                    <HyperlinkButton Content="Settings" NavigateUri="ms-settings:" />
+                    <HyperlinkButton Content="System Properties" NavigateUri="ms-settings:about" />
+                    <HyperlinkButton Content="Tips" NavigateUri="ms-get-started:" />
+                    <HyperlinkButton
+                        Content="Contact Microsoft Support"
+                        NavigateUri="https://support.microsoft.com/contactus" />
+
+                    <TextBlock
+                        FontWeight="Semibold"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        Margin="0,12,0,0"
+                        Text="About Modern Winver" />
+                    <HyperlinkButton Content="Discord" NavigateUri="https://discord.gg/wYQJd8VGSB" />
+                    <HyperlinkButton
+                        Content="GitHub"
+                        NavigateUri="https://www.github.com/torchgm/NewModernWinver" />
+                </StackPanel>
+            </Border>
         </StackPanel>
     </ScrollViewer>
 </Page>

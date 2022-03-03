@@ -11,127 +11,133 @@
     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
 
     <ScrollViewer Margin="-12,0">
-        <StackPanel Padding="20,12" Spacing="4">
+        <StackPanel Padding="20,12">
             <TextBlock
                 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                Padding="4,0"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Microsoft Windows" />
             <TextBlock
                 d:Text="©️ 2013 Microsoft Corporation. All rights reserved"
+                Padding="4,0"
                 Text="{x:Bind ViewModel.Copyright}"
                 TextWrapping="Wrap" />
 
-            <Grid Margin="0,12" RowSpacing="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
+            <Border Margin="0,4,0,0" Style="{StaticResource DefaultCardStyle}">
+                <StackPanel Spacing="12">
+                    <Grid RowSpacing="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <TextBlock
-                    FontWeight="SemiBold"
-                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Text="Edition"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Grid.Column="1"
-                    d:Text="Windows Pro"
-                    Text="{x:Bind ViewModel.CurrentEdition}"
-                    TextWrapping="Wrap" />
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Text="Edition"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Column="1"
+                            d:Text="Windows Pro"
+                            Text="{x:Bind ViewModel.CurrentEdition}"
+                            TextWrapping="Wrap" />
 
-                <TextBlock
-                    Grid.Row="1"
-                    FontWeight="SemiBold"
-                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Text="Update"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    d:Text="Update"
-                    Text="{x:Bind ViewModel.CurrentUpdate}"
-                    TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Row="1"
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Text="Update"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            d:Text="Update"
+                            Text="{x:Bind ViewModel.CurrentUpdate}"
+                            TextWrapping="Wrap" />
 
-                <TextBlock
-                    Grid.Row="2"
-                    FontWeight="SemiBold"
-                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Text="Installed on"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    d:Text="2013-10-17 "
-                    Text="{x:Bind ViewModel.InstalledOn}"
-                    TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Row="2"
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Text="Installed on"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            d:Text="2013-10-17 "
+                            Text="{x:Bind ViewModel.InstalledOn}"
+                            TextWrapping="Wrap" />
 
-                <TextBlock
-                    Grid.Row="3"
-                    FontWeight="SemiBold"
-                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Text="Build"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="3"
-                    d:Text="CurrentBuild"
-                    Text="{x:Bind ViewModel.CurrentBuild}"
-                    TextWrapping="Wrap" />
-            </Grid>
+                        <TextBlock
+                            Grid.Row="3"
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Text="Build"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            d:Text="CurrentBuild"
+                            Text="{x:Bind ViewModel.CurrentBuild}"
+                            TextWrapping="Wrap" />
+                    </Grid>
 
-            <TextBlock
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                TextWrapping="Wrap">
-                    The Windows operating system and its user interface are protected by trademark and other pending or existing intellectual property rights in the United States and other countries/regions.<LineBreak/><LineBreak/>This product is licensed under the 
-                    <Hyperlink
-                        UnderlineStyle="None"
-                        NavigateUri="https://www.microsoft.com/useterms">
-                        Microsoft Software Licence Terms
-                    </Hyperlink>
-                    to:
-            </TextBlock>
+                    <TextBlock
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        TextWrapping="Wrap">
+                            The Windows operating system and its user interface are protected by trademark and other pending or existing intellectual property rights in the United States and other countries/regions.<LineBreak/><LineBreak/>This product is licensed under the 
+                            <Hyperlink
+                                UnderlineStyle="None"
+                                NavigateUri="https://www.microsoft.com/useterms">
+                                Microsoft Software Licence Terms
+                            </Hyperlink>
+                            to:
+                    </TextBlock>
 
-            <Grid Margin="0,12,0,0" RowSpacing="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
+                    <Grid Margin="0,12,0,0" RowSpacing="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <TextBlock
-                    FontWeight="SemiBold"
-                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Text="User"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Grid.Column="1"
-                    d:Text="UserName"
-                    Text="{x:Bind ViewModel.UserName}"
-                    TextWrapping="Wrap" />
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Text="User"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Column="1"
+                            d:Text="UserName"
+                            Text="{x:Bind ViewModel.UserName}"
+                            TextWrapping="Wrap" />
 
-                <TextBlock
-                    Grid.Row="1"
-                    FontWeight="SemiBold"
-                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Text="Computer"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    d:Text="SystemName"
-                    Text="{x:Bind ViewModel.SystemName}"
-                    TextWrapping="Wrap" />
-            </Grid>
+                        <TextBlock
+                            Grid.Row="1"
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Text="Computer"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            d:Text="SystemName"
+                            Text="{x:Bind ViewModel.SystemName}"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </StackPanel>
+            </Border>
         </StackPanel>
     </ScrollViewer>
 </Page>

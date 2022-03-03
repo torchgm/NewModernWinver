@@ -12,137 +12,143 @@
     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
 
     <ScrollViewer Margin="-12,0">
-        <StackPanel Padding="20,12" Spacing="4">
+        <StackPanel Padding="20,12">
             <TextBlock
                 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                Padding="4,0"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Theme" />
-            <TextBlock Text="Preview and copy your wallpaper and accent" />
-
             <TextBlock
-                FontWeight="SemiBold"
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                Margin="0,8,0,0"
-                Text="Wallpaper" />
-            <Grid AutomationProperties.Name="Desktop Wallpaper Data">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="184" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                Padding="4,0"
+                Text="Preview and copy your wallpaper and accent" />
 
-                <muxc:TeachingTip
-                    x:Name="WallTip"
-                    ActionButtonClick="GetPermission_Click"
-                    ActionButtonContent="Grant"
-                    CloseButtonClick="PermissionInfo_Click"
-                    CloseButtonContent="Read more"
-                    IsLightDismissEnabled="True"
-                    Subtitle="UWP apps (like this one) normally are only allowed to store and open files in a small restricted folder, or files you choose with a file picker. If an app wants to access other files on your drive (such as the desktop wallpaper), it needs this permission to access it."
-                    Target="{x:Bind WarningIcon}"
-                    Title="Modern Winver needs your permission to display the desktop wallpaper" />
-                <Button
-                    Click="WarningButton_Click"
-                    CornerRadius="6"
-                    Height="104"
-                    HorizontalAlignment="Stretch"
-                    IsHitTestVisible="{x:Bind ViewModel.DeskWallVisible.Equals(x:False), Mode=OneWay}">
-                    <FontIcon
-                        x:Name="WarningIcon"
-                        FontSize="28"
-                        Foreground="Yellow"
-                        Glyph="&#xE7BA;" />
-                </Button>
+            <Border Margin="0,4,0,0" Style="{StaticResource DefaultCardStyle}">
+                <StackPanel>
+                    <TextBlock
+                        FontWeight="SemiBold"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        Text="Wallpaper" />
+                    <Grid AutomationProperties.Name="Desktop Wallpaper Data">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="184" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                <Border CornerRadius="6">
-                    <Image
-                        x:Name="DeskWall"
-                        Height="104"
-                        d:Source="ms-appx:///Assets/ModernWinVer.png"
-                        Source="{x:Bind ViewModel.DeskWall, Mode=OneWay}"
-                        Visibility="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
-                        Width="184" />
-                </Border>
+                        <muxc:TeachingTip
+                            x:Name="WallTip"
+                            ActionButtonClick="GetPermission_Click"
+                            ActionButtonContent="Grant"
+                            CloseButtonClick="PermissionInfo_Click"
+                            CloseButtonContent="Read more"
+                            IsLightDismissEnabled="True"
+                            Subtitle="UWP apps (like this one) normally are only allowed to store and open files in a small restricted folder, or files you choose with a file picker. If an app wants to access other files on your drive (such as the desktop wallpaper), it needs this permission to access it."
+                            Target="{x:Bind WarningIcon}"
+                            Title="Modern Winver needs your permission to display the desktop wallpaper" />
+                        <Button
+                            Click="WarningButton_Click"
+                            CornerRadius="6"
+                            Height="104"
+                            HorizontalAlignment="Stretch"
+                            IsHitTestVisible="{x:Bind ViewModel.DeskWallVisible.Equals(x:False), Mode=OneWay}">
+                            <FontIcon
+                                x:Name="WarningIcon"
+                                FontSize="28"
+                                Foreground="Yellow"
+                                Glyph="&#xE7BA;" />
+                        </Button>
 
-                <StackPanel
-                    Grid.Column="2"
-                    Orientation="Vertical"
-                    Spacing="4"
-                    VerticalAlignment="Bottom">
-                    <Button
-                        Click="PersonaliseDeskWall_Click"
-                        Content="Change in Settings"
-                        HorizontalAlignment="Stretch" />
-                    <Button
-                        Click="CopyDeskWall_Click"
-                        Content="Copy to clipboard"
-                        HorizontalAlignment="Stretch"
-                        IsEnabled="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
-                        Style="{StaticResource AccentButtonStyle}" />
+                        <Border CornerRadius="6">
+                            <Image
+                                x:Name="DeskWall"
+                                Height="104"
+                                d:Source="ms-appx:///Assets/ModernWinVer.png"
+                                Source="{x:Bind ViewModel.DeskWall, Mode=OneWay}"
+                                Visibility="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
+                                Width="184" />
+                        </Border>
+
+                        <StackPanel
+                            Grid.Column="2"
+                            Orientation="Vertical"
+                            Spacing="4"
+                            VerticalAlignment="Bottom">
+                            <Button
+                                Click="PersonaliseDeskWall_Click"
+                                Content="Change in Settings"
+                                HorizontalAlignment="Stretch" />
+                            <Button
+                                Click="CopyDeskWall_Click"
+                                Content="Copy to clipboard"
+                                HorizontalAlignment="Stretch"
+                                IsEnabled="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
+                                Style="{StaticResource AccentButtonStyle}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock
+                        FontWeight="SemiBold"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        Margin="0,8,0,0"
+                        Text="Lock Screen" />
+                    <Grid AutomationProperties.Name="Lock screen Wallpaper Data">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="184" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border CornerRadius="6">
+                            <Image
+                                x:Name="LockWall"
+                                Height="104"
+                                d:Source="ms-appx:///Assets/ModernWinVer.png"
+                                Source="{x:Bind ViewModel.LockWall, Mode=OneWay}"
+                                Width="184" />
+                        </Border>
+
+                        <StackPanel
+                            Grid.Column="2"
+                            Orientation="Vertical"
+                            Spacing="4"
+                            VerticalAlignment="Bottom">
+                            <Button
+                                Click="PersonaliseLockWall_Click"
+                                Content="Change in Settings"
+                                HorizontalAlignment="Stretch" />
+                            <Button
+                                Click="CopyLockWall_Click"
+                                Content="Copy to clipboard"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource AccentButtonStyle}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnSpacing="6" Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Text="Primary accent"
+                            VerticalAlignment="Center" />
+                        <Button
+                            Grid.Column="2"
+                            Click="CopyColor_Click"
+                            Content="Copy hex code"
+                            Style="{StaticResource AccentButtonStyle}" />
+                        <Button
+                            Grid.Column="3"
+                            Click="UpdatePrimaryAccent_Click"
+                            Content="Change in Settings" />
+                    </Grid>
                 </StackPanel>
-            </Grid>
-
-            <TextBlock
-                FontWeight="SemiBold"
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                Margin="0,8,0,0"
-                Text="Lock Screen" />
-            <Grid AutomationProperties.Name="Lock screen Wallpaper Data">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="184" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <Border CornerRadius="6">
-                    <Image
-                        x:Name="LockWall"
-                        Height="104"
-                        d:Source="ms-appx:///Assets/ModernWinVer.png"
-                        Source="{x:Bind ViewModel.LockWall, Mode=OneWay}"
-                        Width="184" />
-                </Border>
-
-                <StackPanel
-                    Grid.Column="2"
-                    Orientation="Vertical"
-                    Spacing="4"
-                    VerticalAlignment="Bottom">
-                    <Button
-                        Click="PersonaliseLockWall_Click"
-                        Content="Change in Settings"
-                        HorizontalAlignment="Stretch" />
-                    <Button
-                        Click="CopyLockWall_Click"
-                        Content="Copy to clipboard"
-                        HorizontalAlignment="Stretch"
-                        Style="{StaticResource AccentButtonStyle}" />
-                </StackPanel>
-            </Grid>
-
-            <Grid ColumnSpacing="6" Margin="0,12,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock
-                    FontWeight="SemiBold"
-                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Text="Primary accent"
-                    VerticalAlignment="Center" />
-                <Button
-                    Grid.Column="2"
-                    Click="CopyColor_Click"
-                    Content="Copy hex code"
-                    Style="{StaticResource AccentButtonStyle}" />
-                <Button
-                    Grid.Column="3"
-                    Click="UpdatePrimaryAccent_Click"
-                    Content="Change in Settings" />
-            </Grid>
+            </Border>
         </StackPanel>
     </ScrollViewer>
 </Page>

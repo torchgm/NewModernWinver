@@ -44,6 +44,9 @@
                     </Style>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
+
+            <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
+            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -102,22 +105,22 @@
                     x:Name="gvFrame1"
                     Height="400"
                     VerticalContentAlignment="Top"
-                    Width="392" />
+                    Width="460" />
                 <Frame
                     x:Name="gvFrame2"
                     Height="400"
                     VerticalContentAlignment="Top"
-                    Width="392" />
+                    Width="460" />
                 <Frame
                     x:Name="gvFrame3"
                     Height="400"
                     VerticalContentAlignment="Top"
-                    Width="392" />
+                    Width="460" />
                 <Frame
                     x:Name="gvFrame4"
                     Height="400"
                     VerticalContentAlignment="Top"
-                    Width="392" />
+                    Width="460" />
             </GridView.Items>
         </GridView>
 
