@@ -68,7 +68,7 @@ namespace NewModernWinver.ViewModels
                 }
                 catch (Exception)
                 {
-                    DeskWallVisible = false;
+
                 }
             }
             else
