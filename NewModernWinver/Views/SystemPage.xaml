@@ -1,26 +1,26 @@
 ﻿<Page
     x:Class="NewModernWinver.Views.SystemPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    mc:Ignorable="d"
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:Height="400"
     d:Width="500"
-    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+    mc:Ignorable="d">
 
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12">
             <TextBlock
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Padding="4,0"
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Your PC" />
             <TextBlock
-                d:Text="WIN-NAME"
                 Padding="4,0"
+                d:Text="WIN-NAME"
                 Text="{x:Bind ViewModel.SystemName}" />
 
             <Border Margin="0,4,0,0" Style="{StaticResource DefaultCardStyle}">
@@ -53,8 +53,8 @@
                             Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                             Text="Base speed" />
                         <TextBlock
-                            Grid.Column="1"
                             Grid.Row="1"
+                            Grid.Column="1"
                             d:Text="2096MHz"
                             Text="{x:Bind ViewModel.CpuClockSpeed}"
                             TextWrapping="WrapWholeWords" />
@@ -65,16 +65,16 @@
                             Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                             Text="Architecture" />
                         <TextBlock
-                            Grid.Column="1"
                             Grid.Row="2"
+                            Grid.Column="1"
                             d:Text="X64"
                             Text="{x:Bind ViewModel.CpuArch}"
                             TextWrapping="WrapWholeWords" />
                     </Grid>
 
                     <muxc:ProgressBar
-                        d:Value="25"
                         Margin="0,12,0,0"
+                        d:Value="25"
                         Value="{x:Bind ViewModel.CpuUsage, Mode=OneWay}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -82,9 +82,7 @@
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock
-                            d:Text="25%"
-                            Text="{x:Bind ViewModel.CpuUsagePercent, Mode=OneWay}" />
+                        <TextBlock d:Text="25%" Text="{x:Bind ViewModel.CpuUsagePercent, Mode=OneWay}" />
                         <TextBlock
                             Grid.Column="2"
                             HorizontalAlignment="Right"
@@ -109,18 +107,14 @@
                             Text="{x:Bind ViewModel.TotalRamGB}" />
                     </Grid>
 
-                    <muxc:ProgressBar
-                        d:Value="50"
-                        Value="{x:Bind ViewModel.UsedRamPercent, Mode=OneWay}" />
+                    <muxc:ProgressBar d:Value="50" Value="{x:Bind ViewModel.UsedRamPercent, Mode=OneWay}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock
-                            d:Text="8.00GB used"
-                            Text="{x:Bind ViewModel.UsedRamGB, Mode=OneWay}" />
+                        <TextBlock d:Text="8.00GB used" Text="{x:Bind ViewModel.UsedRamGB, Mode=OneWay}" />
                         <TextBlock
                             Grid.Column="1"
                             HorizontalAlignment="Right"
@@ -145,18 +139,14 @@
                             Text="{x:Bind ViewModel.TotalStorageGB}" />
                     </Grid>
 
-                    <muxc:ProgressBar
-                        d:Value="75"
-                        Value="{x:Bind ViewModel.UsedStoragePercent}" />
+                    <muxc:ProgressBar d:Value="75" Value="{x:Bind ViewModel.UsedStoragePercent}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock
-                            d:Text="384.00GB used"
-                            Text="{x:Bind ViewModel.UsedStorageGB}" />
+                        <TextBlock d:Text="384.00GB used" Text="{x:Bind ViewModel.UsedStorageGB}" />
                         <TextBlock
                             Grid.Column="1"
                             HorizontalAlignment="Right"

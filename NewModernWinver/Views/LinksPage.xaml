@@ -1,25 +1,23 @@
 ﻿<Page
     x:Class="NewModernWinver.Views.LinksPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:Height="400"
     d:Width="500"
-    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+    mc:Ignorable="d">
 
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12">
             <TextBlock
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Padding="4,0"
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Links" />
-            <TextBlock
-                Padding="4,0"
-                Text="Additional help and information" />
+            <TextBlock Padding="4,0" Text="Additional help and information" />
 
             <Border Margin="0,4,0,0" Style="{StaticResource DefaultCardStyle}">
                 <StackPanel>
@@ -30,19 +28,15 @@
                     <HyperlinkButton Content="Settings" NavigateUri="ms-settings:" />
                     <HyperlinkButton Content="System Properties" NavigateUri="ms-settings:about" />
                     <HyperlinkButton Content="Tips" NavigateUri="ms-get-started:" />
-                    <HyperlinkButton
-                        Content="Contact Microsoft Support"
-                        NavigateUri="https://support.microsoft.com/contactus" />
+                    <HyperlinkButton Content="Contact Microsoft Support" NavigateUri="https://support.microsoft.com/contactus" />
 
                     <TextBlock
+                        Margin="0,12,0,0"
                         FontWeight="Semibold"
                         Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        Margin="0,12,0,0"
                         Text="About Modern Winver" />
                     <HyperlinkButton Content="Discord" NavigateUri="https://discord.gg/wYQJd8VGSB" />
-                    <HyperlinkButton
-                        Content="GitHub"
-                        NavigateUri="https://www.github.com/torchgm/NewModernWinver" />
+                    <HyperlinkButton Content="GitHub" NavigateUri="https://www.github.com/torchgm/NewModernWinver" />
                 </StackPanel>
             </Border>
         </StackPanel>

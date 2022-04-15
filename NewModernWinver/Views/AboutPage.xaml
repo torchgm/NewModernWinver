@@ -1,25 +1,25 @@
 ﻿<Page
     x:Class="NewModernWinver.Views.AboutPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:Height="440"
     d:Width="500"
-    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+    mc:Ignorable="d">
 
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12">
             <TextBlock
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Padding="4,0"
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Microsoft Windows" />
             <TextBlock
-                d:Text="©️ 2013 Microsoft Corporation. All rights reserved"
                 Padding="4,0"
+                d:Text="©️ 2013 Microsoft Corporation. All rights reserved"
                 Text="{x:Bind ViewModel.Copyright}"
                 TextWrapping="Wrap" />
 
@@ -56,8 +56,8 @@
                             Text="Update"
                             TextWrapping="Wrap" />
                         <TextBlock
-                            Grid.Column="1"
                             Grid.Row="1"
+                            Grid.Column="1"
                             d:Text="Update"
                             Text="{x:Bind ViewModel.CurrentUpdate}"
                             TextWrapping="Wrap" />
@@ -69,8 +69,8 @@
                             Text="Installed on"
                             TextWrapping="Wrap" />
                         <TextBlock
-                            Grid.Column="1"
                             Grid.Row="2"
+                            Grid.Column="1"
                             d:Text="2013-10-17 "
                             Text="{x:Bind ViewModel.InstalledOn}"
                             TextWrapping="Wrap" />
@@ -82,24 +82,19 @@
                             Text="Build"
                             TextWrapping="Wrap" />
                         <TextBlock
-                            Grid.Column="1"
                             Grid.Row="3"
+                            Grid.Column="1"
                             d:Text="CurrentBuild"
                             Text="{x:Bind ViewModel.CurrentBuild}"
                             TextWrapping="Wrap" />
                     </Grid>
 
-                    <TextBlock
-                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        TextWrapping="Wrap">
-                            The Windows operating system and its user interface are protected by trademark and other pending or existing intellectual property rights in the United States and other countries/regions.<LineBreak/><LineBreak/>This product is licensed under the 
-                            <Hyperlink
-                                UnderlineStyle="None"
-                                NavigateUri="https://www.microsoft.com/useterms">
-                                Microsoft Software Licence Terms
-                            </Hyperlink>
-                            to:
-                    </TextBlock>
+                    <TextBlock Foreground="{ThemeResource ApplicationForegroundThemeBrush}" TextWrapping="Wrap">
+                        The Windows operating system and its user interface are protected by trademark and other pending or existing intellectual property rights in the United States and other countries/regions.<LineBreak /><LineBreak />
+                        This product is licensed under the<Hyperlink NavigateUri="https://www.microsoft.com/useterms" UnderlineStyle="None">
+                            Microsoft Software Licence Terms
+                        </Hyperlink>
+                        to:</TextBlock>
 
                     <Grid Margin="0,12,0,0" RowSpacing="4">
                         <Grid.ColumnDefinitions>
@@ -130,8 +125,8 @@
                             Text="Computer"
                             TextWrapping="Wrap" />
                         <TextBlock
-                            Grid.Column="1"
                             Grid.Row="1"
+                            Grid.Column="1"
                             d:Text="SystemName"
                             Text="{x:Bind ViewModel.SystemName}"
                             TextWrapping="Wrap" />

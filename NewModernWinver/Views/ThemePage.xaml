@@ -1,26 +1,24 @@
 ﻿<Page
     x:Class="NewModernWinver.Views.ThemePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    mc:Ignorable="d"
     d:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:Height="460"
     d:Width="500"
-    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+    mc:Ignorable="d">
 
     <ScrollViewer Margin="-12,0">
         <StackPanel Padding="20,12">
             <TextBlock
-                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Padding="4,0"
+                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 Style="{StaticResource SubtitleTextBlockStyle}"
                 Text="Theme" />
-            <TextBlock
-                Padding="4,0"
-                Text="Preview and copy your wallpaper and accent" />
+            <TextBlock Padding="4,0" Text="Preview and copy your wallpaper and accent" />
 
             <Border Margin="0,4,0,0" Style="{StaticResource DefaultCardStyle}">
                 <StackPanel>
@@ -37,19 +35,19 @@
 
                         <muxc:TeachingTip
                             x:Name="WallTip"
+                            Title="Modern Winver needs your permission to display the desktop wallpaper"
                             ActionButtonClick="GetPermission_Click"
                             ActionButtonContent="Grant"
                             CloseButtonClick="PermissionInfo_Click"
                             CloseButtonContent="Read more"
                             IsLightDismissEnabled="True"
                             Subtitle="UWP apps (like this one) normally are only allowed to store and open files in a small restricted folder, or files you choose with a file picker. If an app wants to access other files on your drive (such as the desktop wallpaper), it needs this permission to access it."
-                            Target="{x:Bind WarningIcon}"
-                            Title="Modern Winver needs your permission to display the desktop wallpaper" />
+                            Target="{x:Bind WarningIcon}" />
                         <Button
-                            Click="WarningButton_Click"
-                            CornerRadius="6"
                             Height="104"
                             HorizontalAlignment="Stretch"
+                            Click="WarningButton_Click"
+                            CornerRadius="6"
                             IsHitTestVisible="{x:Bind ViewModel.DeskWallVisible.Equals(x:False), Mode=OneWay}">
                             <FontIcon
                                 x:Name="WarningIcon"
@@ -61,35 +59,35 @@
                         <Border CornerRadius="6">
                             <Image
                                 x:Name="DeskWall"
+                                Width="184"
                                 Height="104"
                                 d:Source="ms-appx:///Assets/ModernWinVer.png"
                                 Source="{x:Bind ViewModel.DeskWall, Mode=OneWay}"
-                                Visibility="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
-                                Width="184" />
+                                Visibility="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}" />
                         </Border>
 
                         <StackPanel
                             Grid.Column="2"
+                            VerticalAlignment="Bottom"
                             Orientation="Vertical"
-                            Spacing="4"
-                            VerticalAlignment="Bottom">
+                            Spacing="4">
                             <Button
+                                HorizontalAlignment="Stretch"
                                 Click="PersonaliseDeskWall_Click"
-                                Content="Change in Settings"
-                                HorizontalAlignment="Stretch" />
+                                Content="Change in Settings" />
                             <Button
+                                HorizontalAlignment="Stretch"
                                 Click="CopyDeskWall_Click"
                                 Content="Copy to clipboard"
-                                HorizontalAlignment="Stretch"
                                 IsEnabled="{x:Bind ViewModel.DeskWallVisible, Mode=OneWay}"
                                 Style="{StaticResource AccentButtonStyle}" />
                         </StackPanel>
                     </Grid>
 
                     <TextBlock
+                        Margin="0,8,0,0"
                         FontWeight="SemiBold"
                         Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        Margin="0,8,0,0"
                         Text="Lock Screen" />
                     <Grid AutomationProperties.Name="Lock screen Wallpaper Data">
                         <Grid.ColumnDefinitions>
@@ -101,30 +99,30 @@
                         <Border CornerRadius="6">
                             <Image
                                 x:Name="LockWall"
+                                Width="184"
                                 Height="104"
                                 d:Source="ms-appx:///Assets/ModernWinVer.png"
-                                Source="{x:Bind ViewModel.LockWall, Mode=OneWay}"
-                                Width="184" />
+                                Source="{x:Bind ViewModel.LockWall, Mode=OneWay}" />
                         </Border>
 
                         <StackPanel
                             Grid.Column="2"
+                            VerticalAlignment="Bottom"
                             Orientation="Vertical"
-                            Spacing="4"
-                            VerticalAlignment="Bottom">
+                            Spacing="4">
                             <Button
+                                HorizontalAlignment="Stretch"
                                 Click="PersonaliseLockWall_Click"
-                                Content="Change in Settings"
-                                HorizontalAlignment="Stretch" />
+                                Content="Change in Settings" />
                             <Button
+                                HorizontalAlignment="Stretch"
                                 Click="CopyLockWall_Click"
                                 Content="Copy to clipboard"
-                                HorizontalAlignment="Stretch"
                                 Style="{StaticResource AccentButtonStyle}" />
                         </StackPanel>
                     </Grid>
 
-                    <Grid ColumnSpacing="6" Margin="0,12,0,0">
+                    <Grid Margin="0,12,0,0" ColumnSpacing="6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="1*" />
@@ -133,10 +131,10 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
+                            VerticalAlignment="Center"
                             FontWeight="SemiBold"
                             Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                            Text="Primary accent"
-                            VerticalAlignment="Center" />
+                            Text="Primary accent" />
                         <Button
                             Grid.Column="2"
                             Click="CopyColor_Click"
