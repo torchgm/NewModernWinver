@@ -24,6 +24,12 @@ namespace NewModernWinver
             InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            this.Loaded += OnLoaded;
+            SetupTitleBar();
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
             if (SystemInformation.Instance.OperatingSystemVersion.Build > 21950)
             {
                 LogoWin10.Visibility = Visibility.Collapsed;
@@ -35,20 +41,12 @@ namespace NewModernWinver
                 LogoWin11.Visibility = Visibility.Collapsed;
             }
 
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-
-            ApplicationView appView = ApplicationView.GetForCurrentView();
-
-            appView.TitleBar.BackgroundColor = Colors.Transparent;
-            appView.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-
-            appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
-            appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-
             gvFrame1.Navigate(typeof(AboutPage));
             gvFrame2.Navigate(typeof(SystemPage));
             gvFrame3.Navigate(typeof(ThemePage));
             gvFrame4.Navigate(typeof(LinksPage));
+
+            await App.ThemeViewModel.LoadWallpapersAsync();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -82,7 +80,6 @@ namespace NewModernWinver
             base.OnNavigatedTo(e);
         }
 
-        #region NavigationView event handlers
         private async void TopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
@@ -92,9 +89,9 @@ namespace NewModernWinver
             }
             else
             {
-                if (args.InvokedItem is TextBlock ItemContent)
+                if (args.InvokedItem is TextBlock itemContent)
                 {
-                    switch (ItemContent.Tag)
+                    switch (itemContent.Tag)
                     {
                         case "Nav_About":
                             contentFrame.Navigate(typeof(AboutPage), null,
@@ -119,11 +116,22 @@ namespace NewModernWinver
                 }
             }
         }
-        #endregion
 
         private async void OkButton_Click(object sender, RoutedEventArgs e)
         {
             await ExitAppAsync();
+        }
+
+        private void SetupTitleBar()
+        {
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            ApplicationView appView = ApplicationView.GetForCurrentView();
+
+            appView.TitleBar.BackgroundColor = Colors.Transparent;
+            appView.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+
+            appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
+            appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         private async Task ExitAppAsync()

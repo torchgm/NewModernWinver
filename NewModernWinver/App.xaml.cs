@@ -1,7 +1,6 @@
 ﻿using NewModernWinver.ViewModels;
 using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
@@ -38,60 +37,54 @@ namespace NewModernWinver
             PerfWorker.RunWorkerAsync();
         }
 
-        protected override async void OnActivated(IActivatedEventArgs args)
+        protected override void OnActivated(IActivatedEventArgs args)
         {
             if (args.Kind == ActivationKind.Protocol)
             {
                 ProtocolActivatedEventArgs eventArgs = args as ProtocolActivatedEventArgs;
+                if (!(Window.Current.Content is Frame rootFrame))
+                {
+                    rootFrame = InitializeView();
+                }
 
-                Frame rootFrame = await InitializeViewAsync();
-
-                // Always navigate for a protocol launch
                 rootFrame.Navigate(typeof(MainPage), eventArgs.Uri.AbsoluteUri);
             }
         }
 
         /// <summary>
-        /// Invoked when the application is launched normally by the end user.  Other entry points
+        /// Invoked when the application is launched normally by the end user. Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
-        {
-            Frame rootFrame = await InitializeViewAsync();
-            if (e.PrelaunchActivated == false)
-            {
-                if (rootFrame.Content == null)
-                {
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                }
-            }
-        }
-
-        private async Task<Frame> InitializeViewAsync()
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (!(Window.Current.Content is Frame rootFrame))
+            if (!(Window.Current.Content is Frame))
             {
-                // Before initializing, set the preferred launch view size
-                var size = new Size(436, 635);
-                ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
-
-                ApplicationView.PreferredLaunchViewSize = size;
-                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-                rootFrame.NavigationFailed += OnNavigationFailed;
-
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
+                Frame rootFrame = InitializeView();
+                rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+        }
+
+        private Frame InitializeView()
+        {
+            // Before initializing, set the preferred launch view size
+            var size = new Size(436, 635);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
+
+            ApplicationView.PreferredLaunchViewSize = size;
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            // Create a Frame to act as the navigation context and navigate to the first page
+            var rootFrame = new Frame();
+            rootFrame.NavigationFailed += OnNavigationFailed;
+
+            // Place the frame in the current Window
+            Window.Current.Content = rootFrame;
 
             // Ensure the current window is active
             Window.Current.Activate();
-            await ThemeViewModel.LoadWallpapersAsync();
 
             return rootFrame;
         }

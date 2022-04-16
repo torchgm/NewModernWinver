@@ -65,8 +65,9 @@
             Margin="0,45,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            d:Visibility="Collapsed"
-            Style="{ThemeResource Win10Logo}" />
+            d:Visibility="Visible"
+            Style="{ThemeResource Win10Logo}"
+            Visibility="Collapsed" />
         <Image
             x:Name="LogoWin11"
             Width="328"
@@ -74,7 +75,8 @@
             Margin="0,45,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Style="{ThemeResource Win11Logo}" />
+            Style="{ThemeResource Win11Logo}"
+            Visibility="Collapsed" />
 
         <GridView
             x:Name="gvTopLevelNav"
