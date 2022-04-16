@@ -259,7 +259,7 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.7.1-prerelease.211026002</Version>
+      <Version>2.7.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
