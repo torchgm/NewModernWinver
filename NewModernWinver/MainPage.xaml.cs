@@ -31,6 +31,7 @@ namespace NewModernWinver
             Listener.ThemeChanged += Listener_ThemeChanged;
 
             InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
 
             gvFrame1.Navigate(typeof(Views.AboutPage));
             gvFrame2.Navigate(typeof(Views.SystemPage));
