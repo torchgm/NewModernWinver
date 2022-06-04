@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
+using Windows.UI.ViewManagement;
 
 namespace NewModernWinver
 {
@@ -129,6 +130,34 @@ namespace NewModernWinver
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private Frame InitializeView()
+        {
+            if (!(Window.Current.Content is Frame rootFrame))
+            {
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new Frame();
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+
+                // Before ensuring activation, set the preferred launch view size
+                var currView = ApplicationView.GetForCurrentView();
+                var size = new Size(436, 500);
+                currView.SetPreferredMinSize(size);
+
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                ApplicationView.PreferredLaunchViewSize = size;
+
+                currView.TryResizeView(size);
+
+                // Ensure the current window is active
+                Window.Current.Activate();
+            }
+
+            return rootFrame;
         }
     }
 }
