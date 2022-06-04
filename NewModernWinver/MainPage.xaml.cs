@@ -20,16 +20,11 @@ namespace NewModernWinver
 
     public sealed partial class MainPage : Page
     {
-        ApplicationView appView;
         int build;
 
         public MainPage()
         {
-            appView = ApplicationView.GetForCurrentView();
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             build = SystemInformation.Instance.OperatingSystemVersion.Build;
-            appView.SetPreferredMinSize(new Size(436, 635)); // STARTS HERE
-            ApplicationView.PreferredLaunchViewSize = new Size(436, 635); // JUMPS HERE WHY DOES THIS RESIZE
             var Listener = new ThemeListener();
             Listener.ThemeChanged += Listener_ThemeChanged;
 
@@ -68,12 +63,13 @@ namespace NewModernWinver
 
             }
 
+            ApplicationView appView = ApplicationView.GetForCurrentView();
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
             appView.TitleBar.BackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            appView.TryResizeView(new Size(436, 635));
         }
 
         #region NavigationView event handlers
