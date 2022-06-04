@@ -80,8 +80,14 @@ namespace NewModernWinver
             deferral.Complete();
         }
 
+        /// <summary>
+        /// Initializes the current window if necessary.
+        /// </summary>
+        /// <returns>The current window's root frame.</returns>
         private Frame InitializeView()
         {
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
             if (!(Window.Current.Content is Frame rootFrame))
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
@@ -100,10 +106,10 @@ namespace NewModernWinver
                 ApplicationView.PreferredLaunchViewSize = size;
 
                 currView.TryResizeView(size);
-
-                // Ensure the current window is active
-                Window.Current.Activate();
             }
+
+            // Ensure the current window is active
+            Window.Current.Activate();
 
             return rootFrame;
         }
