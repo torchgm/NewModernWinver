@@ -26,7 +26,7 @@ namespace NewModernWinver
             { 20348, "21H2" },
             { 21996, "Stop using leaked builds" },
             { 22000, "21H2" },
-            { 22621, "21H2" }
+            { 22621, "22H2" }
         };
 
         public static Dictionary<int, string> EditionDict = new Dictionary<int, string>
