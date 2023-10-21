@@ -26,7 +26,7 @@
     <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
-    <PackageCertificateThumbprint>12F7323BCE9A1804071D85D502B7C8B57D89616E</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F90CC44FF9CA26D2C89536D0056592E70B00D631</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <PackageCertificateKeyFile />
   </PropertyGroup>
@@ -252,7 +252,7 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.7.1-prerelease.211026002</Version>
+      <Version>2.8.5</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

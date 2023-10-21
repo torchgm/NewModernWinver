@@ -81,7 +81,7 @@ namespace NewModernWinver.Views
             valueTotalStorage.Text = $"{totalNumberOfBytes / 1073741824} GB";
             valueStorage.Text = $"{(totalNumberOfBytes - freeBytesAvailable) / 1073741824} GB used";
             valueFreeStorage.Text = $"{freeBytesAvailable / 1073741824} GB free";
-            progressStorage.Value = Convert.ToDouble((decimal)freeBytesAvailable / (decimal)totalNumberOfBytes) * 100;
+            progressStorage.Value = Convert.ToDouble(((decimal)totalNumberOfBytes - (decimal)freeBytesAvailable) / (decimal)totalNumberOfBytes) * 100;
         }
 
         // CPU Background Worker

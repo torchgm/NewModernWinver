@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background ="Transparent" Foreground="{ThemeResource SystemColorDisabledTextColor}">
     <Grid>
         <ScrollViewer>
@@ -21,7 +22,7 @@
 
                 <TextBlock x:Name="labelClockSpeed" Text="Base speed" Margin="13,100,0,0" Foreground="{ThemeResource SystemBaseHighColor}" Height="19" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
                 <TextBlock x:Name="valueClockSpeed" Text="0 MHz" HorizontalAlignment="Left" Margin="130,100,0,0" Foreground="{ThemeResource SystemBaseMediumColor}" Height="19" VerticalAlignment="Top" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <ProgressBar x:Name="progressCPU" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,157,0,0" Value="25" VerticalAlignment="Top"/>
+                <muxc:ProgressBar x:Name="progressCPU" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,157,0,0" Value="0" VerticalAlignment="Top"/>
                 <TextBlock x:Name="valueZeroCPU" Text="0%" HorizontalAlignment="Left" Margin="13,166,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
                 <TextBlock x:Name="labelMaxCPU" Text="100%" HorizontalAlignment="Left" Margin="204,166,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
 
@@ -32,13 +33,13 @@
 
                 <TextBlock x:Name="labelRAM" Text="Installed RAM" HorizontalAlignment="Left" Margin="13,286,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
                 <TextBlock x:Name="valueRAM" Text="0 GB Unknown @ 0000 MT/s" HorizontalAlignment="Left" Margin="130,286,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
-                <ProgressBar x:Name="progressRAM" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,319,0,0" Value="0" VerticalAlignment="Top"/>
+                <muxc:ProgressBar x:Name="progressRAM" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,319,0,0" Value="0" VerticalAlignment="Top"/>
                 <TextBlock x:Name="valueZeroRAM" Text="0 GB" HorizontalAlignment="Left" Margin="13,328,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
                 <TextBlock x:Name="valueMaxRAM" Text="0 GB" HorizontalAlignment="Left" Margin="204,328,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
 
 
                 <TextBlock x:Name="labelStorage" Text="Primary storage" HorizontalAlignment="Left" Margin="13,205,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseHighColor}" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="SemiBold"/>
-                <ProgressBar x:Name="progressStorage" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,238,0,0" Value="0" VerticalAlignment="Top"/>
+                <muxc:ProgressBar x:Name="progressStorage" Height="4" HorizontalAlignment="Center" Width="410" Margin="0,238,0,0" Value="0" VerticalAlignment="Top"/>
                 <TextBlock x:Name="valueTotalStorage" Text="0 GB" HorizontalAlignment="Left" Margin="130,205,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="293" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
                 <TextBlock x:Name="valueStorage" Text="0 GB used" HorizontalAlignment="Left" Margin="13,247,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" Width="191" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
                 <TextBlock x:Name="valueFreeStorage" Text="0 GB free" HorizontalAlignment="Left" Margin="204,247,0,0" VerticalAlignment="Top" Foreground="{ThemeResource SystemBaseMediumColor}" HorizontalTextAlignment="Right" Width="219" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
