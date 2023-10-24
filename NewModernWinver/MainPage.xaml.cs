@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
+﻿using System;
+using Microsoft.Toolkit.Uwp.UI.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI;
@@ -7,7 +8,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Runtime.InteropServices;
 using Microsoft.Toolkit.Uwp.Helpers;
-
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -169,9 +169,9 @@ namespace NewModernWinver
         }
         #endregion
 
-        private void okButton_Click(object sender, RoutedEventArgs e)
+        private async void okButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            _ = await ApplicationView.GetForCurrentView().TryConsolidateAsync();
         }
 
         [DllImport("kernel32.dll", SetLastError = false)]
