@@ -7,6 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Runtime.InteropServices;
 using Microsoft.Toolkit.Uwp.Helpers;
+using NewModernWinver.Views;
+using Windows.UI.Xaml.Navigation;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -20,20 +22,16 @@ namespace NewModernWinver
 
     public sealed partial class MainPage : Page
     {
-        ApplicationView appView;
         int build;
 
         public MainPage()
         {
-            appView = ApplicationView.GetForCurrentView();
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             build = SystemInformation.Instance.OperatingSystemVersion.Build;
-            appView.SetPreferredMinSize(new Size(436, 635)); // STARTS HERE
-            ApplicationView.PreferredLaunchViewSize = new Size(436, 635); // JUMPS HERE WHY DOES THIS RESIZE
             var Listener = new ThemeListener();
             Listener.ThemeChanged += Listener_ThemeChanged;
 
             InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
 
             gvFrame1.Navigate(typeof(Views.AboutPage));
             gvFrame2.Navigate(typeof(Views.SystemPage));
@@ -68,28 +66,16 @@ namespace NewModernWinver
 
             }
 
+            ApplicationView appView = ApplicationView.GetForCurrentView();
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
             appView.TitleBar.BackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             appView.TitleBar.InactiveBackgroundColor = Colors.Transparent;
             appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            appView.TryResizeView(new Size(436, 635));
         }
 
         #region NavigationView event handlers
-        private void nvTopLevelNav_Loaded(object sender, RoutedEventArgs e)
-        {
-            foreach (Microsoft.UI.Xaml.Controls.NavigationViewItem item in nvTopLevelNav.MenuItems)
-            {
-                if (item is Microsoft.UI.Xaml.Controls.NavigationViewItem && item.Tag.ToString() == "Nav_About")
-                {
-                    nvTopLevelNav.SelectedItem = item;
-                    break;
-                }
-            }
-            contentFrame.Navigate(typeof(Views.AboutPage));
-        }
-
         private void Listener_ThemeChanged(ThemeListener sender)
         {
             var theme = sender.CurrentTheme;
@@ -130,10 +116,6 @@ namespace NewModernWinver
             }
         }
 
-        private void nvTopLevelNav_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-        }
-
         private void nvTopLevelNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
@@ -149,21 +131,50 @@ namespace NewModernWinver
                     switch (ItemContent.Tag)
                     {
                         case "Nav_About":
-                            contentFrame.Navigate(typeof(Views.AboutPage));
+                            contentFrame.Navigate(typeof(AboutPage));
                             break;
 
                         case "Nav_System":
-                            contentFrame.Navigate(typeof(Views.SystemPage));
+                            contentFrame.Navigate(typeof(SystemPage));
                             break;
 
                         case "Nav_Theme":
-                            contentFrame.Navigate(typeof(Views.ThemePage));
+                            contentFrame.Navigate(typeof(ThemePage));
                             break;
 
                         case "Nav_Links":
-                            contentFrame.Navigate(typeof(Views.LinksPage));
+                            contentFrame.Navigate(typeof(LinksPage));
                             break;
                     }
+                }
+            }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is string param)
+            {
+                switch (param)
+                {
+                    case "mwv:system":
+                        contentFrame.Navigate(typeof(SystemPage));
+                        nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[1];
+                        break;
+
+                    case "mwv:theme":
+                        contentFrame.Navigate(typeof(ThemePage));
+                        nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[2];
+                        break;
+
+                    case "mwv:links":
+                        contentFrame.Navigate(typeof(LinksPage));
+                        nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[3];
+                        break;
+
+                    default:
+                        contentFrame.Navigate(typeof(AboutPage));
+                        nvTopLevelNav.SelectedItem = nvTopLevelNav.MenuItems[0];
+                        break;
                 }
             }
         }
