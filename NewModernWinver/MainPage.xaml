@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:NewModernWinver"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
@@ -33,6 +34,7 @@
 
         <GridView x:Name="gvTopLevelNav" Margin="0,135,0,51" CanReorderItems="True" CanDragItems="True" AllowDrop="True" HorizontalAlignment="Stretch" Visibility="Collapsed">
 
+            
             <GridView.Items>
                 <Frame x:Name="gvFrame1" Width="436" Height="410" HorizontalAlignment="Center"/>
                 <Frame x:Name="gvFrame2" Width="436" Height="410" HorizontalAlignment="Center"/>

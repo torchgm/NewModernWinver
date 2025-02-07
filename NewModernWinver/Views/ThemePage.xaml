@@ -21,7 +21,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
 
-                <TextBlock x:Name="labelError" Visibility="Collapsed" HorizontalAlignment="Left" Margin="21,104,0,0" VerticalAlignment="Top" Height="104" Width="168" Text="Modern Winver needs your permission to display the desktop wallpaper." TextAlignment="Center" TextWrapping="WrapWholeWords" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
+                <TextBlock x:Name="labelError" Visibility="Collapsed" HorizontalAlignment="Left" Margin="21,104,0,0" VerticalAlignment="Top" Height="104" Width="168" Text="Modern Winver needs your permission to display this." TextAlignment="Center" TextWrapping="WrapWholeWords" FontFamily="Segoe UI Variable Small Semibold" FontSize="14" FontWeight="Normal"/>
                 <Rectangle x:Name="rectError" Visibility="Collapsed" RadiusX="7" RadiusY="7" HorizontalAlignment="Left" Margin="13,98,0,0" VerticalAlignment="Top" Height="104" Width="184" Fill="#0E7F7F7F"/>
                 <Button x:Name="buttonGetPermission" Visibility="Collapsed" Content="Grant" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="42,160,0,0" VerticalAlignment="Top" Width="60" Click="buttonGetPermission_Click"/>
                 <Button x:Name="buttonPermissionInfo" Visibility="Collapsed" Content="Why?" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="108,160,0,0" VerticalAlignment="Top" Width="60" Click="buttonPermissionInfo_Click"/>

@@ -19,6 +19,7 @@ using Windows.Security.ExchangeActiveSyncProvisioning;
 using Microsoft.Toolkit.Uwp.Helpers;
 using System.Runtime.InteropServices;
 using RegistryRT;
+using System.Text;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -88,13 +89,21 @@ namespace NewModernWinver.Views
             valueUsername.Text = WindowsIdentity.GetCurrent().Name.Replace(valueComputername.Text + "\\", "");
 
             valueBuild.Text = build + "." + rev;
-            if (ListsAndStuff.BuildDict.ContainsKey(build))
+            try
+            {
+                reg.QueryValue(RegistryHive.HKEY_LOCAL_MACHINE, @"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "DisplayVersion", out uint RegType, out data);
+                valueUpdate.Text = Encoding.Unicode.GetString(data);
+            }
+            catch (Exception)
+            {
+            }
+            if (ListsAndStuff.BuildDict.ContainsKey(build) && (valueUpdate.Text == null || valueUpdate.Text == ""))
             {
                 valueUpdate.Text = ListsAndStuff.BuildDict[build];
             }
-            else
+            else if (valueUpdate.Text == null || valueUpdate.Text == "")
             {
-                valueUpdate.Text = "Dev";
+                valueUpdate.Text = "Insider";
             }
         }
 
