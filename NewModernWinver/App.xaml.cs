@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
+using Windows.ApplicationModel.Core;
 
 namespace NewModernWinver
 {
@@ -93,8 +94,9 @@ namespace NewModernWinver
                 Window.Current.Content = rootFrame;
             }
 
-            if (e.PrelaunchActivated == false)
+            if (!e.PrelaunchActivated)
             {
+                CoreApplication.EnablePrelaunch(true);
                 if (rootFrame.Content == null)
                 {
                     // When the navigation stack isn't restored navigate to the first page,
