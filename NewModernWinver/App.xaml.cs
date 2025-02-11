@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
+using Windows.UI.ViewManagement;
 
 namespace NewModernWinver
 {
@@ -37,33 +38,10 @@ namespace NewModernWinver
         {
             if (args.Kind == ActivationKind.Protocol)
             {
-                ProtocolActivatedEventArgs eventArgs = args as ProtocolActivatedEventArgs;
+                ProtocolActivatedEventArgs e = args as ProtocolActivatedEventArgs;
 
-                // TODO: Handle URI activation
-                // The received URI is eventArgs.Uri.AbsoluteUri
-
-                Frame rootFrame = Window.Current.Content as Frame;
-
-                // Do not repeat app initialization when the Window already has content,
-                // just ensure that the window is active
-                if (rootFrame == null)
-                {
-                    // Create a Frame to act as the navigation context and navigate to the first page
-                    rootFrame = new Frame();
-
-                    rootFrame.NavigationFailed += OnNavigationFailed;
-
-
-                    // Place the frame in the current Window
-                    Window.Current.Content = rootFrame;
-                }
-
-                // Always navigate for a protocol launch
-                rootFrame.Navigate(typeof(MainPage));
-
-
-                // Ensure the current window is active
-                Window.Current.Activate();
+                Frame rootFrame = InitializeView();
+                rootFrame.Navigate(typeof(MainPage), e.Uri.AbsoluteUri);
             }
         }
 
@@ -74,37 +52,8 @@ namespace NewModernWinver
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
-            {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-
-                rootFrame.NavigationFailed += OnNavigationFailed;
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
-
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
-            }
-
-            if (e.PrelaunchActivated == false)
-            {
-                if (rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                }
-                // Ensure the current window is active
-                Window.Current.Activate();
-            }
+            Frame rootFrame = InitializeView();
+            rootFrame.Navigate(typeof(MainPage), e.Arguments);
         }
 
         /// <summary>
@@ -129,6 +78,40 @@ namespace NewModernWinver
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        /// <summary>
+        /// Initializes the current window if necessary.
+        /// </summary>
+        /// <returns>The current window's root frame.</returns>
+        private Frame InitializeView()
+        {
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+            if (!(Window.Current.Content is Frame rootFrame))
+            {
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new Frame();
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+
+                // Before ensuring activation, set the preferred launch view size
+                var currView = ApplicationView.GetForCurrentView();
+                var size = new Size(436, 500);
+                currView.SetPreferredMinSize(size);
+
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                ApplicationView.PreferredLaunchViewSize = size;
+
+                currView.TryResizeView(size);
+            }
+
+            // Ensure the current window is active
+            Window.Current.Activate();
+
+            return rootFrame;
         }
     }
 }

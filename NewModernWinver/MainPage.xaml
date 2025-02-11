@@ -45,7 +45,7 @@
         </GridView>
 
 
-        <muxc:NavigationView x:Name="nvTopLevelNav" Margin="0,110,0,0" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True" Background="Transparent" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" Loaded="nvTopLevelNav_Loaded" ItemInvoked="nvTopLevelNav_ItemInvoked" FlowDirection="LeftToRight" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" UseLayoutRounding="True" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <muxc:NavigationView x:Name="nvTopLevelNav" Margin="0,110,0,0" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True" Background="Transparent" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" ItemInvoked="nvTopLevelNav_ItemInvoked" FlowDirection="LeftToRight" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" UseLayoutRounding="True" ScrollViewer.HorizontalScrollBarVisibility="Visible">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Tag="Nav_About">
                     <TextBlock Tag="Nav_About">About</TextBlock>
